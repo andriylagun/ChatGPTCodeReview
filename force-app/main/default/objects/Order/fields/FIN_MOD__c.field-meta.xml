@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_MOD__c</fullName>
+    <externalId>false</externalId>
+    <label>Method of Delivery</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AXS Mobile ID - Free (Recommended)</fullName>
+                <default>false</default>
+                <label>AXS Mobile ID - Free (Recommended)</label>
+            </value>
+            <value>
+                <fullName>Print Immediately</fullName>
+                <default>false</default>
+                <label>Print Immediately</label>
+            </value>
+            <value>
+                <fullName>Will Call - $6</fullName>
+                <default>false</default>
+                <label>Will Call - $6</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

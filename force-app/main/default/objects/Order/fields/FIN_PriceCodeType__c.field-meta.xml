@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_PriceCodeType__c</fullName>
+    <externalId>false</externalId>
+    <label>Price Code Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Individual</fullName>
+                <default>false</default>
+                <label>Individual</label>
+            </value>
+            <value>
+                <fullName>AXS Premium</fullName>
+                <default>false</default>
+                <label>AXS Premium</label>
+            </value>
+            <value>
+                <fullName>Non-Event</fullName>
+                <default>false</default>
+                <label>Non-Event</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

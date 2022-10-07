@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionNumber>1</activeVersionNumber>
+    <description>When product is created, a price book entry is created based on the product field value of LOCALE.</description>
+    <masterLabel>FIN_Price_Book_Entry_Creation_RT</masterLabel>
+</FlowDefinition>

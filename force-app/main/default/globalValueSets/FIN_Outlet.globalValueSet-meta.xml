@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Internet</fullName>
+        <default>false</default>
+        <label>Internet</label>
+    </customValue>
+    <customValue>
+        <fullName>b</fullName>
+        <default>false</default>
+        <label>b</label>
+    </customValue>
+    <customValue>
+        <fullName>c</fullName>
+        <default>false</default>
+        <label>c</label>
+    </customValue>
+    <masterLabel>Outlet</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
