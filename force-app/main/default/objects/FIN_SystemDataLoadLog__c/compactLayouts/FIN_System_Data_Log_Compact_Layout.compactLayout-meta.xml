@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_System_Data_Log_Compact_Layout</fullName>
+    <fields>FIN_Region__c</fields>
+    <fields>FIN_Process__c</fields>
+    <fields>FIN_ProcessCompletionStatus__c</fields>
+    <fields>FIN_ProcessDate__c</fields>
+    <fields>Process_Status_Image_Flag__c</fields>
+    <label>FIN_System_Data_Log_Compact_Layout</label>
+</CompactLayout>
