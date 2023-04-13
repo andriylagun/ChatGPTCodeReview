@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TicketPricenConponent_or_FeenComponent</fullName>
+    <active>true</active>
+    <description>Only 1 of those fields must be populated: Ticket Price and Component or Fee and Component</description>
+    <errorConditionFormula>AND(NOT(ISPICKVAL(FIN_Ticket_price_Component__c,&apos;&apos;)), NOT(ISPICKVAL(FIN_Fee_and_Component__c,&apos;&apos;)))</errorConditionFormula>
+    <errorDisplayField>FIN_Fee_and_Component__c</errorDisplayField>
+    <errorMessage>Only 1 of those fields must be populated: Ticket Price and Component or Fee and Component</errorMessage>
+</ValidationRule>

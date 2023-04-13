@@ -1,0 +1,158 @@
+<template>
+    <div class="slds-m-bottom_x-small acc-container">
+
+        <h2 class="slds-text-heading_medium slds-m-bottom_x-small">
+            Criteria
+        </h2>
+
+        <div class="acc-container">
+            <lightning-record-view-form>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-3">
+                        <div>
+                            <lightning-combobox
+                                    name="regions"
+                                    label="Region:"
+                                    value={regions}
+                                    options={availableRegions}
+                                    onchange={handleFormInputChange}
+                            ></lightning-combobox>
+                        </div>
+                        <div class="slds-grid btn-display-left">
+                            <lightning-button class="btn"
+                                              variant="brand"
+                                              label="Reset Filters"
+                                              title="Reset Filters"
+                                              onclick={handleReset}>
+                            </lightning-button>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-grid">
+                            <span class="slds-size_1-of-1">
+                                <lightning-combobox
+                                        name="contracts"
+                                        label="Contract:"
+                                        placeholder="Choose Contract"
+                                        value={contracts}
+                                        options={contractOptions}
+                                        onchange={handleFormInputChange} >
+                                </lightning-combobox>
+                            </span>
+                            <lightning-button-icon
+                                    icon-name="utility:undo"
+                                    name="contracts"
+                                    variant="bare"
+                                    onclick={handleUndoClick}
+                            ></lightning-button-icon>
+                        </div>
+                        <div class="slds-grid">
+                            <span class="slds-size_1-of-1">
+                                <lightning-combobox
+                                        name="contexts"
+                                        label="Context:"
+                                        placeholder="Choose Context"
+                                        value={contexts}
+                                        options={contextOptions}
+                                        onchange={handleFormInputChange}
+                                ></lightning-combobox>
+                            </span>
+                            <lightning-button-icon
+                                    icon-name="utility:undo"
+                                    name="contexts"
+                                    variant="bare"
+                                    onclick={handleUndoClick}
+                            ></lightning-button-icon>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-input
+                                label="Transaction Date From:"
+                                name="transactionDateFrom"
+                                value={transactionDateFrom}
+                                type="date"
+                                onchange={handleFormInputChange}>
+                        </lightning-input>
+                        <lightning-input
+                                label="Transaction Date To:"
+                                name="transactionDateTo"
+                                value={transactionDateTo}
+                                type="date"
+                                onchange={handleFormInputChange}>
+                        </lightning-input>
+                    </div>
+                </div>
+            </lightning-record-view-form>
+        </div>
+
+        <div if:true={isTabsOpen} class="radio-button">
+            <lightning-radio-group name="radioGroup"
+                                   options={options}
+                                   value={value}
+                                   type="button"
+                                   onchange={handleTypeChange}>
+            </lightning-radio-group>
+        </div>
+
+        <div class="btn-display-right">
+            <lightning-button
+                variant="brand"
+                label="Filter Results"
+                title="Filter Results"
+                onclick={handleClick}>
+            </lightning-button>
+        </div>
+
+        <div if:true={isMessageOpen} class="slds-text-align_center">
+            <lightning-formatted-text value={noRecords}></lightning-formatted-text>
+        </div>
+
+        <lightning-card if:true={isListOpen} title={title} icon-name="custom:custom63">
+            <div style="width: auto; height: 300px;" class="slds-grid slds-grid_align-center">
+                <lightning-datatable
+                    key-field="Id"
+                    data={filteredData}
+                    columns={gridColumns}
+                    onrowselection={handleRowSelection}
+                    selected-rows={selectedRows}>
+                </lightning-datatable>
+            </div>
+        </lightning-card>
+
+        <div class="btn-display-left">
+            <lightning-button
+                    variant="success"
+                    label="Confirm Journalizing Process to Start"
+                    title="Successful action"
+                    disabled={disabledConfirm}
+                    onclick={handleConfirmClick}>
+            </lightning-button>
+        </div>
+
+        <template if:true={isModalOpen}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close"
+                                            alternative-text="close"
+                                            variant="inverse"
+                                            size="small" ></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create Journalizing Schedule</h2>
+                    </header>
+                    <lightning-record-form  if:true={isFormOpen} class="acc-container record-form"
+                                            object-api-name={objectApiName}
+                                            fields={fields}
+                                            onsuccess={handleSuccess}
+                                            oncancel={closeModal}>
+                    </lightning-record-form>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+</template>

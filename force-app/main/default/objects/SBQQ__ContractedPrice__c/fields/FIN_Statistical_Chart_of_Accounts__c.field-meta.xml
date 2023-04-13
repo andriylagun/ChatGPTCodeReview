@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Statistical_Chart_of_Accounts__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Statistical Chart of Accounts</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>FIN_ChartOfAccounts__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>US Statistical Chart of Accounts</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>FIN_ChartOfAccounts__c</referenceTo>
+    <relationshipLabel>Contracted Prices (Statistical Chart of Accounts)</relationshipLabel>
+    <relationshipName>Contracted_Prices_Statistical</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

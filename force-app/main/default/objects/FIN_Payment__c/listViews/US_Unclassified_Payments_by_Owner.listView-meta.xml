@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>US_Unclassified_Payments_by_Owner</fullName>
+    <columns>NAME</columns>
+    <columns>FIN_Context__c</columns>
+    <columns>FIN_PaymentID__c</columns>
+    <columns>FIN_ContextID__c</columns>
+    <columns>FIN_PaymentDate__c</columns>
+    <columns>FIN_DepositDate__c</columns>
+    <columns>FIN_Entity__c</columns>
+    <columns>FIN_PaymentAmount__c</columns>
+    <columns>FIN_Order__c</columns>
+    <columns>FIN_Order_Approval_Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>FIN_Auto_Approved__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>US Unclassified Payments by Owner</label>
+    <queue>FIN_US_Unclassified</queue>
+</ListView>

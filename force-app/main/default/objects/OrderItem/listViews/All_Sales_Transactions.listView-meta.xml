@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Sales_Transactions</fullName>
+    <columns>Product2</columns>
+    <columns>OriginalOrderItem</columns>
+    <columns>Quantity</columns>
+    <columns>UnitPrice</columns>
+    <columns>ListPrice</columns>
+    <columns>ODER_ITEM.START_DATE</columns>
+    <columns>ODER_ITEM.END_DATE</columns>
+    <columns>TotalPrice</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Sales Transactions</label>
+</ListView>

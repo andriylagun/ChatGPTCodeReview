@@ -1,0 +1,10 @@
+<messaging:emailTemplate subject="Please Review this Order" recipientType="User" relatedToType="sbaa__Approval__c">
+<messaging:plainTextEmailBody >
+Greetings, 
+
+Please review this Order and approve. 
+
+Thanks, 
+
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

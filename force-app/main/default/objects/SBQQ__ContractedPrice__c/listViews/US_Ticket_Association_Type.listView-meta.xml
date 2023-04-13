@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>US_Ticket_Association_Type</fullName>
+    <columns>NAME</columns>
+    <columns>FIN_LibraryAssociationName__c</columns>
+    <columns>SBQQ__Product__c</columns>
+    <columns>FIN_Product_Type_NUM__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>US</value>
+    </filters>
+    <filters>
+        <field>Association_Type__c</field>
+        <operation>equals</operation>
+        <value>Ticket</value>
+    </filters>
+    <label>US Ticket Association Type</label>
+    <sharedTo>
+        <group>US_Region</group>
+    </sharedTo>
+</ListView>

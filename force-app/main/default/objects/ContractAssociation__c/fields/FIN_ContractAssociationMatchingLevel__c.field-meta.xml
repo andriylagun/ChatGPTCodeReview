@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_ContractAssociationMatchingLevel__c</fullName>
+    <description>Formula to detect matching condition level</description>
+    <externalId>false</externalId>
+    <formula>IF(AND (!ISBLANK( Context__c ), !ISBLANK( Client__c),!ISBLANK(FIN_Venue__c), !ISBLANK( FIN_AXS_Event__c ),!ISBLANK(FIN_Event_Zone__c)), 8,
+IF(AND (!ISBLANK( Context__c ), !ISBLANK( Client__c),!ISBLANK( FIN_AXS_Event__c ),!ISBLANK(FIN_Event_Zone__c)), 7,
+IF(AND (!ISBLANK( Context__c ), !ISBLANK( Client__c),!ISBLANK(FIN_Venue__c), !ISBLANK(FIN_Event_Zone__c)), 6,
+IF(AND (!ISBLANK( Context__c ), !ISBLANK( Client__c),!ISBLANK(FIN_Venue__c), !ISBLANK( FIN_AXS_Event__c ),ISBLANK(FIN_Event_Zone__c)), 5,
+IF(AND (!ISBLANK( Context__c ), !ISBLANK( Client__c),!ISBLANK(FIN_Event_Zone__c), ISBLANK( FIN_Venue__c ), ISBLANK( FIN_AXS_Event__c )), 4,
+IF(AND (!ISBLANK( Context__c ), !ISBLANK( Client__c),ISBLANK(FIN_Venue__c), !ISBLANK( FIN_AXS_Event__c ), ISBLANK(FIN_Event_Zone__c)), 3,
+IF(AND (!ISBLANK( Context__c ), !ISBLANK( Client__c),!ISBLANK(FIN_Venue__c), ISBLANK( FIN_AXS_Event__c ),ISBLANK(FIN_Event_Zone__c)), 2,
+IF(AND (!ISBLANK( Context__c ), !ISBLANK( Client__c)), 1, 0))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Contract association matching level</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

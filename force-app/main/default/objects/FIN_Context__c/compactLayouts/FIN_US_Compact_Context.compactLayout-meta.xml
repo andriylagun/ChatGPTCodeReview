@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_US_Compact_Context</fullName>
+    <fields>Name</fields>
+    <fields>Context_ID__c</fields>
+    <fields>Short_Name__c</fields>
+    <fields>FIN_StartDate__c</fields>
+    <fields>FIN_EndDate__c</fields>
+    <fields>FIN_Account__c</fields>
+    <fields>FIN_Active__c</fields>
+    <label>FIN US Compact Context</label>
+</CompactLayout>

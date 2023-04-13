@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Service Chargeable - AXS</fullName>
+        <default>false</default>
+        <label>Service Chargeable - AXS</label>
+    </customValue>
+    <customValue>
+        <fullName>Service Chargeable - NON AXS</fullName>
+        <default>false</default>
+        <label>Service Chargeable - NON AXS</label>
+    </customValue>
+    <customValue>
+        <fullName>Non Service Chargeable</fullName>
+        <default>false</default>
+        <label>Non Service Chargeable</label>
+    </customValue>
+    <masterLabel>Ticket Types - Statistical</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

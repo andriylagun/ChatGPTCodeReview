@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_RelatedObject_DELETE__c</fullName>
+    <externalId>false</externalId>
+    <label>Destination Object</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>FIN_Object__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Payment Distribution</fullName>
+                <default>false</default>
+                <label>Payment Distribution</label>
+            </value>
+            <value>
+                <fullName>Payment Distribution -&gt; Payment</fullName>
+                <default>false</default>
+                <label>Payment Distribution -&gt; Payment</label>
+            </value>
+            <value>
+                <fullName>Payment Distribution -&gt; Sales</fullName>
+                <default>false</default>
+                <label>Payment Distribution -&gt; Sales</label>
+            </value>
+            <value>
+                <fullName>Payment</fullName>
+                <default>false</default>
+                <label>Payment -&gt; Payment</label>
+            </value>
+            <value>
+                <fullName>Payment -&gt; Sales</fullName>
+                <default>false</default>
+                <label>Payment -&gt; Sales</label>
+            </value>
+            <value>
+                <fullName>Sales</fullName>
+                <default>false</default>
+                <label>Sales -&gt; Sales</label>
+            </value>
+            <value>
+                <fullName>Library Association</fullName>
+                <default>false</default>
+                <label>Library Association</label>
+            </value>
+            <value>
+                <fullName>Event</fullName>
+                <default>false</default>
+                <label>Event</label>
+            </value>
+            <value>
+                <fullName>Entity</fullName>
+                <default>false</default>
+                <label>Entity</label>
+            </value>
+            <value>
+                <fullName>Company Code</fullName>
+                <default>false</default>
+                <label>Company Code</label>
+            </value>
+            <value>
+                <fullName>(Entity) Context</fullName>
+                <default>false</default>
+                <label>(Entity) Context</label>
+            </value>
+            <value>
+                <fullName>Contract</fullName>
+                <default>false</default>
+                <label>Contract</label>
+            </value>
+            <value>
+                <fullName>Venue</fullName>
+                <default>false</default>
+                <label>Venue</label>
+            </value>
+            <value>
+                <fullName>(Sales) Context</fullName>
+                <default>false</default>
+                <label>(Sales) Context</label>
+            </value>
+            <value>
+                <fullName>Product</fullName>
+                <default>false</default>
+                <label>Product</label>
+            </value>
+            <value>
+                <fullName>(Event) Venue</fullName>
+                <default>false</default>
+                <label>(Event) Venue</label>
+            </value>
+            <value>
+                <fullName>Business Unit</fullName>
+                <default>false</default>
+                <label>Business Unit</label>
+            </value>
+            <value>
+                <fullName>Chart of Accounts</fullName>
+                <default>false</default>
+                <label>Chart of Accounts</label>
+            </value>
+            <value>
+                <fullName>Consumption Schedule</fullName>
+                <default>false</default>
+                <label>Consumption Schedule</label>
+            </value>
+            <value>
+                <fullName>(Library Association) Context</fullName>
+                <default>false</default>
+                <label>(Library Association) Context</label>
+            </value>
+            <value>
+                <fullName>Fee</fullName>
+                <default>false</default>
+                <label>Fee</label>
+            </value>
+            <value>
+                <fullName>Fee Component</fullName>
+                <default>false</default>
+                <label>Fee Component</label>
+            </value>
+            <value>
+                <fullName>Financial Code</fullName>
+                <default>false</default>
+                <label>Financial Code</label>
+            </value>
+            <value>
+                <fullName>Payee</fullName>
+                <default>false</default>
+                <label>Payee</label>
+            </value>
+            <value>
+                <fullName>Remittance Account</fullName>
+                <default>false</default>
+                <label>Remittance Account</label>
+            </value>
+            <value>
+                <fullName>Revenue Center (Enriched)</fullName>
+                <default>false</default>
+                <label>Revenue Center (Enriched)</label>
+            </value>
+            <value>
+                <fullName>Statistical Chart of Accounts</fullName>
+                <default>false</default>
+                <label>Statistical Chart of Accounts</label>
+            </value>
+            <value>
+                <fullName>Subledger Code</fullName>
+                <default>false</default>
+                <label>Subledger Code</label>
+            </value>
+            <value>
+                <fullName>LibraryAssociation__r.Venue__r</fullName>
+                <default>false</default>
+                <label>(Library Association) Venue</label>
+            </value>
+            <value>
+                <fullName>Order</fullName>
+                <default>false</default>
+                <label>Order</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Sales</controllingFieldValue>
+            <valueName>Sales</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales</controllingFieldValue>
+            <controllingFieldValue>Payment</controllingFieldValue>
+            <valueName>Event</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales</controllingFieldValue>
+            <controllingFieldValue>Payment</controllingFieldValue>
+            <valueName>Contract</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales</controllingFieldValue>
+            <controllingFieldValue>Payment</controllingFieldValue>
+            <valueName>Venue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales</controllingFieldValue>
+            <controllingFieldValue>Payment</controllingFieldValue>
+            <valueName>(Sales) Context</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment</controllingFieldValue>
+            <valueName>Payment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment</controllingFieldValue>
+            <valueName>Payment -&gt; Sales</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment</controllingFieldValue>
+            <valueName>Entity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment</controllingFieldValue>
+            <valueName>Company Code</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment</controllingFieldValue>
+            <valueName>(Entity) Context</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

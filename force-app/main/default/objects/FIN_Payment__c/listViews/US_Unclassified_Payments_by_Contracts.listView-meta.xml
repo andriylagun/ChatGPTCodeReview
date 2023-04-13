@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>US_Unclassified_Payments_by_Contracts</fullName>
+    <booleanFilter>1 AND (2 or 3 or 4) AND 5</booleanFilter>
+    <columns>NAME</columns>
+    <columns>FIN_Context__c</columns>
+    <columns>FIN_PaymentID__c</columns>
+    <columns>FIN_ContextID__c</columns>
+    <columns>FIN_PaymentDate__c</columns>
+    <columns>FIN_DepositDate__c</columns>
+    <columns>FIN_Entity__c</columns>
+    <columns>FIN_PaymentAmount__c</columns>
+    <columns>FIN_Order__c</columns>
+    <columns>FIN_Order_Approval_Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>US</value>
+    </filters>
+    <filters>
+        <field>FIN_ContractRecordType__c</field>
+        <operation>equals</operation>
+        <value>Master</value>
+    </filters>
+    <filters>
+        <field>Contract__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>FIN_ContractName__c</field>
+        <operation>equals</operation>
+        <value>UNCLASSIFIED</value>
+    </filters>
+    <filters>
+        <field>FIN_Auto_Approved__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>US Unclassified Payments by Contracts</label>
+</ListView>

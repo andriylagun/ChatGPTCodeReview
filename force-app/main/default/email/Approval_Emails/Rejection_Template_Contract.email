@@ -1,0 +1,10 @@
+<messaging:emailTemplate subject="This Contract has been Rejected" recipientType="User" relatedToType="sbaa__Approval__c">
+<messaging:plainTextEmailBody >
+Greetings, 
+
+This Contract has been rejected. Please review and resubmit. 
+
+Thanks, 
+
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Selected_Region_is_Available</fullName>
+    <active>false</active>
+    <errorConditionFormula>((INCLUDES(FIN_Available_Regions__c, &apos;US&apos;) &amp;&amp; ISPICKVAL(FIN_Current_Region__c, &apos;US&apos;))|| 
+(INCLUDES(FIN_Available_Regions__c, &apos;SWE&apos;) &amp;&amp; ISPICKVAL(FIN_Current_Region__c,&apos;SWE&apos;)))||
+((INCLUDES(FIN_Available_Regions__c, &apos;UK&apos;) &amp;&amp; ISPICKVAL(FIN_Current_Region__c, &apos;UK&apos;)))</errorConditionFormula>
+    <errorMessage>The selected region must be available</errorMessage>
+</ValidationRule>

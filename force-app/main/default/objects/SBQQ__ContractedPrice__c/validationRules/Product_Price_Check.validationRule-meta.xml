@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Price_Check</fullName>
+    <active>true</active>
+    <errorConditionFormula>RecordType.DeveloperName = &apos;FIN_Contracted_Fee&apos; &amp;&amp;  (FIN_ProductName__c != &apos;AXS Fee&apos; ||  SBQQ__Price__c != 1)</errorConditionFormula>
+    <errorMessage>When creating Contracted Fee record, You must select &quot;AXS Fee&quot; as Product and Price should be &quot;1$&quot;</errorMessage>
+</ValidationRule>

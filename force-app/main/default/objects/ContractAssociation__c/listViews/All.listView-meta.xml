@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Contract__c</columns>
+    <columns>Context__c</columns>
+    <columns>FIN_Venue__c</columns>
+    <columns>Client__c</columns>
+    <columns>FIN_AXS_Event__c</columns>
+    <columns>FIN_Event_Zone__c</columns>
+    <columns>ApprovalStatus__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

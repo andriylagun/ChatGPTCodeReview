@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enforce_Right_Currency_Sales</fullName>
+    <active>true</active>
+    <description>Validation checks whether the given currency is consistent with the given Record Type</description>
+    <errorConditionFormula>OR(
+AND(RecordType.Name == &apos;SWE Sales&apos;,!ISPICKVAL(CurrencyIsoCode,&apos;SEK&apos;)),
+AND(RecordType.Name == &apos;UK Sales&apos; ,!ISPICKVAL(CurrencyIsoCode,&apos;GBP&apos;)),
+AND(RecordType.Name == &apos;US Sales&apos; ,!ISPICKVAL(CurrencyIsoCode,&apos;USD&apos;))
+
+)</errorConditionFormula>
+    <errorMessage>The Currency must match the Record Type.</errorMessage>
+</ValidationRule>

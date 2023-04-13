@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TODAY</fullName>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>FIN_OrderContext__c</columns>
+    <columns>FIN_Venue__c</columns>
+    <columns>FIN_Event__c</columns>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>ORDERS.STATUS</columns>
+    <columns>ORDERS.CREATED_DATE</columns>
+    <columns>ApprovalStatus__c</columns>
+    <columns>FIN_TotalSaleNetAmount__c</columns>
+    <columns>FIN_Auto_Approved__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ORDERS.CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>TODAY</label>
+</ListView>

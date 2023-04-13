@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SWE_Settlement_Status_To_Be_Settled</fullName>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>FIN_PaymentDistribution__c.FIN_SWE_Payment_Distribution</value>
+    </filters>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>SWE</value>
+    </filters>
+    <filters>
+        <field>FIN_Settlement_Status__c</field>
+        <operation>equals</operation>
+        <value>ToBeSettled</value>
+    </filters>
+    <label>SWE Settlement Status - To Be Settled</label>
+    <sharedTo>
+        <group>SWE_Region</group>
+    </sharedTo>
+</ListView>

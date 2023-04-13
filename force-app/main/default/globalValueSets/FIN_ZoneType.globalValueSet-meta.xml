@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Admissions</fullName>
+        <default>false</default>
+        <label>Admissions</label>
+    </customValue>
+    <customValue>
+        <fullName>Donation</fullName>
+        <default>false</default>
+        <label>Donation</label>
+    </customValue>
+    <customValue>
+        <fullName>Parking</fullName>
+        <default>false</default>
+        <label>Parking</label>
+    </customValue>
+    <customValue>
+        <fullName>Special Passes</fullName>
+        <default>false</default>
+        <label>Special Passes</label>
+    </customValue>
+    <customValue>
+        <fullName>Suites</fullName>
+        <default>false</default>
+        <label>Suites</label>
+    </customValue>
+    <customValue>
+        <fullName>Voucher</fullName>
+        <default>false</default>
+        <label>Voucher</label>
+    </customValue>
+    <masterLabel>Zone Type</masterLabel>
+    <sorted>true</sorted>
+</GlobalValueSet>

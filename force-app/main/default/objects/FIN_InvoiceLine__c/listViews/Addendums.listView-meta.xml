@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Addendums</fullName>
+    <columns>NAME</columns>
+    <columns>FIN_ParentInvoiceSchedule__c</columns>
+    <columns>FIN_AccumulatorType__c</columns>
+    <columns>FIN_Unique__c</columns>
+    <columns>FIN_PriceCodeType__c</columns>
+    <columns>FIN_Channel__c</columns>
+    <columns>FIN_EventLookup__c</columns>
+    <columns>FIN_EventDesc__c</columns>
+    <columns>FIN_Quantity__c</columns>
+    <columns>FIN_UnitCost__c</columns>
+    <columns>FIN_AccumulationRate__c</columns>
+    <columns>FIN_AmountAddendum__c</columns>
+    <columns>FIN_InvoiceRate__c</columns>
+    <columns>FIN_InvoiceAmount__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FIN_Unique__c</field>
+        <operation>equals</operation>
+        <value>Addendum</value>
+    </filters>
+    <filters>
+        <field>FIN_ParentInvoiceSchedule__c</field>
+        <operation>equals</operation>
+        <value>IS-0000000060</value>
+    </filters>
+    <label>Addendums</label>
+</ListView>

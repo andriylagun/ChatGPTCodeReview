@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Orders</fullName>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>ORDERS.TOTAL_AMOUNT</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>ORDERS.STATUS</columns>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ORDERS.STATUS_CODE</field>
+        <operation>equals</operation>
+        <value>A</value>
+    </filters>
+    <filters>
+        <field>ORDERS.STATUS</field>
+        <operation>equals</operation>
+        <value>Open</value>
+    </filters>
+    <filters>
+        <field>ORDER.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Order.FIN_US_Sales</value>
+    </filters>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>US</value>
+    </filters>
+    <label>US Open Sales</label>
+    <sharedTo>
+        <group>US_Region</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Auto_Approved__c</fullName>
+    <description>Fill up Contract, Payment Amount, Sales and Library Association to mark the record Approved</description>
+    <externalId>false</externalId>
+    <formula>IF(
+OR( ISBLANK( FIN_Order__c) ,ISBLANK(FIN_LibraryAssociation__c), ISBLANK(FIN_PaymentAmount__c), ISBLANK(Contract__c) ) ,
+FALSE,
+TRUE)</formula>
+    <inlineHelpText>Fill up Contract, Payment Amount, Sales and Library Association to mark the record Approved</inlineHelpText>
+    <label>Auto Approved</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_RemarkforJournal__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF ( FIN_Library_Association__r.FIN_SubledgerType__c == &apos;A&apos;,
+FIN_Library_Association__r.FIN_Context__r.Short_Name__c + &apos; &apos; + 
+TEXT( FIN_Parent_Journalizing_Schedule__r.FIN_StartDate__c ) + &apos;-&apos; +
+TEXT( FIN_Parent_Journalizing_Schedule__r.FIN_EndDate__c ),
+
+IF ( BEGINS(FIN_Library_Association__r.FIN_Financial_Code__r.FIN_Business_Unit__r.Name, &apos;9004&apos;) ,
+TEXT( FIN_Parent_Journalizing_Schedule__r.FIN_StartDate__c ) + &apos;-&apos; +
+TEXT( FIN_Parent_Journalizing_Schedule__r.FIN_EndDate__c ),
+
+IF (MID(FIN_Library_Association__r.FIN_Financial_Code__r.FIN_Business_Unit__r.Name, 0, 3) == &apos;488&apos;,
+TEXT(Payment_Distribution__r.FIN_DistributionDate__c),
+&apos;&apos;
+)
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Remark for Journal</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

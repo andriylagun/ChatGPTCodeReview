@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Create_Same_Contract_Association</fullName>
+    <active>true</active>
+    <description>This Validation prevent create another Contract Association with the same attributes. Connected with the flow.</description>
+    <errorConditionFormula>FIN_TF_Validation__c = &apos;PreventCreateDuplicate&apos;</errorConditionFormula>
+    <errorMessage>There is already a Contract Association with the same attributes (Venue, Context, Client and Event).</errorMessage>
+</ValidationRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_StagingTableLoadBusinessApproved__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Approval is to be given by Business to execute Rule Engine</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Approval is to be given by Business to execute Rule Engine</inlineHelpText>
+    <label>Raw Load Approval</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

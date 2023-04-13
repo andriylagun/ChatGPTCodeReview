@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lock_Payment_Records</fullName>
+    <active>false</active>
+    <errorConditionFormula>OR( 
+FIN_Order_Approval_Status__c = &apos;Approved&apos;, 
+FIN_Order_Approval_Status__c = &apos;Settled&apos;, 
+FIN_Order_Approval_Status__c = &apos;Posted&apos;)</errorConditionFormula>
+    <errorMessage>The Order Status must be updated to &apos;Open&apos; for this Payment Record to be Unlocked and editable.</errorMessage>
+</ValidationRule>

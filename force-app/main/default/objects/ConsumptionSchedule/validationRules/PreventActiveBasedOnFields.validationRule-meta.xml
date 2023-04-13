@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PreventActiveBasedOnFields</fullName>
+    <active>false</active>
+    <description>You need to populate all fields</description>
+    <errorConditionFormula>RecordType.DeveloperName = &apos;Ticket_Quantity&apos; &amp;&amp; FIN_Actual_Count__c = null</errorConditionFormula>
+    <errorMessage>You need to populate all fields</errorMessage>
+</ValidationRule>

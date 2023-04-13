@@ -1,0 +1,154 @@
+<template>
+    <div class="slds-m-top_x-small slds-m-bottom_x-small acc-container">
+
+        <h2 class="slds-text-heading_medium slds-m-bottom_x-small">
+            Criteria:
+        </h2>
+
+        <div class="acc-container">
+            <lightning-record-view-form>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-grid">
+                            <span class="slds-size_1-of-1">
+                                <lightning-input
+                                    label="Remittance Date:"
+                                    name="remittanceDate"
+                                    value={eventDateFrom}
+                                    type="date"
+                                    onchange={handleFormInputChange}>
+                                </lightning-input>
+                            </span>
+                        </div>
+                        <div class="slds-grid">
+                            <span class="slds-size_1-of-1">
+                                <lightning-input
+                                    label="Due Date:"
+                                    name="dueDate"
+                                    value={dueDate}
+                                    type="date"
+                                    onchange={handleFormInputChange}>
+                                </lightning-input>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-grid">
+                            <span class="slds-size_1-of-1">
+                                <lightning-combobox
+                                    name="payees"
+                                    label="Payee Legal Name (Beneficiary Name):"
+                                    placeholder="Choose Payee Legal Name (Beneficiary Name)"
+                                    value={payees}
+                                    options={payeesOptions}
+                                    onchange={handleFormInputChange} >
+                                </lightning-combobox>
+                            </span>
+                            <lightning-button-icon
+                               icon-name="utility:undo"
+                               name="payees"
+                               variant="bare"
+                               onclick={handleUndoClick}
+                            ></lightning-button-icon>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-grid">
+                            <span class="slds-size_1-of-1">
+                                <lightning-combobox
+                                    name="contracts"
+                                    label="Contract:"
+                                    placeholder="Choose Contract"
+                                    value={contracts}
+                                    options={contractsOptions}
+                                    onchange={handleFormInputChange} >
+                                </lightning-combobox>
+                            </span>
+                            <lightning-button-icon
+                               icon-name="utility:undo"
+                               name="contracts"
+                               variant="bare"
+                               onclick={handleUndoClick}
+                            ></lightning-button-icon>
+                        </div>
+                        <div class="slds-grid">
+                            <span class="slds-size_1-of-1">
+                                <lightning-combobox
+                                    name="ssNums"
+                                    label="Settlement Schedule Number:"
+                                    placeholder="Choose Settlement Schedule Number"
+                                    value={ssNums}
+                                    options={ssNumsOptions}
+                                    onchange={handleFormInputChange} >
+                                </lightning-combobox>
+                            </span>
+                            <lightning-button-icon
+                               icon-name="utility:undo"
+                               name="ssNums"
+                               variant="bare"
+                               onclick={handleUndoClick}
+                            ></lightning-button-icon>
+                        </div>
+                    </div>
+                </div>
+            </lightning-record-view-form>
+        </div>
+
+        <lightning-button class="slds-text-align_right"
+                          variant="brand"
+                          label="Filter Results"
+                          title="Filter Results"
+                          onclick={handleClick}>
+        </lightning-button>
+    </div>
+
+    <div if:true={isMessageOpen} class="slds-text-align_center">
+        <lightning-formatted-text value="No Filtered Remittance Payouts"></lightning-formatted-text>
+    </div>
+
+    <lightning-card if:true={isListOpen} title="Filtered Remittance Payouts" icon-name="custom:custom63">
+        <div style="height: 300px;" class="slds-grid slds-grid_align-center">
+            <lightning-datatable
+                    key-field="id"
+                     data={filteredData}
+                     columns={gridColumns}
+                    onrowselection={handleRowSelection}
+                    selected-rows={selectedRows}
+            ></lightning-datatable>
+            </div>
+    </lightning-card>
+
+    <lightning-button class="btn"
+                      variant="success"
+                      label="Schedule Remittance Process"
+                      title="Successful action"
+                      disabled={disabledConfirm}
+                      onclick={handleConfirmClick}>
+    </lightning-button>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                                        alternative-text="close"
+                                        variant="inverse"
+                                        size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create Remittance Schedule</h2>
+                </header>
+                <lightning-record-form if:true={isFormOpen} class="acc-container record-form"
+                                       object-api-name={objectApiName}
+                                       fields={fields}
+                                       onsuccess={handleSuccess}
+                                       oncancel={closeModal}>
+                </lightning-record-form>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

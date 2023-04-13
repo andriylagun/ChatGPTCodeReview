@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enforce_Right_Currency_Chart_of_Accounts</fullName>
+    <active>true</active>
+    <description>Validation checks whether the given currency is consistent with the given Record Type.</description>
+    <errorConditionFormula>OR(
+AND( (RecordType.Name == &apos;SWE Financial Chart of Accounts&apos; || RecordType.Name == &apos;SWE Statistical Chart of Accounts&apos;),!ISPICKVAL(CurrencyIsoCode,&apos;SEK&apos;)),
+AND( (RecordType.Name == &apos;UK Financial Chart of Accounts&apos; || RecordType.Name == &apos;UK Statistical Chart of Accounts&apos;), !ISPICKVAL(CurrencyIsoCode ,&apos;GBP&apos;)),
+AND( (RecordType.Name == &apos;US Financial Chart of Accounts&apos; || RecordType.Name == &apos;US Statistical Chart of Accounts&apos;), !ISPICKVAL(CurrencyIsoCode ,&apos;USD&apos;))
+
+)</errorConditionFormula>
+    <errorMessage>The Currency must match the Record Type.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UK_Sales_without_Contracts</fullName>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>ORDERS.TOTAL_AMOUNT</columns>
+    <columns>ORDERS.STATUS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTRACT.CONTRACT_NUMBER</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>ORDER.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Order.FIN_UK_Sales</value>
+    </filters>
+    <filters>
+        <field>Locked__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>UK</value>
+    </filters>
+    <label>UK Sales without Contracts</label>
+    <sharedTo>
+        <group>UK_Region</group>
+    </sharedTo>
+</ListView>

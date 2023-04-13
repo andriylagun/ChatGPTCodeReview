@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Operator_and_Value_for_LA</fullName>
+    <active>true</active>
+    <errorConditionFormula>TEXT(FIN_Object_Attribute__c) = &apos;FIN_LibraryAssociation__c&apos; &amp;&amp;  (!ISBLANK(TEXT(Operator__c)) || !ISBLANK( FIN_Value__c ))</errorConditionFormula>
+    <errorMessage>Please clear out &quot;Operator&quot; and &quot;Value&quot; fields when Object Attribute is selected as &quot;Library Association&quot;</errorMessage>
+</ValidationRule>

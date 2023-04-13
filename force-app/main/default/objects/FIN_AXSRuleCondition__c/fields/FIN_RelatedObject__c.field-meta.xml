@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_RelatedObject__c</fullName>
+    <externalId>false</externalId>
+    <label>Related Object</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>FIN_Object__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FIN_PaymentDistribution__c</fullName>
+                <default>false</default>
+                <label>Payment Distribution --&gt; Payment Distribution</label>
+            </value>
+            <value>
+                <fullName>Payment Distribution -&gt; Payment</fullName>
+                <default>false</default>
+                <label>Payment Distribution -&gt; Payment</label>
+            </value>
+            <value>
+                <fullName>Payment Distribution -&gt; Sales</fullName>
+                <default>false</default>
+                <label>Payment Distribution -&gt; Sales</label>
+            </value>
+            <value>
+                <fullName>FIN_Payment__c</fullName>
+                <default>false</default>
+                <label>Payment -&gt; Payment</label>
+            </value>
+            <value>
+                <fullName>Payment -&gt; Sales</fullName>
+                <default>false</default>
+                <label>Payment -&gt; Sales</label>
+            </value>
+            <value>
+                <fullName>Order</fullName>
+                <default>false</default>
+                <label>Sales -&gt; Sales</label>
+            </value>
+            <value>
+                <fullName>SBQQ__ContractedPrice__c</fullName>
+                <default>false</default>
+                <label>Library Association</label>
+            </value>
+            <value>
+                <fullName>Sales Transactions</fullName>
+                <default>false</default>
+                <label>Sales Transaction</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Payment_Distribution</controllingFieldValue>
+            <valueName>FIN_PaymentDistribution__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment_Distribution</controllingFieldValue>
+            <valueName>Payment Distribution -&gt; Payment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment_Distribution</controllingFieldValue>
+            <valueName>Payment Distribution -&gt; Sales</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales</controllingFieldValue>
+            <valueName>Order</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales</controllingFieldValue>
+            <controllingFieldValue>Sales Transactions</controllingFieldValue>
+            <valueName>Sales Transactions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment</controllingFieldValue>
+            <valueName>FIN_Payment__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment</controllingFieldValue>
+            <valueName>Payment -&gt; Sales</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

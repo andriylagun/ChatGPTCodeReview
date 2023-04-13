@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FinancialCode_if_Active</fullName>
+    <active>true</active>
+    <errorConditionFormula>FIN_Active__c &amp;&amp; ISBLANK(FIN_Financial_Code__c)</errorConditionFormula>
+    <errorDisplayField>FIN_Financial_Code__c</errorDisplayField>
+    <errorMessage>The financial code must be specified in the active library association</errorMessage>
+</ValidationRule>

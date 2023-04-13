@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_AccumulationtoTargetCS__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Accum to Target Consumption Schedule</label>
+    <referenceTo>ConsumptionSchedule</referenceTo>
+    <relationshipLabel>Applied Accumulators (Accum to Target Consumption Schedule)</relationshipLabel>
+    <relationshipName>Applied_Accumulators1</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

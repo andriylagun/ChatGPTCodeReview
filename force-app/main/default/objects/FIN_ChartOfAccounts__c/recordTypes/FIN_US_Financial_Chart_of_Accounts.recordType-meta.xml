@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_US_Financial_Chart_of_Accounts</fullName>
+    <active>true</active>
+    <label>US Financial Chart of Accounts</label>
+    <picklistValues>
+        <picklist>FIN_Account_Type__c</picklist>
+        <values>
+            <fullName>Asset</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cash</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expenses</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Liability</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revenues</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_Category__c</picklist>
+        <values>
+            <fullName>A%2FR - AXS DISTRO A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%2FR - CREDIT CARD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%2FR - PAYPAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ADVANCE RECOUPMENT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CASH - CLIENT CASH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CASH - CLIENT CASH - DENVER</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EXPENSES - BUILD AND CUSTOMER ISSUES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EXPENSES - CBNL PAYMENTS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LIABILITY - DUE TO PROMOTERS - COD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LIABILITY - DUE TO VENUES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LIABILITY - SALES TAX LIABILITY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LIABILITY - SOUVENIR TICKET LIABILITY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - NON TICKET SALES REVENUE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - PAYMENT PLAN FEES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - PAYMENT RECOVERY FEE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - PER ORDER FEES PROGRAMMED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - RFID ACTIVATIONS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - RFID FULFILLMENT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - RFID SHIPPING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - TICKET FEES - AXS DISTRO A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - TICKET FEES - PREMIUM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - TICKET FEES - VIP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - TICKET FEES DELIVERY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - TICKET FEES DELIVERY INVOICED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - TICKET FEES INCREMENTAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - TICKET FEES INVOICED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REVENUE - TICKET FEES PROGRAMMED</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_Type__c</picklist>
+        <values>
+            <fullName>Liability</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revenue</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Region__c</picklist>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>US</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+</RecordType>

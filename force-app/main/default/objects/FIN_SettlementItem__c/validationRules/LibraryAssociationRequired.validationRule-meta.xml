@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LibraryAssociationRequired</fullName>
+    <active>true</active>
+    <description>If Manual Adjustment, Library Association must be filled.</description>
+    <errorConditionFormula>ISBLANK(FIN_LibraryAssociation__c)
+&amp;&amp; TEXT(FIN_EntryType__c) == &apos;Manual Adjustment&apos;</errorConditionFormula>
+    <errorDisplayField>FIN_LibraryAssociation__c</errorDisplayField>
+    <errorMessage>Library Association is required for Manual Adjustment.</errorMessage>
+</ValidationRule>

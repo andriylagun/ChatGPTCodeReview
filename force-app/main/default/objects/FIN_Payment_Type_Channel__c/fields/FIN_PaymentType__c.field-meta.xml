@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_PaymentType__c</fullName>
+    <externalId>false</externalId>
+    <label>Payment Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PayPal</fullName>
+                <default>false</default>
+                <label>PayPal</label>
+            </value>
+            <value>
+                <fullName>AXS CBNL</fullName>
+                <default>false</default>
+                <label>AXS CBNL</label>
+            </value>
+            <value>
+                <fullName>AXS Internal</fullName>
+                <default>false</default>
+                <label>AXS Internal</label>
+            </value>
+            <value>
+                <fullName>AXS RDTC</fullName>
+                <default>false</default>
+                <label>AXS RDTC</label>
+            </value>
+            <value>
+                <fullName>Transfer</fullName>
+                <default>false</default>
+                <label>Transfer</label>
+            </value>
+            <value>
+                <fullName>(Over)/Short</fullName>
+                <default>false</default>
+                <label>(Over)/Short</label>
+            </value>
+            <value>
+                <fullName>ACH</fullName>
+                <default>false</default>
+                <label>ACH</label>
+            </value>
+            <value>
+                <fullName>ApplePay</fullName>
+                <default>false</default>
+                <label>ApplePay</label>
+            </value>
+            <value>
+                <fullName>Cash</fullName>
+                <default>false</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>Check</fullName>
+                <default>false</default>
+                <label>Check</label>
+            </value>
+            <value>
+                <fullName>Gift Card</fullName>
+                <default>false</default>
+                <label>Gift Card</label>
+            </value>
+            <value>
+                <fullName>Goldstar API</fullName>
+                <default>false</default>
+                <label>Goldstar API</label>
+            </value>
+            <value>
+                <fullName>Groupon API</fullName>
+                <default>false</default>
+                <label>Groupon API</label>
+            </value>
+            <value>
+                <fullName>Klarna Amex Checkout</fullName>
+                <default>false</default>
+                <label>Klarna Amex Checkout</label>
+            </value>
+            <value>
+                <fullName>Klarna Checkout</fullName>
+                <default>false</default>
+                <label>Klarna Checkout</label>
+            </value>
+            <value>
+                <fullName>Moneris</fullName>
+                <default>false</default>
+                <label>Moneris</label>
+            </value>
+            <value>
+                <fullName>Premium Credit</fullName>
+                <default>false</default>
+                <label>Premium Credit</label>
+            </value>
+            <value>
+                <fullName>Return</fullName>
+                <default>false</default>
+                <label>Return</label>
+            </value>
+            <value>
+                <fullName>Rewards4</fullName>
+                <default>false</default>
+                <label>Rewards4</label>
+            </value>
+            <value>
+                <fullName>AXS Distro A</fullName>
+                <default>false</default>
+                <label>AXS Distro A</label>
+            </value>
+            <value>
+                <fullName>VI</fullName>
+                <default>false</default>
+                <label>VI</label>
+            </value>
+            <value>
+                <fullName>AX</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>AX</label>
+            </value>
+            <value>
+                <fullName>DI</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>DI</label>
+            </value>
+            <value>
+                <fullName>MC</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>MC</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

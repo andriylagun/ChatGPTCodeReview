@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standardizations_Required</fullName>
+    <active>true</active>
+    <description>Master Contract can&apos;t be activated without Financial and Statistical standards</description>
+    <errorConditionFormula>(RecordType.Name = &apos;SWE Master Contract&apos;
+	|| RecordType.Name = &apos;UK Master Contract&apos;
+	|| RecordType.Name = &apos;US Master Contract&apos;)
+&amp;&amp; TEXT(Status) = &apos;Activated&apos; 
+&amp;&amp; ISBLANK(FIN_Financial_Standard__c)
+&amp;&amp; ISBLANK(FIN_Statistical_Standard__c)</errorConditionFormula>
+    <errorDisplayField>AccountId</errorDisplayField>
+    <errorMessage>Contract cannot be Activated without Financial and Statistical Standards defined</errorMessage>
+</ValidationRule>

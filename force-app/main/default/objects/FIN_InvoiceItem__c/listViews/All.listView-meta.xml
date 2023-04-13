@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>FIN_ParentInvoiceSchedule__c</columns>
+    <columns>FIN_Contract__c</columns>
+    <columns>FIN_SubContract__c</columns>
+    <columns>FIN_PaymentDistribution__c</columns>
+    <columns>FIN_LibraryAssociation__c</columns>
+    <columns>FIN_EntryType__c</columns>
+    <columns>FIN_ManualAmount__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

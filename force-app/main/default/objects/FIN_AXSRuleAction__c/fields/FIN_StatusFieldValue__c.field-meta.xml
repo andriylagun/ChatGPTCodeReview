@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_StatusFieldValue__c</fullName>
+    <externalId>false</externalId>
+    <label>Status Field Value</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>FIN_DestinationField__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New</fullName>
+                <default>false</default>
+                <label>New</label>
+            </value>
+            <value>
+                <fullName>ToBeSettled</fullName>
+                <default>false</default>
+                <label>To Be Settled</label>
+            </value>
+            <value>
+                <fullName>Settled</fullName>
+                <default>false</default>
+                <label>Settled</label>
+            </value>
+            <value>
+                <fullName>ScheduledSettlement</fullName>
+                <default>false</default>
+                <label>Scheduled Settlement</label>
+            </value>
+            <value>
+                <fullName>ToBeInvoiced</fullName>
+                <default>false</default>
+                <label>To Be Invoiced</label>
+            </value>
+            <value>
+                <fullName>InvoiceScheduled</fullName>
+                <default>false</default>
+                <label>Invoice Scheduled</label>
+            </value>
+            <value>
+                <fullName>Invoiced</fullName>
+                <default>false</default>
+                <label>Invoiced</label>
+            </value>
+            <value>
+                <fullName>To be Paid</fullName>
+                <default>false</default>
+                <label>To be Paid</label>
+            </value>
+            <value>
+                <fullName>Paid</fullName>
+                <default>false</default>
+                <label>Paid</label>
+            </value>
+            <value>
+                <fullName>ToBePosted</fullName>
+                <default>false</default>
+                <label>To Be Posted</label>
+            </value>
+            <value>
+                <fullName>InProgress</fullName>
+                <default>false</default>
+                <label>In Progress</label>
+            </value>
+            <value>
+                <fullName>Exported</fullName>
+                <default>false</default>
+                <label>Exported</label>
+            </value>
+            <value>
+                <fullName>Posted</fullName>
+                <default>false</default>
+                <label>Posted</label>
+            </value>
+            <value>
+                <fullName>Voided</fullName>
+                <default>false</default>
+                <label>Voided</label>
+            </value>
+            <value>
+                <fullName>In Review</fullName>
+                <default>false</default>
+                <label>In Review</label>
+            </value>
+            <value>
+                <fullName>Submitted for Review</fullName>
+                <default>false</default>
+                <label>Submitted for Review</label>
+            </value>
+            <value>
+                <fullName>Reviewed</fullName>
+                <default>false</default>
+                <label>Reviewed</label>
+            </value>
+            <value>
+                <fullName>Submitted for Approval</fullName>
+                <default>false</default>
+                <label>Submitted for Approval</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>FIN_Invoices_Status__c</controllingFieldValue>
+            <controllingFieldValue>FIN_Settlement_Status__c</controllingFieldValue>
+            <controllingFieldValue>Invoices_Status__c</controllingFieldValue>
+            <controllingFieldValue>Settlement_Status__c</controllingFieldValue>
+            <controllingFieldValue>Approval_Status__c</controllingFieldValue>
+            <valueName>New</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Invoices_Status__c</controllingFieldValue>
+            <controllingFieldValue>Invoices_Status__c</controllingFieldValue>
+            <valueName>ToBeInvoiced</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Invoices_Status__c</controllingFieldValue>
+            <controllingFieldValue>Invoices_Status__c</controllingFieldValue>
+            <valueName>InvoiceScheduled</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Invoices_Status__c</controllingFieldValue>
+            <controllingFieldValue>Invoices_Status__c</controllingFieldValue>
+            <valueName>Invoiced</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Invoices_Status__c</controllingFieldValue>
+            <controllingFieldValue>FIN_Remittance_Payout_Status__c</controllingFieldValue>
+            <controllingFieldValue>FIN_Settlement_Status__c</controllingFieldValue>
+            <controllingFieldValue>Invoices_Status__c</controllingFieldValue>
+            <controllingFieldValue>FIN_Journalizing_Status__c</controllingFieldValue>
+            <controllingFieldValue>Remittance_Payout_Status__c</controllingFieldValue>
+            <controllingFieldValue>Settlement_Status__c</controllingFieldValue>
+            <valueName>Voided</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Remittance_Payout_Status__c</controllingFieldValue>
+            <controllingFieldValue>Remittance_Payout_Status__c</controllingFieldValue>
+            <valueName>To be Paid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Remittance_Payout_Status__c</controllingFieldValue>
+            <controllingFieldValue>Remittance_Payout_Status__c</controllingFieldValue>
+            <valueName>Paid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Settlement_Status__c</controllingFieldValue>
+            <controllingFieldValue>Settlement_Status__c</controllingFieldValue>
+            <valueName>ToBeSettled</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Settlement_Status__c</controllingFieldValue>
+            <controllingFieldValue>Settlement_Status__c</controllingFieldValue>
+            <valueName>Settled</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Settlement_Status__c</controllingFieldValue>
+            <controllingFieldValue>Settlement_Status__c</controllingFieldValue>
+            <valueName>ScheduledSettlement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Journalizing_Status__c</controllingFieldValue>
+            <valueName>ToBePosted</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Journalizing_Status__c</controllingFieldValue>
+            <valueName>InProgress</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Journalizing_Status__c</controllingFieldValue>
+            <valueName>Exported</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Journalizing_Status__c</controllingFieldValue>
+            <valueName>Posted</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Approval_Status__c</controllingFieldValue>
+            <valueName>In Review</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Approval_Status__c</controllingFieldValue>
+            <valueName>Submitted for Review</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Approval_Status__c</controllingFieldValue>
+            <valueName>Reviewed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Approval_Status__c</controllingFieldValue>
+            <valueName>Submitted for Approval</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Approval_Status__c</controllingFieldValue>
+            <valueName>Rejected</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Approval_Status__c</controllingFieldValue>
+            <valueName>Approved</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

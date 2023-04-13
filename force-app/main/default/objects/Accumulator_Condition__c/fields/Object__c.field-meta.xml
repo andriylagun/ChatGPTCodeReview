@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Object__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Either Apply the Conditions or select a Library Association</inlineHelpText>
+    <label>Object</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FIN_Payment__c</fullName>
+                <default>false</default>
+                <label>Payment</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentDistribution__c</fullName>
+                <default>false</default>
+                <label>Payment Distribution</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesTransactions__c</fullName>
+                <default>false</default>
+                <label>Sales Transaction</label>
+            </value>
+            <value>
+                <fullName>Contract</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Contract</label>
+            </value>
+            <value>
+                <fullName>Financial Code</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Financial Code</label>
+            </value>
+            <value>
+                <fullName>Library Association</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Library Association</label>
+            </value>
+            <value>
+                <fullName>Order</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Sales</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

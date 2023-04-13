@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>FIN_SettlementSchedule__c</columns>
+    <columns>FIN_EntryType__c</columns>
+    <columns>FIN_Mode__c</columns>
+    <columns>FIN_InvoiceAdjustmentAmount__c</columns>
+    <columns>FIN_InvoiceAdjustmentComment__c</columns>
+    <columns>FIN_ManualAdjustmentAmount__c</columns>
+    <columns>FIN_ManualAdjustmentComment__c</columns>
+    <columns>FIN_EventLookupCode__c</columns>
+    <columns>FIN_TotalTicketValue__c</columns>
+    <columns>FIN_TotalFeeValue__c</columns>
+    <columns>FIN_TicketsAndFees__c</columns>
+    <columns>FIN_Retain__c</columns>
+    <columns>FIN_RemitTo__c</columns>
+    <columns>FIN_RemitAmount__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

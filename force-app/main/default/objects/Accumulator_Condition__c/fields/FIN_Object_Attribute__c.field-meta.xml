@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Object_Attribute__c</fullName>
+    <externalId>false</externalId>
+    <label>Object Attribute</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Object__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account Number</fullName>
+                <default>false</default>
+                <label>Account Number</label>
+            </value>
+            <value>
+                <fullName>Adjustment_Amount__c</fullName>
+                <default>false</default>
+                <label>Adjustment Amount</label>
+            </value>
+            <value>
+                <fullName>ApprovalStatus__c</fullName>
+                <default>false</default>
+                <label>Approval Status</label>
+            </value>
+            <value>
+                <fullName>FIN_BaseComp_Total_NoTax__c</fullName>
+                <default>false</default>
+                <label>BaseComp Total No Tax</label>
+            </value>
+            <value>
+                <fullName>FIN_BaseCompGrandTotal__c</fullName>
+                <default>false</default>
+                <label>Base Comp Grand Total</label>
+            </value>
+            <value>
+                <fullName>FIN_Channel__c</fullName>
+                <default>false</default>
+                <label>Channel</label>
+            </value>
+            <value>
+                <fullName>ContractName</fullName>
+                <default>false</default>
+                <label>Contract Name</label>
+            </value>
+            <value>
+                <fullName>SBQQ__ContractingMethod__c</fullName>
+                <default>false</default>
+                <label>Contracting Method</label>
+            </value>
+            <value>
+                <fullName>FIN_CurrentPaidAmount__c</fullName>
+                <default>false</default>
+                <label>Current Paid Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_CustomerID__c</fullName>
+                <default>false</default>
+                <label>Customer ID</label>
+            </value>
+            <value>
+                <fullName>FIN_Entity_ID__c</fullName>
+                <default>false</default>
+                <label>Entity ID</label>
+            </value>
+            <value>
+                <fullName>FIN_Entity_Name__c</fullName>
+                <default>false</default>
+                <label>Entity Name</label>
+            </value>
+            <value>
+                <fullName>FIN_EventZoneGlCode__c</fullName>
+                <default>false</default>
+                <label>Event Zone GL Code</label>
+            </value>
+            <value>
+                <fullName>FIN_FinancialAdjCount__c</fullName>
+                <default>false</default>
+                <label>Financial Adj Count</label>
+            </value>
+            <value>
+                <fullName>FIN_GLCode__c</fullName>
+                <default>false</default>
+                <label>GL Code</label>
+            </value>
+            <value>
+                <fullName>Invoices_Status__c</fullName>
+                <default>false</default>
+                <label>Invoices Status</label>
+            </value>
+            <value>
+                <fullName>FIN_Journalizing_Status__c</fullName>
+                <default>false</default>
+                <label>Journalizing Status</label>
+            </value>
+            <value>
+                <fullName>FIN_MOD__c</fullName>
+                <default>false</default>
+                <label>MOD</label>
+            </value>
+            <value>
+                <fullName>FIN_MODType__c</fullName>
+                <default>false</default>
+                <label>MOD Type</label>
+            </value>
+            <value>
+                <fullName>FIN_OfferLookup__c</fullName>
+                <default>false</default>
+                <label>Offer Lookup</label>
+            </value>
+            <value>
+                <fullName>FIN_OfferName__c</fullName>
+                <default>false</default>
+                <label>Offer Name</label>
+            </value>
+            <value>
+                <fullName>FIN_Offer_Type__c</fullName>
+                <default>false</default>
+                <label>Offer Type</label>
+            </value>
+            <value>
+                <fullName>FIN_Operator__c</fullName>
+                <default>false</default>
+                <label>Operator</label>
+            </value>
+            <value>
+                <fullName>FIN_OrderID__c</fullName>
+                <default>false</default>
+                <label>Order ID</label>
+            </value>
+            <value>
+                <fullName>FIN_Outlet__c</fullName>
+                <default>false</default>
+                <label>Outlet</label>
+            </value>
+            <value>
+                <fullName>SBQQ__PaymentTerm__c</fullName>
+                <default>false</default>
+                <label>Payment Term</label>
+            </value>
+            <value>
+                <fullName>PoNumber</fullName>
+                <default>false</default>
+                <label>PO Number</label>
+            </value>
+            <value>
+                <fullName>SBQQ__PriceCalcStatus__c</fullName>
+                <default>false</default>
+                <label>Price Calc Status</label>
+            </value>
+            <value>
+                <fullName>SBQQ__PriceCalcStatusMessage__c</fullName>
+                <default>false</default>
+                <label>Price Calc Status Message</label>
+            </value>
+            <value>
+                <fullName>FIN_PriceCode__c</fullName>
+                <default>false</default>
+                <label>Price Code</label>
+            </value>
+            <value>
+                <fullName>FIN_PriceCodePricingMode__c</fullName>
+                <default>false</default>
+                <label>Price Code Pricing Mode</label>
+            </value>
+            <value>
+                <fullName>FIN_PriceCodeType__c</fullName>
+                <default>false</default>
+                <label>Price Code Type</label>
+            </value>
+            <value>
+                <fullName>FIN_ReferencePrice__c</fullName>
+                <default>false</default>
+                <label>Reference Price</label>
+            </value>
+            <value>
+                <fullName>FIN_Region__c</fullName>
+                <default>false</default>
+                <label>Region</label>
+            </value>
+            <value>
+                <fullName>FIN_Remark__c</fullName>
+                <default>false</default>
+                <label>Remark</label>
+            </value>
+            <value>
+                <fullName>Remittance_Payout_Status__c</fullName>
+                <default>false</default>
+                <label>Remittance Payout Status</label>
+            </value>
+            <value>
+                <fullName>SBQQ__RenewalTerm__c</fullName>
+                <default>false</default>
+                <label>Renewal Term</label>
+            </value>
+            <value>
+                <fullName>SBQQ__RenewalUpliftRate__c</fullName>
+                <default>false</default>
+                <label>Renewal Uplift Rate</label>
+            </value>
+            <value>
+                <fullName>TotalAmount</fullName>
+                <default>false</default>
+                <label>Total Amount</label>
+            </value>
+            <value>
+                <fullName>CurrencyIsoCode</fullName>
+                <default>false</default>
+                <label>CurrencyIsoCode</label>
+            </value>
+            <value>
+                <fullName>Name</fullName>
+                <default>false</default>
+                <label>Name</label>
+            </value>
+            <value>
+                <fullName>OrderReferenceNumber</fullName>
+                <default>false</default>
+                <label>Order Reference Number</label>
+            </value>
+            <value>
+                <fullName>Type</fullName>
+                <default>false</default>
+                <label>Type</label>
+            </value>
+            <value>
+                <fullName>Settlement_Status__c</fullName>
+                <default>false</default>
+                <label>Settlement Status</label>
+            </value>
+            <value>
+                <fullName>FIN_StatAdjCount__c</fullName>
+                <default>false</default>
+                <label>Stat Adj Count</label>
+            </value>
+            <value>
+                <fullName>Status</fullName>
+                <default>false</default>
+                <label>Status</label>
+            </value>
+            <value>
+                <fullName>FIN_Total_Payment_Distribution_Amount__c</fullName>
+                <default>false</default>
+                <label>Total Payment Distribution Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_total_sales_amount__c</fullName>
+                <default>false</default>
+                <label>Total Sales Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_Total_Sales_Gross_Amoun__c</fullName>
+                <default>false</default>
+                <label>Total Sales Gross Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_total_sales_tax_amount__c</fullName>
+                <default>false</default>
+                <label>Total Sales Tax Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_Total_Ticket_Sales_Count__c</fullName>
+                <default>false</default>
+                <label>Total Ticket Sales Count</label>
+            </value>
+            <value>
+                <fullName>FIN_VariantSKU__c</fullName>
+                <default>false</default>
+                <label>Variant SKU</label>
+            </value>
+            <value>
+                <fullName>FIN_ZoneDesc__c</fullName>
+                <default>false</default>
+                <label>Zone Desc</label>
+            </value>
+            <value>
+                <fullName>FIN_ZoneType__c</fullName>
+                <default>false</default>
+                <label>Zone Type</label>
+            </value>
+            <value>
+                <fullName>AvailableQuantity</fullName>
+                <default>false</default>
+                <label>Available Quantity</label>
+            </value>
+            <value>
+                <fullName>FIN_Component_Description__c</fullName>
+                <default>false</default>
+                <label>Component Description</label>
+            </value>
+            <value>
+                <fullName>SBQQ__DefaultSubscriptionTerm__c</fullName>
+                <default>false</default>
+                <label>Default Subscription Term</label>
+            </value>
+            <value>
+                <fullName>SBQQ__TaxAmount__c</fullName>
+                <default>false</default>
+                <label>Tax Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_FeeComponentID__c</fullName>
+                <default>false</default>
+                <label>Fee Component ID</label>
+            </value>
+            <value>
+                <fullName>FIN_FeeCompRCC__c</fullName>
+                <default>false</default>
+                <label>Fee Comp RCC</label>
+            </value>
+            <value>
+                <fullName>FIN_FeeCompRCN__c</fullName>
+                <default>false</default>
+                <label>Fee Comp RCN</label>
+            </value>
+            <value>
+                <fullName>FIN_FeeCompRCRA__c</fullName>
+                <default>false</default>
+                <label>Fee Comp RCRA</label>
+            </value>
+            <value>
+                <fullName>FIN_FeeGrossAmount__c</fullName>
+                <default>false</default>
+                <label>Fee Gross Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_FeeID__c</fullName>
+                <default>false</default>
+                <label>Fee ID</label>
+            </value>
+            <value>
+                <fullName>FIN_Fee__c</fullName>
+                <default>false</default>
+                <label>Fee</label>
+            </value>
+            <value>
+                <fullName>FIN_FeeNetAmount__c</fullName>
+                <default>false</default>
+                <label>Fee Net Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_FeeTaxAmount__c</fullName>
+                <default>false</default>
+                <label>Fee Tax Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_FeeType__c</fullName>
+                <default>false</default>
+                <label>Fee Type</label>
+            </value>
+            <value>
+                <fullName>SBQQ__UnproratedNetPrice__c</fullName>
+                <default>false</default>
+                <label>Unprorated Net Price</label>
+            </value>
+            <value>
+                <fullName>Fin_InventoryType__c</fullName>
+                <default>false</default>
+                <label>Inventory Type</label>
+            </value>
+            <value>
+                <fullName>Description</fullName>
+                <default>false</default>
+                <label>Description</label>
+            </value>
+            <value>
+                <fullName>ListPrice</fullName>
+                <default>false</default>
+                <label>List Price</label>
+            </value>
+            <value>
+                <fullName>FIN_MerchGrossAmount__c</fullName>
+                <default>false</default>
+                <label>Merch Gross Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_MerchNetAmount__c</fullName>
+                <default>false</default>
+                <label>Merch Net Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_MerchPriceComponentId__c</fullName>
+                <default>false</default>
+                <label>Merch Price Component Id</label>
+            </value>
+            <value>
+                <fullName>FIN_MerchTaxAmount__c</fullName>
+                <default>false</default>
+                <label>Merch Tax Amount</label>
+            </value>
+            <value>
+                <fullName>SBQQ__OrderedQuantity__c</fullName>
+                <default>false</default>
+                <label>Ordered Quantity</label>
+            </value>
+            <value>
+                <fullName>FIN_Primary_Product_ID__c</fullName>
+                <default>false</default>
+                <label>Primary Product ID</label>
+            </value>
+            <value>
+                <fullName>FIN_Product_ID__c</fullName>
+                <default>false</default>
+                <label>Product ID</label>
+            </value>
+            <value>
+                <fullName>SBQQ__ProrateMultiplier__c</fullName>
+                <default>false</default>
+                <label>Prorate Multiplier</label>
+            </value>
+            <value>
+                <fullName>Quantity</fullName>
+                <default>false</default>
+                <label>Quantity</label>
+            </value>
+            <value>
+                <fullName>SBQQ__QuotedListPrice__c</fullName>
+                <default>false</default>
+                <label>Quoted List Price</label>
+            </value>
+            <value>
+                <fullName>SBQQ__QuotedQuantity__c</fullName>
+                <default>false</default>
+                <label>Quoted Quantity</label>
+            </value>
+            <value>
+                <fullName>FIN_Revenue_Center_Code__c</fullName>
+                <default>false</default>
+                <label>Revenue Center Code</label>
+            </value>
+            <value>
+                <fullName>FIN_Revenue_Center_Name__c</fullName>
+                <default>false</default>
+                <label>Revenue Center Name</label>
+            </value>
+            <value>
+                <fullName>FIN_Revenue_Center_Remittance_Account__c</fullName>
+                <default>false</default>
+                <label>Revenue Center Remittance Account</label>
+            </value>
+            <value>
+                <fullName>SBQQ__SegmentIndex__c</fullName>
+                <default>false</default>
+                <label>Segment Index</label>
+            </value>
+            <value>
+                <fullName>SBQQ__SegmentKey__c</fullName>
+                <default>false</default>
+                <label>Segment Key</label>
+            </value>
+            <value>
+                <fullName>SBQQ__DimensionType__c</fullName>
+                <default>false</default>
+                <label>Dimension Type</label>
+            </value>
+            <value>
+                <fullName>SBQQ__SubscriptionTerm__c</fullName>
+                <default>false</default>
+                <label>Subscription Term</label>
+            </value>
+            <value>
+                <fullName>SBQQ__TaxCode__c</fullName>
+                <default>false</default>
+                <label>Tax Code</label>
+            </value>
+            <value>
+                <fullName>FIN_Gross_Amount__c</fullName>
+                <default>false</default>
+                <label>Gross Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_Amount__c</fullName>
+                <default>false</default>
+                <label>Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_Tax_Amount__c</fullName>
+                <default>false</default>
+                <label>Tax_Amount</label>
+            </value>
+            <value>
+                <fullName>TotalPrice</fullName>
+                <default>false</default>
+                <label>Total Price</label>
+            </value>
+            <value>
+                <fullName>UnitPrice</fullName>
+                <default>false</default>
+                <label>Unit Price</label>
+            </value>
+            <value>
+                <fullName>FIN_ValueTax_I__c</fullName>
+                <default>false</default>
+                <label>Value Tax I</label>
+            </value>
+            <value>
+                <fullName>FIN_ValueTax_E__c</fullName>
+                <default>false</default>
+                <label>Value Tax E</label>
+            </value>
+            <value>
+                <fullName>FIN_AdjustedPaymentAmount__c</fullName>
+                <default>false</default>
+                <label>Adjusted Payment Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_ApprovalStatus__c</fullName>
+                <default>false</default>
+                <label>ApprovalStatus</label>
+            </value>
+            <value>
+                <fullName>FIN_Currency__c</fullName>
+                <default>false</default>
+                <label>Currency</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentMerchant__c</fullName>
+                <default>false</default>
+                <label>Payment Merchant</label>
+            </value>
+            <value>
+                <fullName>FIN_Invoices_Status__c</fullName>
+                <default>false</default>
+                <label>Invoices_Status</label>
+            </value>
+            <value>
+                <fullName>FIN_JournalEntryAmount__c</fullName>
+                <default>false</default>
+                <label>Journal Entry Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_OperatorID__c</fullName>
+                <default>false</default>
+                <label>Operator ID</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentAdjustment__c</fullName>
+                <default>false</default>
+                <label>Payment Adjustment</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentAmount__c</fullName>
+                <default>false</default>
+                <label>Payment Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentPlanName__c</fullName>
+                <default>false</default>
+                <label>Payment Plan Name</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentStatus__c</fullName>
+                <default>false</default>
+                <label>Payment Status</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentType__c</fullName>
+                <default>false</default>
+                <label>Payment Type</label>
+            </value>
+            <value>
+                <fullName>FIN_Remittance_Payout_Status__c</fullName>
+                <default>false</default>
+                <label>Remittance Payout_Status</label>
+            </value>
+            <value>
+                <fullName>FIN_Settlement_Status__c</fullName>
+                <default>false</default>
+                <label>Settlement_Status</label>
+            </value>
+            <value>
+                <fullName>FIN_TransactionId__c</fullName>
+                <default>false</default>
+                <label>Transaction Id</label>
+            </value>
+            <value>
+                <fullName>FIN_ComponentName__c</fullName>
+                <default>false</default>
+                <label>Component Name</label>
+            </value>
+            <value>
+                <fullName>FIN_AdjustmentAmount__c</fullName>
+                <default>false</default>
+                <label>Adjustment_Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_DistributionAmount__c</fullName>
+                <default>false</default>
+                <label>Distribution Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_DistributionAmountNetofTaxAmount__c</fullName>
+                <default>false</default>
+                <label>Distribution Amount Net of Tax Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_DistributionAmountTaxAmount__c</fullName>
+                <default>false</default>
+                <label>Distribution Amount Tax Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_DistributionAmountTaxIncluded__c</fullName>
+                <default>false</default>
+                <label>Distribution Amount Tax Included</label>
+            </value>
+            <value>
+                <fullName>FIN_EventZoneType__c</fullName>
+                <default>false</default>
+                <label>Event Zone Type</label>
+            </value>
+            <value>
+                <fullName>FIN_EventZone__c</fullName>
+                <default>false</default>
+                <label>Event Zone</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentDistributionID__c</fullName>
+                <default>false</default>
+                <label>Payment Distribution ID</label>
+            </value>
+            <value>
+                <fullName>FIN_ProductName__c</fullName>
+                <default>false</default>
+                <label>Product Name</label>
+            </value>
+            <value>
+                <fullName>FIN_RevenueCenterCode__c</fullName>
+                <default>false</default>
+                <label>Revenue Center Code__c</label>
+            </value>
+            <value>
+                <fullName>FIN_RevenueCenterRemittanceAccount__c</fullName>
+                <default>false</default>
+                <label>Revenue Center Remittance_Account</label>
+            </value>
+            <value>
+                <fullName>FIN_SettlementCode__c</fullName>
+                <default>false</default>
+                <label>Settlement Code</label>
+            </value>
+            <value>
+                <fullName>FIN_Active_Base_Ticket_Sales__c</fullName>
+                <default>false</default>
+                <label>Active Base Ticket Sales</label>
+            </value>
+            <value>
+                <fullName>FIN_ActiveSubcontracts__c</fullName>
+                <default>false</default>
+                <label>Active Subcontracts</label>
+            </value>
+            <value>
+                <fullName>SBQQ__AmendmentOpportunityRecordTypeId__c</fullName>
+                <default>false</default>
+                <label>Amendment Opportunity Record Type Id</label>
+            </value>
+            <value>
+                <fullName>SBQQ__AmendmentOpportunityStage__c</fullName>
+                <default>false</default>
+                <label>Amendment Opportunity Stage</label>
+            </value>
+            <value>
+                <fullName>SBQQ__AmendmentPricebookId__c</fullName>
+                <default>false</default>
+                <label>Amendment Pricebook Id</label>
+            </value>
+            <value>
+                <fullName>ContractTerm</fullName>
+                <default>false</default>
+                <label>Contract Term</label>
+            </value>
+            <value>
+                <fullName>FIN_CustomerNumber__c</fullName>
+                <default>false</default>
+                <label>Customer Number</label>
+            </value>
+            <value>
+                <fullName>CustomerSignedTitle</fullName>
+                <default>false</default>
+                <label>Customer Signed Title</label>
+            </value>
+            <value>
+                <fullName>FIN_EventName__c</fullName>
+                <default>false</default>
+                <label>Event Name</label>
+            </value>
+            <value>
+                <fullName>FIN_InvoiceRate_del__c</fullName>
+                <default>false</default>
+                <label>Invoice Rate</label>
+            </value>
+            <value>
+                <fullName>SBQQ__RenewalOpportunityRecordTypeId__c</fullName>
+                <default>false</default>
+                <label>Renewal Opportunity Record Type Id</label>
+            </value>
+            <value>
+                <fullName>SBQQ__RenewalOpportunityStage__c</fullName>
+                <default>false</default>
+                <label>Renewal Opportunity Stage</label>
+            </value>
+            <value>
+                <fullName>SBQQ__RenewalPricebookId__c</fullName>
+                <default>false</default>
+                <label>Renewal Pricebook Id</label>
+            </value>
+            <value>
+                <fullName>FIN_TotalSubcontracts__c</fullName>
+                <default>false</default>
+                <label>Total Subcontracts</label>
+            </value>
+            <value>
+                <fullName>Association_Type__c</fullName>
+                <default>false</default>
+                <label>Association Type</label>
+            </value>
+            <value>
+                <fullName>FIN_Component_Number__c</fullName>
+                <default>false</default>
+                <label>Component Number</label>
+            </value>
+            <value>
+                <fullName>FIN_ComponentType__c</fullName>
+                <default>false</default>
+                <label>Component Type</label>
+            </value>
+            <value>
+                <fullName>FIN_Concept_Use__c</fullName>
+                <default>false</default>
+                <label>Concept Use</label>
+            </value>
+            <value>
+                <fullName>FIN_Display_Number__c</fullName>
+                <default>false</default>
+                <label>Display Number</label>
+            </value>
+            <value>
+                <fullName>FIN_Fee_and_Component__c</fullName>
+                <default>false</default>
+                <label>Fee and Component</label>
+            </value>
+            <value>
+                <fullName>SBQQ__FilterField__c</fullName>
+                <default>false</default>
+                <label>Filter Field</label>
+            </value>
+            <value>
+                <fullName>SBQQ__FilterValue__c</fullName>
+                <default>false</default>
+                <label>Filter Value</label>
+            </value>
+            <value>
+                <fullName>FIN_FinanceManagement__c</fullName>
+                <default>false</default>
+                <label>Finance Management</label>
+            </value>
+            <value>
+                <fullName>Fulfillment_Process__c</fullName>
+                <default>false</default>
+                <label>Fulfillment Process</label>
+            </value>
+            <value>
+                <fullName>SBQQ__Operator__c</fullName>
+                <default>false</default>
+                <label>Operator.</label>
+            </value>
+            <value>
+                <fullName>SBQQ__Price__c</fullName>
+                <default>false</default>
+                <label>Price</label>
+            </value>
+            <value>
+                <fullName>FIN_Product_Type_NUM__c</fullName>
+                <default>false</default>
+                <label>Product Type NUM</label>
+            </value>
+            <value>
+                <fullName>Product_Type__c</fullName>
+                <default>false</default>
+                <label>Product Type</label>
+            </value>
+            <value>
+                <fullName>Remittance_Account__c</fullName>
+                <default>false</default>
+                <label>Remittance Account</label>
+            </value>
+            <value>
+                <fullName>FIN_SplitCount__c</fullName>
+                <default>false</default>
+                <label>Split Count</label>
+            </value>
+            <value>
+                <fullName>FIN_TicketCategories__c</fullName>
+                <default>false</default>
+                <label>Ticket Categories</label>
+            </value>
+            <value>
+                <fullName>FIN_TicketCategories_Stat__c</fullName>
+                <default>false</default>
+                <label>Ticket Categories Stat</label>
+            </value>
+            <value>
+                <fullName>FIN_TicketCategory_System__c</fullName>
+                <default>false</default>
+                <label>Ticket Category System</label>
+            </value>
+            <value>
+                <fullName>FIN_Ticket_price_Component__c</fullName>
+                <default>false</default>
+                <label>Ticket Price Component</label>
+            </value>
+            <value>
+                <fullName>FIN_TicketType_Primary__c</fullName>
+                <default>false</default>
+                <label>Ticket Type Primary</label>
+            </value>
+            <value>
+                <fullName>FIN_TicketTypes_Stat__c</fullName>
+                <default>false</default>
+                <label>Ticket Types Stat</label>
+            </value>
+            <value>
+                <fullName>FIN_ZoneCategories__c</fullName>
+                <default>false</default>
+                <label>Zone Categories</label>
+            </value>
+            <value>
+                <fullName>FIN_ZoneCatagoriesStat__c</fullName>
+                <default>false</default>
+                <label>Zone Catagories Stat</label>
+            </value>
+            <value>
+                <fullName>FIN_LibraryAssociation__c</fullName>
+                <default>false</default>
+                <label>Library Association</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Channel__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_Outlet__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_ApprovalStatus__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_ComponentName__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_AdjustmentAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_DistributionAmountNetofTaxAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_DistributionAmountTaxAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_DistributionAmountTaxIncluded__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_EventZoneType__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_CurrentPaidAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Journalizing_Status__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>Settlement_Status__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_VariantSKU__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>AvailableQuantity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Component_Description__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__DefaultSubscriptionTerm__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__TaxAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_FeeComponentID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_FeeCompRCN__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_FeeCompRCRA__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_FeeGrossAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_FeeID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Fee__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_FeeNetAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_FeeTaxAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__UnproratedNetPrice__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>Fin_InventoryType__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>Description</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>ListPrice</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_MerchGrossAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_MerchNetAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_MerchPriceComponentId__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_MerchTaxAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__OrderedQuantity__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Primary_Product_ID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Product_ID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__ProrateMultiplier__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>Quantity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__QuotedListPrice__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__QuotedQuantity__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Revenue_Center_Code__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Revenue_Center_Name__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Revenue_Center_Remittance_Account__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__SegmentIndex__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__SegmentKey__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__DimensionType__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__SubscriptionTerm__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>SBQQ__TaxCode__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Gross_Amount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Amount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Tax_Amount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>TotalPrice</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>UnitPrice</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_ValueTax_I__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_ValueTax_E__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_Invoices_Status__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_SalesTransactions__c</controllingFieldValue>
+            <valueName>FIN_LibraryAssociation__c</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

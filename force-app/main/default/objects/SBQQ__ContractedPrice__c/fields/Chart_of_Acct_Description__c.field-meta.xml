@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Chart_of_Acct_Description__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( FIN_Chart_of_Accounts__r.RecordType.Name = &apos;US Financial Chart of Accounts&apos;, &apos;US Financial Chart of Accounts&apos;, NULL)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Chart of Accounts Description</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

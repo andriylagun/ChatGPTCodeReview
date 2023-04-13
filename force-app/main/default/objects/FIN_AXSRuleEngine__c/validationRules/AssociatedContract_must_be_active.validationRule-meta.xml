@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AssociatedContract_must_be_active</fullName>
+    <active>true</active>
+    <description>Associated- Contract must be active to run the rule</description>
+    <errorConditionFormula>AND(
+OR(ISCHANGED(isActive__c),ISNEW()),
+isActive__c = true,
+FIN_AssociatedContract__r.FIN_ActiveStatus__c = false,
+RecordType.Name = &quot;Settlement&quot;
+)</errorConditionFormula>
+    <errorMessage>Associated Contract must be active to run the rule</errorMessage>
+</ValidationRule>

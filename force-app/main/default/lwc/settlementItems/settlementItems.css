@@ -1,0 +1,16 @@
+/**
+ * Created by Olena_Prokopiv on 28/11/2022.
+ */
+c-settlement-data {
+    background: white;
+    padding: 7px;
+}
+
+section > div {
+    width: 70%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}

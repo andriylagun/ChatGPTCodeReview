@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_CountIIwithAppliedAccum__c</fullName>
+    <externalId>false</externalId>
+    <label>Count II with Applied Accum</label>
+    <summaryFilterItems>
+        <field>FIN_InvoiceItem__c.FIN_Applied__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

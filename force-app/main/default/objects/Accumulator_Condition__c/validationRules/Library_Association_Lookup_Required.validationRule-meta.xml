@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Library_Association_Lookup_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>TEXT(FIN_Object_Attribute__c) = &apos;FIN_LibraryAssociation__c&apos; &amp;&amp;  (
+ISBLANK( FIN_Library_Association__c ))</errorConditionFormula>
+    <errorDisplayField>FIN_Library_Association__c</errorDisplayField>
+    <errorMessage>Please select Library Association when Object Attribute is selected as &quot;Library Association&quot;</errorMessage>
+</ValidationRule>

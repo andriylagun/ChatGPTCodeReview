@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Unclassified_US__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF (TEXT(FIN_Region__c) = &apos;US&apos; &amp;&amp; (
+				     FIN_ContractRecordType__c = &apos;Master&apos; 
+				    ||  TEXT(ApprovalStatus__c) != &apos;Approved&apos; 
+				    ||  Contract.Name = null 
+				    || Contract.Name = &apos;UNCLASSIFIED&apos;
+) , true, false )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>US Unclassified?</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

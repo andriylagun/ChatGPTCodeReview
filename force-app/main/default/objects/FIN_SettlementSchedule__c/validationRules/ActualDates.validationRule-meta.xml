@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ActualDates</fullName>
+    <active>true</active>
+    <description>All dates should be in present or future.</description>
+    <errorConditionFormula>(FIN_PublishingDate__c &lt; TODAY() ||
+FIN_RemittanceDate__c &lt; TODAY() ||
+FIN_SettlementReport_GenerationDate__c &lt; TODAY()) &amp;&amp; NOT((
+ISPICKVAL(FIN_Status__c, &apos;Void&apos;) || ISPICKVAL(FIN_Status__c, &apos;Complete&apos;)
+))</errorConditionFormula>
+    <errorMessage>All dates should be in present or future.</errorMessage>
+</ValidationRule>
