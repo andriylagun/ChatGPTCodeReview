@@ -39,6 +39,10 @@ public virtual class TriggerHandler {
             when AFTER_DELETE {
                 afterDelete();
             }
+
+            when BEFORE_DELETE {
+                beforeDelete();
+            }
         }
     }
 
@@ -47,4 +51,5 @@ public virtual class TriggerHandler {
     protected virtual void beforeUpdate() {}
     protected virtual void afterUpdate() {}
     protected virtual void afterDelete() {}
+    protected virtual void beforeDelete() {}
 }

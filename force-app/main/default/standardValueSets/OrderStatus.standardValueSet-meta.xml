@@ -11,7 +11,7 @@
     <standardValue>
         <fullName>Open</fullName>
         <default>false</default>
-        <label>Draft</label>
+        <label>Open</label>
         <groupingString>Draft</groupingString>
     </standardValue>
     <standardValue>
@@ -30,18 +30,12 @@
         <fullName>Approved</fullName>
         <default>false</default>
         <label>Approved</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Draft</fullName>
+        <default>false</default>
+        <label>Draft</label>
         <groupingString>Draft</groupingString>
-    </standardValue>
-    <standardValue>
-        <fullName>Settled</fullName>
-        <default>false</default>
-        <label>Settled</label>
-        <groupingString>Activated</groupingString>
-    </standardValue>
-    <standardValue>
-        <fullName>Posted</fullName>
-        <default>false</default>
-        <label>Posted</label>
-        <groupingString>Activated</groupingString>
     </standardValue>
 </StandardValueSet>

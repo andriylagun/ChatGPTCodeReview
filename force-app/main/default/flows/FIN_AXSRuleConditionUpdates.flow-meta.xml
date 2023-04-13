@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <description>AXS Rule Condition Updates</description>
+    <environments>Default</environments>
+    <interviewLabel>FIN_AXSRuleConditionUpdates {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>FIN_AXSRuleConditionUpdates</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Values</name>
+        <label>Update Fields On Condition Records</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>FIN_RelatedObjectAttribute__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>FIN_LibraryAssociation__c</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>FIN_Value__c</field>
+            <value>
+                <elementReference>$Record.FIN_Library_Association__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Values</targetReference>
+        </connector>
+        <object>FIN_AXSRuleCondition__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

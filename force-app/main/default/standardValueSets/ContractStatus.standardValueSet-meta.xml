@@ -26,4 +26,10 @@
         <label>Activated</label>
         <groupingString>Activated</groupingString>
     </standardValue>
+    <standardValue>
+        <fullName>Deactivated</fullName>
+        <default>false</default>
+        <label>Deactivated</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
 </StandardValueSet>

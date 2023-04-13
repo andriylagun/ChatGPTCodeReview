@@ -1,0 +1,2 @@
+<apex:page id="RestartSettlementRules" standardController="FIN_AXSRuleEngine__c" extensions="FIN_RestartSettlementRulesController" recordSetVar="ruleEngines" action="{!onRulesRestart}">
+</apex:page>

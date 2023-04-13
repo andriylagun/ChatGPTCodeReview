@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Finance User Business Admin</label>
+    <permissionSets>APXTConga4__Composer_Administrator</permissionSets>
+    <permissionSets>APXTConga4__Composer_User</permissionSets>
+    <permissionSets>SBQQ__SteelBrickCPQAdmin</permissionSets>
+    <permissionSets>sbaa__AdvancedApprovalsAdmin</permissionSets>
+    <permissionSets>sbaa__AdvancedApprovalsUser</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

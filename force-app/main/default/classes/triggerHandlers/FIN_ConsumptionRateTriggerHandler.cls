@@ -1,0 +1,35 @@
+/**
+* ─────────────────────────────────────────────────────────────────────────────────────────────────┐
+*  Consumption Rates trigger handler, used by the Consumption Rates trigger
+* ──────────────────────────────────────────────────────────────────────────────────────────────────
+* @author         Ivan Liolia
+* @modifiedBy     Ivan Liolia
+* @version        1.0
+* @created        2022-03-31
+* @modified       2022-03-31
+* ──────────────────────────────────────────────────────────────────────────────────────────────────
+* @changes
+* vX.X            Name
+* YYYY-MM-DD      Explanation of the change.  Multiple lines can be used to explain the change, but
+*                 each line should be indented till left aligned with the previous description text.
+*
+* ─────────────────────────────────────────────────────────────────────────────────────────────────┘
+*/
+
+public with sharing class FIN_ConsumptionRateTriggerHandler extends TriggerHandler{
+
+    public override void afterInsert() {
+        // SFCA-449, update Consumption Schedule's approval status on record creation
+        FIN_ConsumptionRateTriggerHandlerHelper.updateConsumptionScheduleApprovalStatus((Map<Id, ConsumptionRate>) Trigger.newMap, null);
+    }
+
+    public override void afterUpdate() {
+        // SFCA-449, update Consumption Schedule's approval status on record' specified fields update
+        FIN_ConsumptionRateTriggerHandlerHelper.updateConsumptionScheduleApprovalStatus((Map<Id, ConsumptionRate>) Trigger.newMap, (Map<Id, ConsumptionRate>) Trigger.oldMap);
+    }
+
+    public override void afterDelete() {
+        // SFCA-449, update Consumption Schedule's approval status on record deleting
+        FIN_ConsumptionRateTriggerHandlerHelper.updateConsumptionScheduleApprovalStatus((Map<Id, ConsumptionRate>) Trigger.oldMap, null);
+    }
+}

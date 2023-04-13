@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Update_Status_to_New_to_Unlock</fullName>
-    <active>false</active>
-    <description>Must Update status to &quot;New&apos; to unlock this record</description>
-    <errorConditionFormula>Locked__c = true</errorConditionFormula>
-    <errorMessage>You must update the Status to NEW to unlock this record</errorMessage>
-</ValidationRule>

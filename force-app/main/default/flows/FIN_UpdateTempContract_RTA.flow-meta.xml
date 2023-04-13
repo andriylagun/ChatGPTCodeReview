@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <decisions>
+        <name>Check_Master_Contract</name>
+        <label>Check Master Contract</label>
+        <locationX>226</locationX>
+        <locationY>335</locationY>
+        <defaultConnector>
+            <targetReference>Set_Temp_Contract_as_MasterContract</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Null_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Contract__r.FIN_ParentContract__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Subcontract</targetReference>
+            </connector>
+            <label>Is Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Subcontract</name>
+        <label>Check Subcontract</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <defaultConnector>
+            <targetReference>Set_Temp_Contract_as_SubContract</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Contract__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Is Null</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>FIN_UpdateTempContract {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>FIN_UpdateTempContract_RTA</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_Temp_Contract_as_MasterContract</name>
+        <label>Set Temp Contract as MasterContract</label>
+        <locationX>402</locationX>
+        <locationY>455</locationY>
+        <inputAssignments>
+            <field>FIN_Temp_Contract__c</field>
+            <value>
+                <elementReference>$Record.FIN_Temp_Contract__r.FIN_ParentContract__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Temp_Contract_as_SubContract</name>
+        <label>Set Temp Contract as SubContract</label>
+        <locationX>138</locationX>
+        <locationY>575</locationY>
+        <inputAssignments>
+            <field>FIN_Temp_Contract__c</field>
+            <value>
+                <elementReference>$Record.SBQQ__Contract__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>100</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Master_Contract</targetReference>
+        </connector>
+        <object>SBQQ__ContractedPrice__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
