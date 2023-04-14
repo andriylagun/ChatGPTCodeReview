@@ -1,22 +1,22 @@
 public with sharing class Fin_AXSRuleEngineExtController {
-    private Id FIN_AXSRuleEngineId;
+    private final Id finAxsRuleEngineId;
     public Fin_AXSRuleEngineExtController (ApexPages.StandardController stdController) {
-        FIN_AXSRuleEngineId = stdController.getId();
+        finAxsRuleEngineId = ((FIN_AXSRuleEngine__c) stdController.getRecord()).Id;
     }
     public PageReference onSubmit() {
-        if (FIN_AXSRuleEngineId != null) {
+        if (finAxsRuleEngineId != null) {
             //if(!Test.isRunningTest()){
-                SBAA.ApprovalAPI.submit(FIN_AXSRuleEngineId, SBAA__Approval__c.FIN_AXS_Rule_Engine__c);
+                SBAA.ApprovalAPI.submit(finAxsRuleEngineId, SBAA__Approval__c.FIN_AXS_Rule_Engine__c);
             //}    
         }
-        return new PageReference('/' + FIN_AXSRuleEngineId);
+        return new PageReference('/' + finAxsRuleEngineId);
     }
     public PageReference onRecall() {
-        if (FIN_AXSRuleEngineId != null) {
+        if (finAxsRuleEngineId != null) {
             //if(!Test.isRunningTest()){
-                SBAA.ApprovalAPI.recall(FIN_AXSRuleEngineId, SBAA__Approval__c.FIN_AXS_Rule_Engine__c);
+                SBAA.ApprovalAPI.recall(finAxsRuleEngineId, SBAA__Approval__c.FIN_AXS_Rule_Engine__c);
             //}   
         }
-        return new PageReference('/' + FIN_AXSRuleEngineId);
+        return new PageReference('/' + finAxsRuleEngineId);
     }
 }
