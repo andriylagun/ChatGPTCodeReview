@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Auto_Approved__c</fullName>
+    <description>This field determines if the record has minimum data elements to be auto approved</description>
+    <externalId>false</externalId>
+    <formula>IF(
+OR( Account.Name =&quot;US Unclassified Client&quot; ,ISBLANK(FIN_OrderContext__c), ISBLANK(ContractId), FIN_Total_Sales_Qty__c = 0),
+FALSE,
+TRUE)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Contract, Context and Account must be populated and at least 1 Sale Transaction must be created to make the Sale auto-approved.</inlineHelpText>
+    <label>Auto Approved</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

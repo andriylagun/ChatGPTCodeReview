@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>None</fullName>
+        <default>false</default>
+        <label>None</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Individual</fullName>
+        <default>false</default>
+        <label>Individual</label>
+    </standardValue>
+    <standardValue>
+        <fullName>VIP</fullName>
+        <default>false</default>
+        <label>VIP</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Premium</fullName>
+        <default>false</default>
+        <label>Premium</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Group</fullName>
+        <default>false</default>
+        <label>Group</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Season</fullName>
+        <default>false</default>
+        <label>Season</label>
+    </standardValue>
+</StandardValueSet>

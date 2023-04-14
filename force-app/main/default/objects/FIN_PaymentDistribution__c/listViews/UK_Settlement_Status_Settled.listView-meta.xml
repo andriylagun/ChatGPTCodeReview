@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UK_Settlement_Status_Settled</fullName>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>FIN_PaymentDistribution__c.FIN_UK_Payment_Distribution</value>
+    </filters>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>UK</value>
+    </filters>
+    <filters>
+        <field>FIN_Settlement_Status__c</field>
+        <operation>equals</operation>
+        <value>Settled</value>
+    </filters>
+    <label>UK Settlement Status - Settled</label>
+    <sharedTo>
+        <group>UK_Region</group>
+    </sharedTo>
+</ListView>

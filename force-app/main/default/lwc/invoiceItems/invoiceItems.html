@@ -1,0 +1,37 @@
+<template>
+    <lightning-card if:true={isListOpen} title={title} icon-name="custom:custom63">
+        <lightning-datatable
+                key-field="id"
+                data={recordsData}
+                columns={gridColumns}
+        ></lightning-datatable>
+    </lightning-card>
+    <div class="buttons">
+        <lightning-button disabled={disabledRemove} variant="destructive" label="Remove from the list" onclick={handleRemove}></lightning-button>
+        <lightning-button variant="success" label="Add to the list" onclick={handleAdd}></lightning-button>
+    </div>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                                        alternative-text="close"
+                                        variant="inverse"
+                                        size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create Invoice Schedule</h2>
+                </header>
+                <c-invoice-data
+                        record-id={invoice}
+                        invoice-id={recordId}
+                        invoice-type={type}
+                        onclosechild={handleCloseWindow}
+                ></c-invoice-data>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

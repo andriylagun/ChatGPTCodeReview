@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Standardized Category</fullName>
+        <default>false</default>
+        <label>Standardized Category</label>
+    </customValue>
+    <customValue>
+        <fullName>Individual</fullName>
+        <default>false</default>
+        <label>Individual</label>
+    </customValue>
+    <customValue>
+        <fullName>AXS Premium</fullName>
+        <default>false</default>
+        <label>AXS Premium</label>
+    </customValue>
+    <customValue>
+        <fullName>VIP Packages</fullName>
+        <default>false</default>
+        <label>VIP Packages</label>
+    </customValue>
+    <customValue>
+        <fullName>Merchandise</fullName>
+        <default>false</default>
+        <label>Merchandise</label>
+    </customValue>
+    <customValue>
+        <fullName>Consignment</fullName>
+        <default>false</default>
+        <label>Consignment</label>
+    </customValue>
+    <customValue>
+        <fullName>Group</fullName>
+        <default>false</default>
+        <label>Group</label>
+    </customValue>
+    <customValue>
+        <fullName>Season</fullName>
+        <default>false</default>
+        <label>Season</label>
+    </customValue>
+    <customValue>
+        <fullName>Season Partial</fullName>
+        <default>false</default>
+        <label>Season Partial</label>
+    </customValue>
+    <customValue>
+        <fullName>Mini Plan</fullName>
+        <default>false</default>
+        <label>Mini Plan</label>
+    </customValue>
+    <customValue>
+        <fullName>Deposit</fullName>
+        <default>false</default>
+        <label>Deposit</label>
+    </customValue>
+    <customValue>
+        <fullName>Voucher</fullName>
+        <default>false</default>
+        <label>Voucher</label>
+    </customValue>
+    <customValue>
+        <fullName>Student</fullName>
+        <default>false</default>
+        <label>Student</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Non-Event</fullName>
+        <default>false</default>
+        <label>Non-Event</label>
+    </customValue>
+    <customValue>
+        <fullName>Parking</fullName>
+        <default>false</default>
+        <label>Parking</label>
+    </customValue>
+    <customValue>
+        <fullName>Suite</fullName>
+        <default>false</default>
+        <label>Suite</label>
+    </customValue>
+    <masterLabel>Ticket Categories - Statistical</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_LibraryAssociationName__c</fullName>
+    <externalId>false</externalId>
+    <formula>FIN_Context__r.Name &amp; &apos; - &apos; &amp;  SBQQ__Product__r.Name &amp; &apos; - &apos;&amp;  Text(Association_Type__c) &amp; &apos; &apos; &amp; Text(FIN_Component_Number__c )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Library Association Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_JournalEntrySign__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF (
+ISBLANK(TEXT(FIN_LibraryAssociation__r.FIN_Financial_Code__r.FIN_Financial_Chart_of_Accounts__r.FIN_Account_Type__c)),
+1,
+				
+IF(
+((TEXT(FIN_LibraryAssociation__r.FIN_Financial_Code__r.FIN_Financial_Chart_of_Accounts__r.FIN_Account_Type__c) == &apos;Asset&apos;) ||
+(TEXT(FIN_LibraryAssociation__r.FIN_Financial_Code__r.FIN_Financial_Chart_of_Accounts__r.FIN_Account_Type__c) == &apos;Expenses&apos;))
+, 1, -1
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Journal Entry Sign</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

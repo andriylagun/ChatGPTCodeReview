@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_TotalRemittanceAmount__c</fullName>
+    <externalId>false</externalId>
+    <label>Total Remittance Amount</label>
+    <summarizedField>FIN_RemittanceItem__c.FIN_RemittanceAmount__c</summarizedField>
+    <summaryForeignKey>FIN_RemittanceItem__c.FIN_ParentRemittanceSchedule__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

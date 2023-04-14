@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ObjectSameToAXSRuleEngines</fullName>
+    <active>false</active>
+    <description>Object must be same as on AXS Rule Engine</description>
+    <errorConditionFormula>TEXT(FIN_Object__c) != TEXT(FIN_SortingRule__r.FIN_Object__c)</errorConditionFormula>
+    <errorDisplayField>FIN_Object__c</errorDisplayField>
+    <errorMessage>Object must be same as on AXS Rule Engine</errorMessage>
+</ValidationRule>

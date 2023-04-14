@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Active_two_Consumption_Schedules</fullName>
+    <active>true</active>
+    <description>This Validation prevent active two Consumption Schedules with Accumulator Type Ticket Quantity and Revenue in the same time. Connected with the flow.</description>
+    <errorConditionFormula>FIN_TF_Validation__c = &apos;PreventActive&apos;</errorConditionFormula>
+    <errorMessage>Consumption Schedules with Accumulator Type &quot;Ticket Quantity&quot; and &quot;Revenue&quot; can&apos;t be Active in the same time.</errorMessage>
+</ValidationRule>

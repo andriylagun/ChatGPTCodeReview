@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Created by Lightning App Builder</description>
+    <flexiPage>ACH_Bank_Payout</flexiPage>
+    <label>ACH Bank Payout</label>
+    <motif>Custom32: Factory</motif>
+</CustomTab>

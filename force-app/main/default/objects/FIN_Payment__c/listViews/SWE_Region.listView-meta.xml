@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SWE_Region</fullName>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>SWE</value>
+    </filters>
+    <filters>
+        <field>FIN_CurrentUser_is_Owner_c__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>SWE</value>
+    </filters>
+    <label>SWE Region</label>
+    <sharedTo>
+        <group>SWE_Region</group>
+    </sharedTo>
+</ListView>

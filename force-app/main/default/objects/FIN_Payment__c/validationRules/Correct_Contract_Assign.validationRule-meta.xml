@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Correct_Contract_Assign</fullName>
+    <active>false</active>
+    <errorConditionFormula>OR((Contract__c &lt;&gt;  FIN_Order__r.ContractId) &amp;&amp;
+			NOT(ISNULL(FIN_Order__r.ContractId)))</errorConditionFormula>
+    <errorMessage>Payment cannot be assigned to different Contracts through direct Contract assignment and through the assigned Sale</errorMessage>
+</ValidationRule>

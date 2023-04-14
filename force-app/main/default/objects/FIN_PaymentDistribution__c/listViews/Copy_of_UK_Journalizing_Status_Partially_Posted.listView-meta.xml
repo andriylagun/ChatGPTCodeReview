@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_UK_Journalizing_Status_Partially_Posted</fullName>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>FIN_PaymentDistribution__c.FIN_UK_Payment_Distribution</value>
+    </filters>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>UK</value>
+    </filters>
+    <filters>
+        <field>FIN_Remittance_Payout_Status__c</field>
+        <operation>equals</operation>
+        <value>Voided</value>
+    </filters>
+    <label>UK Remittance Status - Void</label>
+    <sharedTo>
+        <group>UK_Region</group>
+    </sharedTo>
+</ListView>

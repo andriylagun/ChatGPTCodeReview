@@ -1,0 +1,2 @@
+<apex:page id="ClassifySalesRecords" standardController="Order" extensions="FIN_UnclassifiedRecordsController" recordSetVar="orders" action="{!onSalesClassify}">
+</apex:page>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Locked</fullName>
+    <active>true</active>
+    <description>Status = Completed</description>
+    <label>Locked</label>
+    <picklistValues>
+        <picklist>FIN_Status__c</picklist>
+        <values>
+            <fullName>Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remittance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SettlementInProgress</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Void</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_TemplateCategory__c</picklist>
+        <values>
+            <fullName>test1</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>test2</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

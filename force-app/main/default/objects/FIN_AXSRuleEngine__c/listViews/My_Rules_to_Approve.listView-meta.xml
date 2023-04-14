@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Rules_to_Approve</fullName>
+    <columns>NAME</columns>
+    <columns>isActive__c</columns>
+    <columns>FIN_Object__c</columns>
+    <columns>FIN_AssociatedContract__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ApprovalStatus__c</field>
+        <operation>equals</operation>
+        <value>Pending</value>
+    </filters>
+    <label>My Rules to Approve</label>
+</ListView>

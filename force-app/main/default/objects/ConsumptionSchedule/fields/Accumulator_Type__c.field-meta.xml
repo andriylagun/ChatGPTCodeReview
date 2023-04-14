@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accumulator_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>OLD Accumulator Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Ticket_Quantity</fullName>
+                <default>false</default>
+                <label>Ticket Quantity</label>
+            </value>
+            <value>
+                <fullName>Revenue_Amount</fullName>
+                <default>false</default>
+                <label>Revenue Amount</label>
+            </value>
+            <value>
+                <fullName>Advance Recoupment</fullName>
+                <default>true</default>
+                <label>Advance Recoupment</label>
+            </value>
+            <value>
+                <fullName>Accumulation to Target</fullName>
+                <default>false</default>
+                <label>Accumulation to Target</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <icon>APXTConga4__Conga/APXTConga4__Conga_O.png</icon>
+    <label>Conga Composer Setup</label>
+    <motif>Custom267: TV Widescreen</motif>
+    <page>APXTConga4__Composer_Test</page>
+</CustomTab>

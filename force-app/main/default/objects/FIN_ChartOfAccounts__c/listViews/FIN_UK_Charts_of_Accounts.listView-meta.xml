@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_UK_Charts_of_Accounts</fullName>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Region__c</field>
+        <operation>equals</operation>
+        <value>UK</value>
+    </filters>
+    <label>UK  Charts of Accounts</label>
+    <sharedTo>
+        <group>UK_Region</group>
+    </sharedTo>
+</ListView>

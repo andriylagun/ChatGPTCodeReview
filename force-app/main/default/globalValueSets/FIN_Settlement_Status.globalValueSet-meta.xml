@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>New</fullName>
+        <default>true</default>
+        <label>New</label>
+    </customValue>
+    <customValue>
+        <fullName>ToBeSettled</fullName>
+        <default>false</default>
+        <label>To Be Settled</label>
+    </customValue>
+    <customValue>
+        <fullName>Settled</fullName>
+        <default>false</default>
+        <label>Settled</label>
+    </customValue>
+    <customValue>
+        <fullName>Voided</fullName>
+        <default>false</default>
+        <label>Void</label>
+    </customValue>
+    <customValue>
+        <fullName>ScheduledSettlement</fullName>
+        <default>false</default>
+        <label>Scheduled for Settlement</label>
+    </customValue>
+    <customValue>
+        <fullName>NotApplicable</fullName>
+        <default>false</default>
+        <label>Not Applicable</label>
+    </customValue>
+    <masterLabel>Settlement Status</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

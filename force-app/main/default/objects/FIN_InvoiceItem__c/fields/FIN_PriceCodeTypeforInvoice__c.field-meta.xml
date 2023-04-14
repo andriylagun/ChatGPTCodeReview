@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_PriceCodeTypeforInvoice__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( FIN_PaymentDistribution__c != null, FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__r.FIN_PriceCodeType__c,
+       IF( FIN_SalesTransactions__c != null, FIN_SalesTransactions__r.Order.FIN_PriceCodeType__c, 
+             IF (FIN_Payment__c != null, FIN_Payment__r.FIN_Order__r.FIN_PriceCodeType__c, null
+              )
+       )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Price Code Type for Invoice</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

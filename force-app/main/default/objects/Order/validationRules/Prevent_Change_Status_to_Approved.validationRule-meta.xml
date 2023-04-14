@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Change_Status_to_Approved</fullName>
+    <active>false</active>
+    <description>Prevents change of status to approve if previous status value was different from Reviewed.</description>
+    <errorConditionFormula>AND(
+  NOT(ISPICKVAL(PRIORVALUE(Status),&quot;Reviewed&quot;)),
+  ISPICKVAL(Status,&quot;Approved&quot;)
+)</errorConditionFormula>
+    <errorMessage>The status can&apos;t be changed to Approved.</errorMessage>
+</ValidationRule>

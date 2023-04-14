@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>New</fullName>
+        <default>true</default>
+        <label>New</label>
+    </customValue>
+    <customValue>
+        <fullName>ToBeInvoiced</fullName>
+        <default>false</default>
+        <label>To Be Invoiced</label>
+    </customValue>
+    <customValue>
+        <fullName>InvoiceScheduled</fullName>
+        <default>false</default>
+        <label>Invoice in Progress</label>
+    </customValue>
+    <customValue>
+        <fullName>Invoiced</fullName>
+        <default>false</default>
+        <label>Invoiced</label>
+    </customValue>
+    <customValue>
+        <fullName>Voided</fullName>
+        <default>false</default>
+        <label>Void</label>
+    </customValue>
+    <customValue>
+        <fullName>NotApplicable</fullName>
+        <default>false</default>
+        <label>Not Applicable</label>
+    </customValue>
+    <masterLabel>Invoice Status</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

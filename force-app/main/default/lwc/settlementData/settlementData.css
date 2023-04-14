@@ -1,0 +1,43 @@
+.THIS .slds-scrollable_x {
+    overflow-y: visible !important;
+    overflow-x: visible !important;
+}
+
+.THIS .slds-scrollable_y {
+    overflow-y: visible !important;
+    overflow-x: visible !important;
+}
+.THIS .slds-grid_align-end
+{
+    justify-content: left !important; 
+}
+
+.lgc-bg {
+    background-color: rgb(242, 242, 242);
+}
+
+.lgc-bg-inverse {
+    background-color: rgb(22, 50, 92);
+}
+
+
+.acc-container {
+    background: white !important;
+}
+
+.record-form {
+    padding: 15px;
+}
+
+lightning-input, lightning-combobox {
+    padding-right: 7px;
+}
+
+lightning-button-icon {
+    margin-left: -24px;
+}
+
+lightning-button {
+    display: block;
+    margin: 7px 0px;
+}

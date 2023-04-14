@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Silvervoice</fullName>
+    <columns>NAME</columns>
+    <columns>FIN_DistributionAmountNetofTaxAmount__c</columns>
+    <columns>FIN_DistributionDate__c</columns>
+    <columns>FIN_ComponentName__c</columns>
+    <columns>FIN_ProductName__c</columns>
+    <columns>FIN_ApprovalStatus__c</columns>
+    <columns>FIN_Event__c</columns>
+    <columns>FIN_Outlet__c</columns>
+    <columns>FIN_Region__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>FIN_PaymentDistribution__c.FIN_US_Payment_Distribution</value>
+    </filters>
+    <filters>
+        <field>FIN_Payment__c</field>
+        <operation>equals</operation>
+        <value>P-0000000010</value>
+    </filters>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>US</value>
+    </filters>
+    <label>US Silvervoice</label>
+    <sharedTo>
+        <group>US_Region</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Statistical_Standard__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Statistical Standard</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>You must select a Statistical Standardization</errorMessage>
+        <filterItems>
+            <field>FIN_Standardization__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Statistical Standard</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>FIN_Standardization__c</referenceTo>
+    <relationshipLabel>Statistical Standard</relationshipLabel>
+    <relationshipName>Contracts1</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

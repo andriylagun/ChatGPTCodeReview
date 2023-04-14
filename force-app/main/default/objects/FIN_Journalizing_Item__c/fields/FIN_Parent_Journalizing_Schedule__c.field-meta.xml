@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Parent_Journalizing_Schedule__c</fullName>
+    <externalId>false</externalId>
+    <label>Parent Journalizing Schedule</label>
+    <referenceTo>Journalizing_Schedule__c</referenceTo>
+    <relationshipLabel>Journalizing Items</relationshipLabel>
+    <relationshipName>Journalizing_Items</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

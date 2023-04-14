@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Starting_Balance__c</fullName>
+    <description>Starting Balance for Advance Recoupment accumulation rule</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Starting Balance for Advance Recoupment accumulation rule</inlineHelpText>
+    <label>Starting Balance</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

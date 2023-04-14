@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Account_to_Match_Client_ID</fullName>
+    <active>false</active>
+    <errorConditionFormula>Contract__r.AccountId &lt;&gt; Client__r.Id</errorConditionFormula>
+    <errorMessage>Contracts Account does not match with Client. Pls create one contract association for each Context and Client combination</errorMessage>
+</ValidationRule>

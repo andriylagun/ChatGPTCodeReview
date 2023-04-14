@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Product Type Description</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Convenience Fee</fullName>
+                <default>false</default>
+                <label>Convenience Fee</label>
+            </value>
+            <value>
+                <fullName>E-Ticket Fee</fullName>
+                <default>false</default>
+                <label>E-Ticket Fee</label>
+            </value>
+            <value>
+                <fullName>Express Delivery Fee</fullName>
+                <default>false</default>
+                <label>Express Delivery Fee</label>
+            </value>
+            <value>
+                <fullName>Fund</fullName>
+                <default>false</default>
+                <label>Fund</label>
+            </value>
+            <value>
+                <fullName>Handling Fee</fullName>
+                <default>false</default>
+                <label>Handling Fee</label>
+            </value>
+            <value>
+                <fullName>NSF Check Fee</fullName>
+                <default>false</default>
+                <label>NSF Check Fee</label>
+            </value>
+            <value>
+                <fullName>Payment Plan</fullName>
+                <default>false</default>
+                <label>Payment Plan</label>
+            </value>
+            <value>
+                <fullName>Tix System Package</fullName>
+                <default>false</default>
+                <label>Tix System Package</label>
+            </value>
+            <value>
+                <fullName>Tix System Ticket</fullName>
+                <default>false</default>
+                <label>Tix System Ticket</label>
+            </value>
+            <value>
+                <fullName>Merch Product</fullName>
+                <default>false</default>
+                <label>Merch Product</label>
+            </value>
+            <value>
+                <fullName>GREEK Convenience Fee</fullName>
+                <default>false</default>
+                <label>GREEK Convenience Fee</label>
+            </value>
+            <value>
+                <fullName>Box Office Fee</fullName>
+                <default>false</default>
+                <label>Box Office Fee</label>
+            </value>
+            <value>
+                <fullName>Credit Card Fee</fullName>
+                <default>false</default>
+                <label>Credit Card Fee</label>
+            </value>
+            <value>
+                <fullName>Donations</fullName>
+                <default>false</default>
+                <label>Donations</label>
+            </value>
+            <value>
+                <fullName>Facility Fee</fullName>
+                <default>false</default>
+                <label>Facility Fee</label>
+            </value>
+            <value>
+                <fullName>Parking Fee</fullName>
+                <default>false</default>
+                <label>Parking Fee</label>
+            </value>
+            <value>
+                <fullName>Promoter Fee</fullName>
+                <default>false</default>
+                <label>Promoter Fee</label>
+            </value>
+            <value>
+                <fullName>Goldenvoice Fee</fullName>
+                <default>false</default>
+                <label>Goldenvoice Fee</label>
+            </value>
+            <value>
+                <fullName>AXS Premium Fee</fullName>
+                <default>false</default>
+                <label>AXS Premium Fee</label>
+            </value>
+            <value>
+                <fullName>Sales Tax</fullName>
+                <default>false</default>
+                <label>Sales Tax</label>
+            </value>
+            <value>
+                <fullName>GV Handling</fullName>
+                <default>false</default>
+                <label>GV Handling</label>
+            </value>
+            <value>
+                <fullName>Mail Delivery</fullName>
+                <default>false</default>
+                <label>Mail Delivery</label>
+            </value>
+            <value>
+                <fullName>AXS Premium Fees</fullName>
+                <default>false</default>
+                <label>AXS Premium Fees</label>
+            </value>
+            <value>
+                <fullName>Taxes</fullName>
+                <default>false</default>
+                <label>Taxes</label>
+            </value>
+            <value>
+                <fullName>Service Fee</fullName>
+                <default>false</default>
+                <label>Service Fee</label>
+            </value>
+            <value>
+                <fullName>Donation</fullName>
+                <default>false</default>
+                <label>Donation</label>
+            </value>
+            <value>
+                <fullName>Non-Ticket Product</fullName>
+                <default>false</default>
+                <label>Non-Ticket Product</label>
+            </value>
+            <value>
+                <fullName>AEG Internal</fullName>
+                <default>false</default>
+                <label>AEG Internal</label>
+            </value>
+            <value>
+                <fullName>Bowery Internal</fullName>
+                <default>false</default>
+                <label>Bowery Internal</label>
+            </value>
+            <value>
+                <fullName>E-Ticket Fee Groups</fullName>
+                <default>false</default>
+                <label>E-Ticket Fee Groups</label>
+            </value>
+            <value>
+                <fullName>Special Handling Fee</fullName>
+                <default>false</default>
+                <label>Special Handling Fee</label>
+            </value>
+            <value>
+                <fullName>Virtual Merchandise</fullName>
+                <default>false</default>
+                <label>Virtual Merchandise</label>
+            </value>
+            <value>
+                <fullName>Deposit</fullName>
+                <default>false</default>
+                <label>Deposit</label>
+            </value>
+            <value>
+                <fullName>Executive Club</fullName>
+                <default>false</default>
+                <label>Executive Club</label>
+            </value>
+            <value>
+                <fullName>Group Events</fullName>
+                <default>false</default>
+                <label>Group Events</label>
+            </value>
+            <value>
+                <fullName>Lifeblue</fullName>
+                <default>false</default>
+                <label>Lifeblue</label>
+            </value>
+            <value>
+                <fullName>Merchandise Fee</fullName>
+                <default>false</default>
+                <label>Merchandise Fee</label>
+            </value>
+            <value>
+                <fullName>Pavilion</fullName>
+                <default>false</default>
+                <label>Pavilion</label>
+            </value>
+            <value>
+                <fullName>Registration</fullName>
+                <default>false</default>
+                <label>Registration</label>
+            </value>
+            <value>
+                <fullName>Season Promotions</fullName>
+                <default>false</default>
+                <label>Season Promotions</label>
+            </value>
+            <value>
+                <fullName>Season Ticket Fee</fullName>
+                <default>false</default>
+                <label>Season Ticket Fee</label>
+            </value>
+            <value>
+                <fullName>Utah Warriors</fullName>
+                <default>false</default>
+                <label>Utah Warriors</label>
+            </value>
+            <value>
+                <fullName>Merchandise</fullName>
+                <default>false</default>
+                <label>Merchandise</label>
+            </value>
+            <value>
+                <fullName>State Tax</fullName>
+                <default>false</default>
+                <label>State Tax</label>
+            </value>
+            <value>
+                <fullName>Sponsorship Fee</fullName>
+                <default>false</default>
+                <label>Sponsorship Fee</label>
+            </value>
+            <value>
+                <fullName>Griffins Fee</fullName>
+                <default>false</default>
+                <label>Griffins Fee</label>
+            </value>
+            <value>
+                <fullName>Promoter Rebate</fullName>
+                <default>false</default>
+                <label>Promoter Rebate</label>
+            </value>
+            <value>
+                <fullName>Tax</fullName>
+                <default>false</default>
+                <label>Tax</label>
+            </value>
+            <value>
+                <fullName>Will Call</fullName>
+                <default>false</default>
+                <label>Will Call</label>
+            </value>
+            <value>
+                <fullName>Vendor Fee</fullName>
+                <default>false</default>
+                <label>Vendor Fee</label>
+            </value>
+            <value>
+                <fullName>Dallas Wings</fullName>
+                <default>false</default>
+                <label>Dallas Wings</label>
+            </value>
+            <value>
+                <fullName>Diamond Club</fullName>
+                <default>false</default>
+                <label>Diamond Club</label>
+            </value>
+            <value>
+                <fullName>Maverick Club</fullName>
+                <default>false</default>
+                <label>Maverick Club</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

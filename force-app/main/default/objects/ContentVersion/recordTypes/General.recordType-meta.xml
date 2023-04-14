@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>General</fullName>
+    <active>true</active>
+    <description>To enable the possibility to fill a required fields.</description>
+    <label>General</label>
+    <picklistValues>
+        <picklist>FIN_Type__c</picklist>
+        <values>
+            <fullName>Amendment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extension Agreement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Master Agreement</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Side Terms</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Term Sheet</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

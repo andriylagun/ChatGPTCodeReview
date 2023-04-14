@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>ProcessDate__c</columns>
+    <columns>FIN_Region__c</columns>
+    <columns>Sales__c</columns>
+    <columns>FIN_Sales_Process_Status__c</columns>
+    <columns>Payment__c</columns>
+    <columns>FIN_Payment_Process_Status__c</columns>
+    <columns>Payment_Distribution__c</columns>
+    <columns>FIN_Payment_Distribution_Process_Status__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

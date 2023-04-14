@@ -1,0 +1,6 @@
+<apex:page standardController="Contract" extensions="FIN_ReclassifyRelatedRecordsController" action="{!onReclassify}">
+    <apex:form >
+    <apex:commandButton value="Reclassify" disabled="{!NOT(Contract.ApprovalStatus__c == 'Deactivated')}"/>
+    </apex:form>
+    <apex:pageMessages />
+</apex:page>

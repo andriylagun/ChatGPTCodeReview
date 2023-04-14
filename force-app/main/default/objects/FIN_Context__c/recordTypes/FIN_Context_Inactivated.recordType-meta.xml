@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Context_Inactivated</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>FIN_US_Compact_Context</compactLayoutAssignment>
+    <label>Inactivated</label>
+</RecordType>

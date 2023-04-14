@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Fee__c.Contracted_Prices__r$SBQQ__Contract__c</field>
+    </columns>
+    <columns>
+        <field>Fee__c$Name</field>
+    </columns>
+    <columns>
+        <field>Fee__c.Contracted_Prices__r$Name</field>
+    </columns>
+    <columns>
+        <field>Fee__c.Contracted_Prices__r.Sales_Transactions__r$OrderItemNumber</field>
+    </columns>
+    <columns>
+        <field>Fee__c.Contracted_Prices__r.Sales_Transactions__r.Payment_Distributions__r$Name</field>
+    </columns>
+    <currency>USD</currency>
+    <format>Summary</format>
+    <name>Fee ContrPrc SlTrans PmntDistrib0</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>FeeContractedPricesSalesTransaction__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Fee__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

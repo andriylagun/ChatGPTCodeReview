@@ -1,0 +1,11 @@
+<template>
+    <div if:true={value} class="slds-box slds-box_x-small slds-theme_default">
+        <lightning-combobox name="progress" 
+            label="Select a Region" 
+            value={value}
+            disabled={disableRegionEdit}
+            options={options} 
+            onchange={handleChange}>
+        </lightning-combobox>
+    </div>
+</template>

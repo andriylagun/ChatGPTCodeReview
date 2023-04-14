@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_PaymentUnclassified__c</fullName>
+    <externalId>false</externalId>
+    <formula>((CONTAINS(FIN_ContractRecordType__c, &apos;Master&apos;) ||
+		ISBLANK(Contract__c) || CONTAINS(Contract__r.Name,&apos;UNCLASSIFIED&apos;)) &amp;&amp; !FIN_Auto_Approved__c)
+		|| !FIN_Auto_Approved__c
+		|| (FIN_Sales_Unclassified__c &amp;&amp; !FIN_Auto_Approved__c)
+		|| (ISBLANK(FIN_LibraryAssociation__c) &amp;&amp; !FIN_Auto_Approved__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Payment Unclassified?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

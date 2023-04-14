@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Category__c</fullName>
+    <externalId>false</externalId>
+    <label>Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CASH - CLIENT CASH</fullName>
+                <default>false</default>
+                <label>CASH - CLIENT CASH</label>
+            </value>
+            <value>
+                <fullName>CASH - CLIENT CASH - DENVER</fullName>
+                <default>false</default>
+                <label>CASH - CLIENT CASH - DENVER</label>
+            </value>
+            <value>
+                <fullName>A/R - AXS DISTRO A</fullName>
+                <default>false</default>
+                <label>A/R - AXS DISTRO A</label>
+            </value>
+            <value>
+                <fullName>A/R - CREDIT CARD</fullName>
+                <default>false</default>
+                <label>A/R - CREDIT CARD</label>
+            </value>
+            <value>
+                <fullName>A/R - PAYPAL</fullName>
+                <default>false</default>
+                <label>A/R - PAYPAL</label>
+            </value>
+            <value>
+                <fullName>ADVANCE RECOUPMENT</fullName>
+                <default>false</default>
+                <label>ADVANCE RECOUPMENT</label>
+            </value>
+            <value>
+                <fullName>LIABILITY - DUE TO VENUES</fullName>
+                <default>false</default>
+                <label>LIABILITY - DUE TO VENUES</label>
+            </value>
+            <value>
+                <fullName>LIABILITY - DUE TO PROMOTERS - COD</fullName>
+                <default>false</default>
+                <label>LIABILITY - DUE TO PROMOTERS - COD</label>
+            </value>
+            <value>
+                <fullName>LIABILITY - SOUVENIR TICKET LIABILITY</fullName>
+                <default>false</default>
+                <label>LIABILITY - SOUVENIR TICKET LIABILITY</label>
+            </value>
+            <value>
+                <fullName>LIABILITY - SALES TAX LIABILITY</fullName>
+                <default>false</default>
+                <label>LIABILITY - SALES TAX LIABILITY</label>
+            </value>
+            <value>
+                <fullName>REVENUE - NON TICKET SALES REVENUE</fullName>
+                <default>false</default>
+                <label>REVENUE - NON TICKET SALES REVENUE</label>
+            </value>
+            <value>
+                <fullName>REVENUE - TICKET FEES PROGRAMMED</fullName>
+                <default>false</default>
+                <label>REVENUE - TICKET FEES PROGRAMMED</label>
+            </value>
+            <value>
+                <fullName>REVENUE - TICKET FEES INCREMENTAL</fullName>
+                <default>false</default>
+                <label>REVENUE - TICKET FEES INCREMENTAL</label>
+            </value>
+            <value>
+                <fullName>REVENUE - TICKET FEES DELIVERY</fullName>
+                <default>false</default>
+                <label>REVENUE - TICKET FEES DELIVERY</label>
+            </value>
+            <value>
+                <fullName>REVENUE - PAYMENT PLAN FEES</fullName>
+                <default>false</default>
+                <label>REVENUE - PAYMENT PLAN FEES</label>
+            </value>
+            <value>
+                <fullName>REVENUE - TICKET FEES INVOICED</fullName>
+                <default>false</default>
+                <label>REVENUE - TICKET FEES INVOICED</label>
+            </value>
+            <value>
+                <fullName>REVENUE - TICKET FEES DELIVERY INVOICED</fullName>
+                <default>false</default>
+                <label>REVENUE - TICKET FEES DELIVERY INVOICED</label>
+            </value>
+            <value>
+                <fullName>REVENUE - TICKET FEES - PREMIUM</fullName>
+                <default>false</default>
+                <label>REVENUE - TICKET FEES - PREMIUM</label>
+            </value>
+            <value>
+                <fullName>REVENUE - TICKET FEES - VIP</fullName>
+                <default>false</default>
+                <label>REVENUE - TICKET FEES - VIP</label>
+            </value>
+            <value>
+                <fullName>REVENUE - TICKET FEES - AXS DISTRO A</fullName>
+                <default>false</default>
+                <label>REVENUE - TICKET FEES - AXS DISTRO A</label>
+            </value>
+            <value>
+                <fullName>REVENUE - PER ORDER FEES PROGRAMMED</fullName>
+                <default>false</default>
+                <label>REVENUE - PER ORDER FEES PROGRAMMED</label>
+            </value>
+            <value>
+                <fullName>REVENUE - PAYMENT RECOVERY FEE</fullName>
+                <default>false</default>
+                <label>REVENUE - PAYMENT RECOVERY FEE</label>
+            </value>
+            <value>
+                <fullName>REVENUE - RFID SHIPPING</fullName>
+                <default>false</default>
+                <label>REVENUE - RFID SHIPPING</label>
+            </value>
+            <value>
+                <fullName>REVENUE - RFID FULFILLMENT</fullName>
+                <default>false</default>
+                <label>REVENUE - RFID FULFILLMENT</label>
+            </value>
+            <value>
+                <fullName>REVENUE - RFID ACTIVATIONS</fullName>
+                <default>false</default>
+                <label>REVENUE - RFID ACTIVATIONS</label>
+            </value>
+            <value>
+                <fullName>EXPENSES - CBNL PAYMENTS</fullName>
+                <default>false</default>
+                <label>EXPENSES - CBNL PAYMENTS</label>
+            </value>
+            <value>
+                <fullName>EXPENSES - BUILD AND CUSTOMER ISSUES</fullName>
+                <default>false</default>
+                <label>EXPENSES - BUILD AND CUSTOMER ISSUES</label>
+            </value>
+            <value>
+                <fullName>Tickets</fullName>
+                <default>false</default>
+                <label>Tickets</label>
+            </value>
+            <value>
+                <fullName>Gross Sales</fullName>
+                <default>false</default>
+                <label>Gross Sales</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

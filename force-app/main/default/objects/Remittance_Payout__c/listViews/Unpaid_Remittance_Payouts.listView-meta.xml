@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unpaid_Remittance_Payouts</fullName>
+    <columns>NAME</columns>
+    <columns>FIN_RemittanceAccount__c</columns>
+    <columns>Payee__c</columns>
+    <columns>FIN_PayeeLegalName__c</columns>
+    <columns>FIN_RemittancePayoutAmount__c</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <columns>Due_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>FIN_SettlementSchedule__c</columns>
+    <columns>FIN_SettlementScheduleStatus__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Unpaid</value>
+    </filters>
+    <label>Unpaid Remittance Payouts</label>
+</ListView>

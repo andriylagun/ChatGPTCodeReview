@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Success</fullName>
+        <default>false</default>
+        <label>Success</label>
+    </customValue>
+    <customValue>
+        <fullName>Failure</fullName>
+        <default>false</default>
+        <label>Failure</label>
+    </customValue>
+    <customValue>
+        <fullName>In-Progress</fullName>
+        <default>false</default>
+        <label>In-Progress</label>
+    </customValue>
+    <customValue>
+        <fullName>Success Heroku</fullName>
+        <default>false</default>
+        <label>Success Heroku</label>
+    </customValue>
+    <masterLabel>RulesStatus</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

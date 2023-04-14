@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LibraryAssociationRequired</fullName>
+    <active>false</active>
+    <description>Library Association is required if Payment Distribution is not selected.</description>
+    <errorConditionFormula>ISBLANK(FIN_PaymentDistribution__c) &amp;&amp; ISBLANK(FIN_LibraryAssociation__c)</errorConditionFormula>
+    <errorDisplayField>FIN_LibraryAssociation__c</errorDisplayField>
+    <errorMessage>Library Association is required if Payment Distribution is not selected.</errorMessage>
+</ValidationRule>

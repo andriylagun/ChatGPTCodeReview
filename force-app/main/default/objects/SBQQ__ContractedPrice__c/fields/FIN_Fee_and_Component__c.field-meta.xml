@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Fee_and_Component__c</fullName>
+    <externalId>false</externalId>
+    <label>Fee and Component</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AXS Fee</fullName>
+                <default>false</default>
+                <label>AXS Fee</label>
+            </value>
+            <value>
+                <fullName>AXS Payment Fee</fullName>
+                <default>false</default>
+                <label>AXS Payment Fee</label>
+            </value>
+            <value>
+                <fullName>Venue Facility Fee</fullName>
+                <default>false</default>
+                <label>Venue Facility Fee</label>
+            </value>
+            <value>
+                <fullName>Venue Fee</fullName>
+                <default>false</default>
+                <label>Venue Fee</label>
+            </value>
+            <value>
+                <fullName>Venue Lift</fullName>
+                <default>false</default>
+                <label>Venue Lift</label>
+            </value>
+            <value>
+                <fullName>Venue Uplift</fullName>
+                <default>false</default>
+                <label>Venue Uplift</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SWE_Remittance_Status_To_be_Paid</fullName>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FIN_Remittance_Payout_Status__c</field>
+        <operation>equals</operation>
+        <value>To be Paid</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>FIN_Payment__c.FIN_SWE_Payment</value>
+    </filters>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>SWE</value>
+    </filters>
+    <label>SWE Remittance Status - To be Paid</label>
+    <sharedTo>
+        <group>SWE_Region</group>
+    </sharedTo>
+</ListView>

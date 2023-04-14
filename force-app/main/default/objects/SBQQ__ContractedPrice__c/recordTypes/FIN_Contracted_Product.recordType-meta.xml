@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Contracted_Product</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>FIN_Compact_Layout</compactLayoutAssignment>
+    <label>Contracted Product</label>
+    <picklistValues>
+        <picklist>Association_Type__c</picklist>
+        <values>
+            <fullName>Merchandise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ticket</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Uplift</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_ApprovalStatus__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reviewed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Submitted for Approval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Submitted for Review</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_Channel__c</picklist>
+        <values>
+            <fullName>web</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_ComponentType__c</picklist>
+        <values>
+            <fullName>Base</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CC Add On</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Misc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Venue Add On</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_Concept_Use__c</picklist>
+        <values>
+            <fullName>Liability</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retained</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_FeeType__c</picklist>
+        <values>
+            <fullName>Convenience Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Handling Fee</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_Fee_and_Component__c</picklist>
+        <values>
+            <fullName>AXS Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AXS Payment Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Venue Facility Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Venue Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Venue Lift</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Venue Uplift</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_FinanceManagement__c</picklist>
+        <values>
+            <fullName>AXS Managed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Client Managed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_Region__c</picklist>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>US</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_TicketCategories_Stat__c</picklist>
+        <values>
+            <fullName>AXS Premium</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consignment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deposit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Group</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Individual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merchandise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mini Plan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Season</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Season Partial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standardized Category</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Student</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Suite</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VIP Packages</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voucher</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_TicketCategories__c</picklist>
+        <values>
+            <fullName>AXS Premium</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Group</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Individual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merchandise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Season</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VIP Packages</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_TicketType_Primary__c</picklist>
+        <values>
+            <fullName>Individual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VIP</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_TicketTypes_Stat__c</picklist>
+        <values>
+            <fullName>Non Service Chargeable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Chargeable - AXS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Chargeable - NON AXS</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_Ticket_price_Component__c</picklist>
+        <values>
+            <fullName>AXS Payment Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AXS Premium Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AXS Ticket Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Venue Delivery Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Venue Premium Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Venue Ticket Fee</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_ZoneCatagoriesStat__c</picklist>
+        <values>
+            <fullName>Admissions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Camping</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hotel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merchandise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Suite</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_ZoneCategories__c</picklist>
+        <values>
+            <fullName>Admissions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Camping</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hotel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merchandise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Suite</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FIN_ZoneType__c</picklist>
+        <values>
+            <fullName>Admissions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Donation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Special Passes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Suites</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voucher</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Fulfillment_Process__c</picklist>
+        <values>
+            <fullName>Requires Data</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Type__c</picklist>
+        <values>
+            <fullName>AEG Internal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AXS Premium Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AXS Premium Fees</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bowery Internal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Box Office Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Convenience Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Card Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dallas Wings</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deposit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Diamond Club</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Donation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Donations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>E-Ticket Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>E-Ticket Fee Groups</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Executive Club</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Express Delivery Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Facility Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fund</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GREEK Convenience Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GV Handling</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Goldenvoice Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Griffins Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Group Events</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Handling Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lifeblue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mail Delivery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Maverick Club</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merch Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merchandise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merchandise Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NSF Check Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Ticket Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parking Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pavilion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment Plan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promoter Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promoter Rebate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Registration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Tax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Season Promotions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Season Ticket Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Special Handling Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sponsorship Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>State Tax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Taxes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tix System Package</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tix System Ticket</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utah Warriors</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vendor Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual Merchandise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Will Call</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Remittance_Account__c</picklist>
+        <values>
+            <fullName>AXS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>SBQQ__FilterField__c</picklist>
+        <values>
+            <fullName>Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Code</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Family</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>SBQQ__Operator__c</picklist>
+        <values>
+            <fullName>contains</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ends with</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>equals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>greater or equals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>greater than</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>less or equals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>less than</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>not equals</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

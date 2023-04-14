@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>FIN_ParentInvoiceSchedule__c</columns>
+    <columns>FIN_AccumulatorType__c</columns>
+    <columns>FIN_Unique__c</columns>
+    <columns>FIN_BusinessUnit__c</columns>
+    <columns>FIN_GrossAmt__c</columns>
+    <columns>FIN_SubTypeIC__c</columns>
+    <columns>FIN_SubledgerIC__c</columns>
+    <columns>FIN_AmountIC__c</columns>
+    <columns>FIN_CofADesc__c</columns>
+    <columns>FIN_SubType__c</columns>
+    <columns>FIN_Subledger__c</columns>
+    <columns>FIN_Amount__c</columns>
+    <columns>FIN_AccountNum__c</columns>
+    <columns>FIN_PriceCodeType__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

@@ -1,0 +1,1109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_RelatedObjectAttribute__c</fullName>
+    <externalId>false</externalId>
+    <label>Related Object Attribute</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>FIN_RelatedObject__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Name</fullName>
+                <default>false</default>
+                <label>Name</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentContextID__c</fullName>
+                <default>false</default>
+                <label>(Payment) Context ID</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentDepositDate__c</fullName>
+                <default>false</default>
+                <label>Deposit Date</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentOutlet__c</fullName>
+                <default>false</default>
+                <label>(Payment) Outlet</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentAmount__c</fullName>
+                <default>false</default>
+                <label>Payment Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentDate__c</fullName>
+                <default>false</default>
+                <label>Payment Date</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentName__c</fullName>
+                <default>false</default>
+                <label>Payment Name</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentPlanName__c</fullName>
+                <default>false</default>
+                <label>Payment Plan Name</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentRemark__c</fullName>
+                <default>false</default>
+                <label>(Payment) Remark</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentTransactionId__c</fullName>
+                <default>false</default>
+                <label>Transaction Id</label>
+            </value>
+            <value>
+                <fullName>Account Name</fullName>
+                <default>false</default>
+                <label>Account Name</label>
+            </value>
+            <value>
+                <fullName>Account Number</fullName>
+                <default>false</default>
+                <label>Account Number</label>
+            </value>
+            <value>
+                <fullName>Account Source</fullName>
+                <default>false</default>
+                <label>Account Source</label>
+            </value>
+            <value>
+                <fullName>FIN_ClientID__c</fullName>
+                <default>false</default>
+                <label>Client ID</label>
+            </value>
+            <value>
+                <fullName>Entity ID</fullName>
+                <default>false</default>
+                <label>Entity ID</label>
+            </value>
+            <value>
+                <fullName>Legal Name</fullName>
+                <default>false</default>
+                <label>Legal Name</label>
+            </value>
+            <value>
+                <fullName>Region</fullName>
+                <default>false</default>
+                <label>Region</label>
+            </value>
+            <value>
+                <fullName>Type</fullName>
+                <default>false</default>
+                <label>Type</label>
+            </value>
+            <value>
+                <fullName>Venue ID</fullName>
+                <default>false</default>
+                <label>Venue ID</label>
+            </value>
+            <value>
+                <fullName>Active</fullName>
+                <default>false</default>
+                <label>Active</label>
+            </value>
+            <value>
+                <fullName>Code</fullName>
+                <default>false</default>
+                <label>Code</label>
+            </value>
+            <value>
+                <fullName>Description</fullName>
+                <default>false</default>
+                <label>Description</label>
+            </value>
+            <value>
+                <fullName>End Date</fullName>
+                <default>false</default>
+                <label>End Date</label>
+            </value>
+            <value>
+                <fullName>Start Date</fullName>
+                <default>false</default>
+                <label>Start Date</label>
+            </value>
+            <value>
+                <fullName>Status</fullName>
+                <default>false</default>
+                <label>Status</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentContext__c</fullName>
+                <default>false</default>
+                <label>Context</label>
+            </value>
+            <value>
+                <fullName>Current Schema</fullName>
+                <default>false</default>
+                <label>Current Schema</label>
+            </value>
+            <value>
+                <fullName>Short Name</fullName>
+                <default>false</default>
+                <label>Short Name</label>
+            </value>
+            <value>
+                <fullName>FIN_AdjustmentAmount__c</fullName>
+                <default>false</default>
+                <label>Adjustment Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_Channel__c</fullName>
+                <default>false</default>
+                <label>Channel</label>
+            </value>
+            <value>
+                <fullName>FIN_EventStartDate__c</fullName>
+                <default>false</default>
+                <label>Event Start Date</label>
+            </value>
+            <value>
+                <fullName>FIN_EventEndDate__c</fullName>
+                <default>false</default>
+                <label>Event End Date</label>
+            </value>
+            <value>
+                <fullName>FIN_EventBuildDate__c</fullName>
+                <default>false</default>
+                <label>Event Build Date</label>
+            </value>
+            <value>
+                <fullName>FIN_EventID__c</fullName>
+                <default>false</default>
+                <label>Event ID</label>
+            </value>
+            <value>
+                <fullName>FIN_EventLookupCode__c</fullName>
+                <default>false</default>
+                <label>Event Lookup Code</label>
+            </value>
+            <value>
+                <fullName>Event Zone Code</fullName>
+                <default>false</default>
+                <label>Event Zone Code</label>
+            </value>
+            <value>
+                <fullName>FIN_GLCode__c</fullName>
+                <default>false</default>
+                <label>GL Code</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesAmount__c</fullName>
+                <default>false</default>
+                <label>Sales Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesEndDate__c</fullName>
+                <default>false</default>
+                <label>Sales End Date</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesStartDate__c</fullName>
+                <default>false</default>
+                <label>Sales Start Date</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesName__c</fullName>
+                <default>false</default>
+                <label>Sales Name</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesNumber__c</fullName>
+                <default>false</default>
+                <label>Sales Number</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesType__c</fullName>
+                <default>false</default>
+                <label>Sales Type</label>
+            </value>
+            <value>
+                <fullName>FIN_Total_Sales_Qty__c</fullName>
+                <default>false</default>
+                <label>Total Sales Qty</label>
+            </value>
+            <value>
+                <fullName>FIN_ZoneDesc__c</fullName>
+                <default>false</default>
+                <label>Zone Desc</label>
+            </value>
+            <value>
+                <fullName>FIN_ZoneType__c</fullName>
+                <default>false</default>
+                <label>Zone Type</label>
+            </value>
+            <value>
+                <fullName>Contract Number</fullName>
+                <default>false</default>
+                <label>Contract Number</label>
+            </value>
+            <value>
+                <fullName>Contract Name</fullName>
+                <default>false</default>
+                <label>Contract Name</label>
+            </value>
+            <value>
+                <fullName>Contract Start Date</fullName>
+                <default>false</default>
+                <label>Contract Start Date</label>
+            </value>
+            <value>
+                <fullName>Contract End Date</fullName>
+                <default>false</default>
+                <label>Contract End Date</label>
+            </value>
+            <value>
+                <fullName>Invoice Rate</fullName>
+                <default>false</default>
+                <label>Invoice Rate</label>
+            </value>
+            <value>
+                <fullName>Build Date</fullName>
+                <default>false</default>
+                <label>Build Date</label>
+            </value>
+            <value>
+                <fullName>Lookup Code</fullName>
+                <default>false</default>
+                <label>Lookup Code</label>
+            </value>
+            <value>
+                <fullName>Event (Campaign) Name</fullName>
+                <default>false</default>
+                <label>Event (Campaign) Name</label>
+            </value>
+            <value>
+                <fullName>FIN_ApprovalStatus__c</fullName>
+                <default>false</default>
+                <label>Approval Status</label>
+            </value>
+            <value>
+                <fullName>FIN_ComponentName__c</fullName>
+                <default>false</default>
+                <label>Component Name</label>
+            </value>
+            <value>
+                <fullName>FIN_DistributionAmountNetofTaxAmount__c</fullName>
+                <default>false</default>
+                <label>Distribution Amount - Net of Tax Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_DistributionAmountTaxAmount__c</fullName>
+                <default>false</default>
+                <label>Distribution Amount - Tax Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_DistributionAmountTaxIncluded__c</fullName>
+                <default>false</default>
+                <label>Distribution Amount - Tax Included</label>
+            </value>
+            <value>
+                <fullName>FIN_DistributionDate__c</fullName>
+                <default>false</default>
+                <label>Distribution Date</label>
+            </value>
+            <value>
+                <fullName>FIN_EventZoneGLCode__c</fullName>
+                <default>false</default>
+                <label>Event Zone GL Code</label>
+            </value>
+            <value>
+                <fullName>FIN_EventZoneType__c</fullName>
+                <default>false</default>
+                <label>Event Zone Type</label>
+            </value>
+            <value>
+                <fullName>AXS Product</fullName>
+                <default>false</default>
+                <label>AXS Product</label>
+            </value>
+            <value>
+                <fullName>Billing Type</fullName>
+                <default>false</default>
+                <label>Billing Type</label>
+            </value>
+            <value>
+                <fullName>Product Code</fullName>
+                <default>false</default>
+                <label>Product Code</label>
+            </value>
+            <value>
+                <fullName>Product Description</fullName>
+                <default>false</default>
+                <label>Product Description</label>
+            </value>
+            <value>
+                <fullName>Product Name</fullName>
+                <default>false</default>
+                <label>Product Name</label>
+            </value>
+            <value>
+                <fullName>Zone</fullName>
+                <default>false</default>
+                <label>Zone</label>
+            </value>
+            <value>
+                <fullName>Association Type</fullName>
+                <default>false</default>
+                <label>Association Type</label>
+            </value>
+            <value>
+                <fullName>Business Unit Description</fullName>
+                <default>false</default>
+                <label>Business Unit Description</label>
+            </value>
+            <value>
+                <fullName>Chart of Accounts Description</fullName>
+                <default>false</default>
+                <label>Chart of Accounts Description</label>
+            </value>
+            <value>
+                <fullName>Company Code Description</fullName>
+                <default>false</default>
+                <label>Company Code Description</label>
+            </value>
+            <value>
+                <fullName>Component Key</fullName>
+                <default>false</default>
+                <label>Component Key</label>
+            </value>
+            <value>
+                <fullName>FIN_ComponentType__c</fullName>
+                <default>false</default>
+                <label>Component Type</label>
+            </value>
+            <value>
+                <fullName>Concept / Use</fullName>
+                <default>false</default>
+                <label>Concept / Use</label>
+            </value>
+            <value>
+                <fullName>Fee and Component</fullName>
+                <default>false</default>
+                <label>Fee and Component</label>
+            </value>
+            <value>
+                <fullName>Fee Component Revenue Center Code</fullName>
+                <default>false</default>
+                <label>Fee Component Revenue Center Code</label>
+            </value>
+            <value>
+                <fullName>Fee Component Type</fullName>
+                <default>false</default>
+                <label>Fee Component Type</label>
+            </value>
+            <value>
+                <fullName>Financial Managed</fullName>
+                <default>false</default>
+                <label>Financial Managed</label>
+            </value>
+            <value>
+                <fullName>Library Association Number</fullName>
+                <default>false</default>
+                <label>Library Association Number</label>
+            </value>
+            <value>
+                <fullName>Payee Legal Name</fullName>
+                <default>false</default>
+                <label>Payee Legal Name</label>
+            </value>
+            <value>
+                <fullName>Percent of Total Product</fullName>
+                <default>false</default>
+                <label>Percent of Total Product</label>
+            </value>
+            <value>
+                <fullName>Product Type</fullName>
+                <default>false</default>
+                <label>Product Type</label>
+            </value>
+            <value>
+                <fullName>Product Type Description</fullName>
+                <default>false</default>
+                <label>Product Type Description</label>
+            </value>
+            <value>
+                <fullName>Remittance Account Code</fullName>
+                <default>false</default>
+                <label>Remittance Account Code</label>
+            </value>
+            <value>
+                <fullName>Revenue Center Code</fullName>
+                <default>false</default>
+                <label>Revenue Center Code</label>
+            </value>
+            <value>
+                <fullName>Revenue Center GL Code</fullName>
+                <default>false</default>
+                <label>Revenue Center GL Code</label>
+            </value>
+            <value>
+                <fullName>Split</fullName>
+                <default>false</default>
+                <label>Split</label>
+            </value>
+            <value>
+                <fullName>Statistical Chart of Acct Desc.</fullName>
+                <default>false</default>
+                <label>Statistical Chart of Acct Desc.</label>
+            </value>
+            <value>
+                <fullName>Subledger Description</fullName>
+                <default>false</default>
+                <label>Subledger Description</label>
+            </value>
+            <value>
+                <fullName>Tax Rate</fullName>
+                <default>false</default>
+                <label>Tax Rate</label>
+            </value>
+            <value>
+                <fullName>Ticket Categories</fullName>
+                <default>false</default>
+                <label>Ticket Categories</label>
+            </value>
+            <value>
+                <fullName>Ticket Categories - Statistical</fullName>
+                <default>false</default>
+                <label>Ticket Categories - Statistical</label>
+            </value>
+            <value>
+                <fullName>Ticket Category - System</fullName>
+                <default>false</default>
+                <label>Ticket Category - System</label>
+            </value>
+            <value>
+                <fullName>Ticket Price and Component</fullName>
+                <default>false</default>
+                <label>Ticket Price and Component</label>
+            </value>
+            <value>
+                <fullName>Ticket Type Categories - Primary</fullName>
+                <default>false</default>
+                <label>Ticket Type Categories - Primary</label>
+            </value>
+            <value>
+                <fullName>Ticket Types - Statistical</fullName>
+                <default>false</default>
+                <label>Ticket Types - Statistical</label>
+            </value>
+            <value>
+                <fullName>Zone Categories</fullName>
+                <default>false</default>
+                <label>Zone Categories</label>
+            </value>
+            <value>
+                <fullName>Zone Categories - Statistical</fullName>
+                <default>false</default>
+                <label>Zone Categories - Statistical</label>
+            </value>
+            <value>
+                <fullName>Consumption Schedule Name</fullName>
+                <default>false</default>
+                <label>Consumption Schedule Name</label>
+            </value>
+            <value>
+                <fullName>Fee Name</fullName>
+                <default>false</default>
+                <label>Fee Name</label>
+            </value>
+            <value>
+                <fullName>Fee Components Name</fullName>
+                <default>false</default>
+                <label>Fee Components Name</label>
+            </value>
+            <value>
+                <fullName>Financial Code Name</fullName>
+                <default>false</default>
+                <label>Financial Code Name</label>
+            </value>
+            <value>
+                <fullName>Account Type</fullName>
+                <default>false</default>
+                <label>Account Type</label>
+            </value>
+            <value>
+                <fullName>Bank Code/Template</fullName>
+                <default>false</default>
+                <label>Bank Code/Template</label>
+            </value>
+            <value>
+                <fullName>Banking Info</fullName>
+                <default>false</default>
+                <label>Banking Info</label>
+            </value>
+            <value>
+                <fullName>Beneficiary Name</fullName>
+                <default>false</default>
+                <label>Beneficiary Name</label>
+            </value>
+            <value>
+                <fullName>Common Name</fullName>
+                <default>false</default>
+                <label>Common Name</label>
+            </value>
+            <value>
+                <fullName>Method</fullName>
+                <default>false</default>
+                <label>Method</label>
+            </value>
+            <value>
+                <fullName>Nickname</fullName>
+                <default>false</default>
+                <label>Nickname</label>
+            </value>
+            <value>
+                <fullName>Note</fullName>
+                <default>false</default>
+                <label>Note</label>
+            </value>
+            <value>
+                <fullName>Payee</fullName>
+                <default>false</default>
+                <label>Payee</label>
+            </value>
+            <value>
+                <fullName>Tax ID</fullName>
+                <default>false</default>
+                <label>Tax ID</label>
+            </value>
+            <value>
+                <fullName>Remittance Account Name</fullName>
+                <default>false</default>
+                <label>Remittance Account Name</label>
+            </value>
+            <value>
+                <fullName>Revenue Center Name</fullName>
+                <default>false</default>
+                <label>Revenue Center Name</label>
+            </value>
+            <value>
+                <fullName>Unique Revenue Center Desc</fullName>
+                <default>false</default>
+                <label>Unique Revenue Center Desc</label>
+            </value>
+            <value>
+                <fullName>Revenue Center Description</fullName>
+                <default>false</default>
+                <label>Revenue Center Description</label>
+            </value>
+            <value>
+                <fullName>Category</fullName>
+                <default>false</default>
+                <label>Category</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesAdjustmentAmount__c</fullName>
+                <default>false</default>
+                <label>Sales Adjustment Amount</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesChannel__c</fullName>
+                <default>false</default>
+                <label>Sales Channel</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesClientID__c</fullName>
+                <default>false</default>
+                <label>Sales Client ID</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesContextID__c</fullName>
+                <default>false</default>
+                <label>Sales Context ID</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesEventStartDate__c</fullName>
+                <default>false</default>
+                <label>Sales Event Start Date</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesEventEndDate__c</fullName>
+                <default>false</default>
+                <label>Sales Event End Date</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesEventBuildDate__c</fullName>
+                <default>false</default>
+                <label>Sales Event Build Date</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesEventID__c</fullName>
+                <default>false</default>
+                <label>Sales Event ID</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesEventLookupCode__c</fullName>
+                <default>false</default>
+                <label>Sales Event Lookup Code</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesEventZoneCode__c</fullName>
+                <default>false</default>
+                <label>Sales Event Zone Code</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesGLCode__c</fullName>
+                <default>false</default>
+                <label>Sales GL Code</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesOutlet__c</fullName>
+                <default>false</default>
+                <label>Sales Outlet</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesRemark__c</fullName>
+                <default>false</default>
+                <label>Sales Remark</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesStatus__c</fullName>
+                <default>false</default>
+                <label>Sales Status</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesTotalSalesQty__c</fullName>
+                <default>false</default>
+                <label>Sales Total Sales Qty</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesZoneDesc__c</fullName>
+                <default>false</default>
+                <label>Sales Zone Desc</label>
+            </value>
+            <value>
+                <fullName>FIN_SalesZoneType__c</fullName>
+                <default>false</default>
+                <label>Sales Zone Type</label>
+            </value>
+            <value>
+                <fullName>FIN_Context__c</fullName>
+                <default>false</default>
+                <label>(Payment) Context</label>
+            </value>
+            <value>
+                <fullName>FIN_ContextID__c</fullName>
+                <default>false</default>
+                <label>Context ID</label>
+            </value>
+            <value>
+                <fullName>FIN_DepositDate__c</fullName>
+                <default>false</default>
+                <label>(Payment) Deposit Date</label>
+            </value>
+            <value>
+                <fullName>FIN_Outlet__c</fullName>
+                <default>false</default>
+                <label>Outlet</label>
+            </value>
+            <value>
+                <fullName>FIN_Remark__c</fullName>
+                <default>false</default>
+                <label>Remark</label>
+            </value>
+            <value>
+                <fullName>FIN_TransactionId__c</fullName>
+                <default>false</default>
+                <label>(Payment) Transaction Id</label>
+            </value>
+            <value>
+                <fullName>Adjustment_Amount__c</fullName>
+                <default>false</default>
+                <label>(S) Adjustment Amount</label>
+            </value>
+            <value>
+                <fullName>TotalAmount</fullName>
+                <default>false</default>
+                <label>(S) Sales Amount</label>
+            </value>
+            <value>
+                <fullName>EndDate</fullName>
+                <default>false</default>
+                <label>(S) Sales End Date</label>
+            </value>
+            <value>
+                <fullName>EffectiveDate</fullName>
+                <default>false</default>
+                <label>(S) Sales Start Date</label>
+            </value>
+            <value>
+                <fullName>OrderNumber</fullName>
+                <default>false</default>
+                <label>(S) Sales Number</label>
+            </value>
+            <value>
+                <fullName>FIN_LibraryAssociation__c</fullName>
+                <default>false</default>
+                <label>Library Association</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentStatus__c</fullName>
+                <default>false</default>
+                <label>Payment Status</label>
+            </value>
+            <value>
+                <fullName>FIN_OperatorID__c</fullName>
+                <default>false</default>
+                <label>Operator ID</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentType__c</fullName>
+                <default>false</default>
+                <label>Payment Type</label>
+            </value>
+            <value>
+                <fullName>FIN_PaymentMerchant__c</fullName>
+                <default>false</default>
+                <label>Payment Merchant</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <controllingFieldValue>SBQQ__ContractedPrice__c</controllingFieldValue>
+            <valueName>Name</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>FIN_ClientID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>Type</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>Status</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>FIN_EventStartDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>FIN_EventEndDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>FIN_EventBuildDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>FIN_EventID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>FIN_EventLookupCode__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>FIN_GLCode__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>FIN_Total_Sales_Qty__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>FIN_ZoneDesc__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>FIN_ZoneType__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_EventZoneGLCode__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_ContextID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_Outlet__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_Remark__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>Adjustment_Amount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>TotalAmount</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>EndDate</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>EffectiveDate</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order</controllingFieldValue>
+            <valueName>OrderNumber</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_AdjustmentAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <controllingFieldValue>Sales Transactions</controllingFieldValue>
+            <valueName>FIN_Channel__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_ApprovalStatus__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_ComponentName__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_DistributionAmountNetofTaxAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_DistributionAmountTaxAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_DistributionAmountTaxIncluded__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_DistributionDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_PaymentDistribution__c</controllingFieldValue>
+            <valueName>FIN_EventZoneType__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <valueName>FIN_PaymentContextID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <valueName>FIN_PaymentDepositDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <valueName>FIN_PaymentOutlet__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_PaymentAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_PaymentDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <valueName>FIN_PaymentName__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_PaymentPlanName__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <valueName>FIN_PaymentRemark__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <valueName>FIN_PaymentTransactionId__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <valueName>FIN_PaymentContext__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_PaymentStatus__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_OperatorID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_PaymentType__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Payment</controllingFieldValue>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_PaymentMerchant__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesEndDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesStartDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesName__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesNumber__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesType__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesAdjustmentAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesChannel__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesClientID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesContextID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesEventStartDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesEventEndDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesEventBuildDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesEventID__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesEventLookupCode__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesEventZoneCode__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesGLCode__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesOutlet__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesRemark__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesStatus__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesTotalSalesQty__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesZoneDesc__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Distribution -&gt; Sales</controllingFieldValue>
+            <controllingFieldValue>Payment -&gt; Sales</controllingFieldValue>
+            <valueName>FIN_SalesZoneType__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_Context__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_DepositDate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FIN_Payment__c</controllingFieldValue>
+            <valueName>FIN_TransactionId__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales Transactions</controllingFieldValue>
+            <valueName>AXS Product</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales Transactions</controllingFieldValue>
+            <valueName>FIN_ComponentType__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales Transactions</controllingFieldValue>
+            <valueName>FIN_LibraryAssociation__c</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Applied_Rate__c</fullName>
+    <externalId>false</externalId>
+    <formula>FIN_LibraryAssociation__r.FIN_Consumption_Schedule__r.FIN_Applied_Consumption_Rate__r.Price</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Applied Rate</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>7</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

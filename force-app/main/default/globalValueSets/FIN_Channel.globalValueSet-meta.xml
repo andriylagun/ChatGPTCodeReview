@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Back Office</fullName>
+        <default>false</default>
+        <label>Back Office</label>
+    </customValue>
+    <customValue>
+        <fullName>Box Office</fullName>
+        <default>false</default>
+        <label>Box Office</label>
+    </customValue>
+    <customValue>
+        <fullName>Remote/Promoter</fullName>
+        <default>false</default>
+        <label>Remote/Promoter</label>
+    </customValue>
+    <customValue>
+        <fullName>Call Center</fullName>
+        <default>false</default>
+        <label>Call Center</label>
+    </customValue>
+    <customValue>
+        <fullName>WEB</fullName>
+        <default>false</default>
+        <label>WEB</label>
+    </customValue>
+    <masterLabel>Channel</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

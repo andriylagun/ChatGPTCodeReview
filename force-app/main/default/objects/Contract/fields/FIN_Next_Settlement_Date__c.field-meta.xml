@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Next_Settlement_Date__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISPICKVAL(FIN_Settlement_Frequency__c , &apos;Monthly&apos;),
+IF (
+TODAY() &gt; ADDMONTHS(StartDate, MONTH(TODAY()) - MONTH(StartDate) + 12 * (YEAR(TODAY()) - YEAR(StartDate)) ),
+ADDMONTHS(StartDate, MONTH(DATE(YEAR(TODAY()), MONTH(TODAY())+1, DAY(TODAY()))) - MONTH(StartDate) + 12 * (YEAR(TODAY()) - YEAR(StartDate)) ),
+ADDMONTHS(StartDate, MONTH(TODAY()) - MONTH(StartDate) + 12 * (YEAR(TODAY()) - YEAR(StartDate)) )
+),
+
+IF ( ISPICKVAL(FIN_Settlement_Frequency__c , &apos;Daily&apos;),
+TODAY(),
+
+IF ( ISPICKVAL(FIN_Settlement_Frequency__c , &apos;Weekly&apos;),
+IF (
+TODAY() &gt; StartDate + 7*FLOOR((TODAY()-StartDate)/7),
+StartDate + 7 + 7*FLOOR((TODAY()-StartDate)/7),
+StartDate + 7*FLOOR((TODAY()-StartDate)/7)
+),
+
+IF ( ISPICKVAL(FIN_Settlement_Frequency__c , &apos;Biweekly&apos;),
+IF (
+TODAY() &gt; StartDate + 14*FLOOR((TODAY()-StartDate)/14),
+StartDate + 14 + 14*FLOOR((TODAY()-StartDate)/14),
+StartDate + 14*FLOOR((TODAY()-StartDate)/14)
+),
+
+IF ( ISPICKVAL(FIN_Settlement_Frequency__c , &apos;Quarterly&apos;),
+IF (
+TODAY() &gt; ADDMONTHS(StartDate, 3*FLOOR((YEAR(TODAY())-YEAR(StartDate))*4 + ( MONTH(TODAY())-MONTH(StartDate)+2)/3) ),
+ADDMONTHS(ADDMONTHS(StartDate, 3), 3*FLOOR((YEAR(TODAY())-YEAR(StartDate))*4 + ( MONTH(TODAY())-MONTH(StartDate)+2)/3) ),
+ADDMONTHS(StartDate, 3*FLOOR((YEAR(TODAY())-YEAR(StartDate))*4 + ( MONTH(TODAY())-MONTH(StartDate)+2)/3) )
+),
+
+IF ( ISPICKVAL(FIN_Settlement_Frequency__c , &apos;Yearly&apos;),
+IF (
+TODAY() &gt; DATE(YEAR(TODAY()), MONTH(StartDate), DAY(StartDate)),
+DATE(YEAR(TODAY()) + 1, MONTH(StartDate), DAY(StartDate)),
+DATE(YEAR(TODAY()), MONTH(StartDate), DAY(StartDate))
+),
+
+null
+)
+)
+)
+)
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Next Settlement Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Settlement_Rules_US</fullName>
+    <columns>NAME</columns>
+    <columns>FIN_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FIN_Type__c</field>
+        <operation>equals</operation>
+        <value>Financial,Statistical</value>
+    </filters>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>US</value>
+    </filters>
+    <label>US - Settlement Rules</label>
+    <sharedTo>
+        <group>US_Region</group>
+    </sharedTo>
+</ListView>

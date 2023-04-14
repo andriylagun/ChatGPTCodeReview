@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Object__c</fullName>
+    <externalId>false</externalId>
+    <label>Object</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sales</fullName>
+                <default>true</default>
+                <label>Sales</label>
+            </value>
+            <value>
+                <fullName>Sales Transactions</fullName>
+                <default>false</default>
+                <label>Sales Transactions</label>
+            </value>
+            <value>
+                <fullName>Payment</fullName>
+                <default>false</default>
+                <label>Payment</label>
+            </value>
+            <value>
+                <fullName>Payment Distribution</fullName>
+                <default>false</default>
+                <label>Payment Distribution</label>
+            </value>
+            <value>
+                <fullName>Contract</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Contract</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

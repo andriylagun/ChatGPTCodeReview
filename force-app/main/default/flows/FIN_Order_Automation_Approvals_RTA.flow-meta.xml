@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <decisions>
+        <name>Approval_or_Update_Record</name>
+        <label>Approval or Update Record?</label>
+        <locationX>828</locationX>
+        <locationY>547</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Auto_Approved_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.FIN_Auto_Approved__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Approvals_To_Rejected</targetReference>
+            </connector>
+            <label>Auto Approved = True</label>
+        </rules>
+        <rules>
+            <name>Auto_Approved_False</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.FIN_Auto_Approved__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Change_Status_In_Review</targetReference>
+            </connector>
+            <label>Auto Approved = False</label>
+        </rules>
+    </decisions>
+    <description>This flow is for all Order Automation and also for submitting Orders for Approvals</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Formula_Dynamic_Email</name>
+        <dataType>String</dataType>
+        <expression>LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260)) + &quot;lightning/r/Order/&quot; + {!$Record.Id} + &quot;/view&quot;</expression>
+    </formulas>
+    <interviewLabel>FIN_Order_Automation_Approvals_RTA {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>FIN_Order_Automation_Approvals_RTA</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Change_Status_In_Review</name>
+        <label>Change Status = In Review</label>
+        <locationX>563</locationX>
+        <locationY>742</locationY>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>In Review</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Approvals_To_Rejected</name>
+        <label>Update Approvals To Revoked</label>
+        <locationX>1105</locationX>
+        <locationY>750</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Order__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>sbaa__Status__c</field>
+            <value>
+                <stringValue>Revoked</stringValue>
+            </value>
+        </inputAssignments>
+        <object>sbaa__Approval__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>735</locationX>
+        <locationY>51</locationY>
+        <connector>
+            <targetReference>Approval_or_Update_Record</targetReference>
+        </connector>
+        <filterLogic>( (1 OR 2) AND 3 )  OR ( 4 )</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Open</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>FIN_Auto_Approved__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>FIN_Auto_Approved__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Order</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>Approval_On_Creation</name>
+            <label>Approval On Creation</label>
+            <maxBatchSize>200</maxBatchSize>
+            <offsetNumber>1</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>CreatedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <description>Message Content</description>
+        <name>Email_Content</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 11.36px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Greetings,&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 11.36px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Order number {!$Record.OrderNumber} has been Unlocked. Please review: &lt;/span&gt;&lt;a href=&quot;{!Formula_Dynamic_Email}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(255, 255, 255); font-size: 11.36px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;{!$Record.Id}&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 11.36px; font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 0);&quot;&gt;Thank you,&lt;/span&gt;&lt;/p&gt;&lt;p&gt;{!$Record.LastModifiedBy.FirstName} {!$Record.LastModifiedBy.LastName}&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <description>Email Subject</description>
+        <name>Email_Subject</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Order Number {!$Record.OrderNumber} has been Unlocked.&lt;/p&gt;</text>
+    </textTemplates>
+</Flow>

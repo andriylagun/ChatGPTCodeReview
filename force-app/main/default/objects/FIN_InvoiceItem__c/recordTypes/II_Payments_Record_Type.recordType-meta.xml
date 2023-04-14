@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>II_Payments_Record_Type</fullName>
+    <active>true</active>
+    <label>II Payments Record Type</label>
+    <picklistValues>
+        <picklist>FIN_EntryType__c</picklist>
+        <values>
+            <fullName>ManualAdjustment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>StandardEntry</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

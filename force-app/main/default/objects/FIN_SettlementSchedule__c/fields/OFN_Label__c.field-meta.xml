@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OFN_Label__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;Final Settlement Report for Contract # &quot; &amp;  FIN_Contract__r.ContractNumber &amp; &quot; Schedule# &quot; &amp;  Name + &quot;-&quot;  &amp;  TEXT(NOW() )</formula>
+    <label>OFN Label</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

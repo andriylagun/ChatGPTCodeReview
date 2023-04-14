@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Compact_Consumption_Rate</fullName>
+    <fields>Name</fields>
+    <fields>LowerBound</fields>
+    <fields>UpperBound</fields>
+    <fields>FIN_Pricing_Method__c</fields>
+    <fields>FIN_Unit_Price__c</fields>
+    <fields>FIN_Rate__c</fields>
+    <label>Compact Consumption Rate</label>
+</CompactLayout>

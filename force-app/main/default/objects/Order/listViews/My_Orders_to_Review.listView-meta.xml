@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Orders_to_Review</fullName>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>ORDERS.TOTAL_AMOUNT</columns>
+    <columns>ORDERS.STATUS</columns>
+    <columns>FIN_Remark__c</columns>
+    <columns>ApprovalStatus__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>ORDER.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Order.FIN_US_Sales</value>
+    </filters>
+    <filters>
+        <field>FIN_Remark__c</field>
+        <operation>contains</operation>
+        <value>AeTestBulkify</value>
+    </filters>
+    <label>My Sales to Review</label>
+</ListView>

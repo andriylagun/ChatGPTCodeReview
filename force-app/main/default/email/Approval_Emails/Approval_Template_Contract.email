@@ -1,0 +1,10 @@
+<messaging:emailTemplate subject="This Contract has been Approved" recipientType="User" relatedToType="sbaa__Approval__c">
+<messaging:plainTextEmailBody >
+Greetings, 
+
+This Contract has been Approved!
+
+Thanks, 
+
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Compact_Layout</fullName>
+    <fields>FIN_Region__c</fields>
+    <fields>FIN_Context__c</fields>
+    <fields>FIN_LibraryAssociationName__c</fields>
+    <fields>SBQQ__Product__c</fields>
+    <fields>Association_Type__c</fields>
+    <fields>FIN_Component_Number__c</fields>
+    <label>FIN ContractedPriceCompact</label>
+</CompactLayout>

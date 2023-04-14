@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UK_Region</fullName>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FIN_Region__c</field>
+        <operation>equals</operation>
+        <value>UK</value>
+    </filters>
+    <filters>
+        <field>FIN_CurrentUser_is_Owner_c__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>FIN_PaymentDistribution__c.FIN_UK_Payment_Distribution</value>
+    </filters>
+    <label>UK Region</label>
+    <sharedTo>
+        <group>UK_Region</group>
+    </sharedTo>
+</ListView>

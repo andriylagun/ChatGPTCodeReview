@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Library_Association__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Either Apply the Conditions or select a Library Association</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Either Apply the Conditions or select a Library Association</inlineHelpText>
+    <label>Library Association</label>
+    <referenceTo>SBQQ__ContractedPrice__c</referenceTo>
+    <relationshipLabel>Consumption Schedule Conditions</relationshipLabel>
+    <relationshipName>Library_Association_Conditions</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

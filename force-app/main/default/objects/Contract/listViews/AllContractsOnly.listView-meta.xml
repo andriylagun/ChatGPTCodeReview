@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllContractsOnly</fullName>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <columns>CONTRACT.NAME</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>CONTRACT.START_DATE</columns>
+    <columns>CONTRACT.END_DATE</columns>
+    <columns>FIN_StatusFlag__c</columns>
+    <columns>CONTRACT.STATUS</columns>
+    <columns>ApprovalStatus__c</columns>
+    <columns>FIN_ActiveSubcontracts__c</columns>
+    <columns>CONTRACT.CREATED_DATE</columns>
+    <columns>CORE.USERS.FIRST_NAME</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Contracts</label>
+</ListView>

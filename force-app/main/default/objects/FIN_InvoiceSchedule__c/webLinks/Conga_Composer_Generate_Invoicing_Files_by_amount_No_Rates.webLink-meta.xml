@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Composer_Generate_Invoicing_Files_by_amount_No_Rates</fullName>
+    <availability>online</availability>
+    <description>Created by Conga Solution Manager. Record link: https://axsgroupllc--apxtconga4.vf.force.com/a2E8Z0000088NoYUAU.</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>false</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>660</height>
+    <isResizable>false</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Generate Invoicing Files by amount</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/APXTConga4__Conga_Composer?SolMgr=1
+&amp;serverUrl={!API.Partner_Server_URL_520}
+&amp;Id={!FIN_InvoiceSchedule__c.Id}
+
+&amp;QueryId=[ISc]0Q_031UAY613279,
+[SCA]0Q_017UAY531288,
+[SCC]0Q_018UAY831164,
+[BUn]0Q_016UAY591929,
+[Add]0Q_015UAY188439
+
+&amp;TemplateId=0T_008UAY020429
+
+&amp;DS7=3</url>
+    <width>900</width>
+</WebLink>

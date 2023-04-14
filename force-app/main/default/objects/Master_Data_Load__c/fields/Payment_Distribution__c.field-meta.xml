@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Distribution__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Payment Distribution Load</label>
+    <referenceTo>FIN_SystemDataLoadLog__c</referenceTo>
+    <relationshipLabel>Master Data Load (Payment Distribution)</relationshipLabel>
+    <relationshipName>Master_Data_Load1</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

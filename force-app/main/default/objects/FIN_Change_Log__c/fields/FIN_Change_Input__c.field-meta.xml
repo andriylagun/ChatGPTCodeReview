@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_Change_Input__c</fullName>
+    <externalId>false</externalId>
+    <label>Change Input</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>FIN_Change_Object__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>client_name</fullName>
+                <default>false</default>
+                <label>client_name</label>
+            </value>
+            <value>
+                <fullName>method_of_delivery_type</fullName>
+                <default>false</default>
+                <label>method_of_delivery_type</label>
+            </value>
+            <value>
+                <fullName>context_name</fullName>
+                <default>false</default>
+                <label>context_name</label>
+            </value>
+            <value>
+                <fullName>event_end_date</fullName>
+                <default>false</default>
+                <label>event_end_date</label>
+            </value>
+            <value>
+                <fullName>event_lookup</fullName>
+                <default>false</default>
+                <label>event_lookup</label>
+            </value>
+            <value>
+                <fullName>event_start_date</fullName>
+                <default>false</default>
+                <label>event_start_date</label>
+            </value>
+            <value>
+                <fullName>fee_name</fullName>
+                <default>false</default>
+                <label>fee_name</label>
+            </value>
+            <value>
+                <fullName>payment_plan_name</fullName>
+                <default>false</default>
+                <label>payment_plan_name</label>
+            </value>
+            <value>
+                <fullName>outlet</fullName>
+                <default>false</default>
+                <label>outlet</label>
+            </value>
+            <value>
+                <fullName>price_code_type</fullName>
+                <default>false</default>
+                <label>price_code_type</label>
+            </value>
+            <value>
+                <fullName>venue_name</fullName>
+                <default>false</default>
+                <label>venue_name</label>
+            </value>
+            <value>
+                <fullName>venue_state</fullName>
+                <default>false</default>
+                <label>venue_state</label>
+            </value>
+            <value>
+                <fullName>zone_type_description</fullName>
+                <default>false</default>
+                <label>zone_type_description</label>
+            </value>
+            <value>
+                <fullName>zone_class</fullName>
+                <default>false</default>
+                <label>zone_class</label>
+            </value>
+            <value>
+                <fullName>Revenue Center Name</fullName>
+                <default>false</default>
+                <label>Revenue Center Name</label>
+            </value>
+            <value>
+                <fullName>Revenue Center Code</fullName>
+                <default>false</default>
+                <label>Revenue Center Code</label>
+            </value>
+            <value>
+                <fullName>Price Component Name 1</fullName>
+                <default>false</default>
+                <label>Price Component Name 1</label>
+            </value>
+            <value>
+                <fullName>Price Component Name 2</fullName>
+                <default>false</default>
+                <label>Price Component Name 2</label>
+            </value>
+            <value>
+                <fullName>Price Component Name 3</fullName>
+                <default>false</default>
+                <label>Price Component Name 3</label>
+            </value>
+            <value>
+                <fullName>Price Component Name 4</fullName>
+                <default>false</default>
+                <label>Price Component Name 4</label>
+            </value>
+            <value>
+                <fullName>Price Component Name 5</fullName>
+                <default>false</default>
+                <label>Price Component Name 5</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Zone</controllingFieldValue>
+            <valueName>zone_type_description</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone</controllingFieldValue>
+            <valueName>zone_class</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Client</controllingFieldValue>
+            <valueName>client_name</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery Method</controllingFieldValue>
+            <valueName>method_of_delivery_type</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Event</controllingFieldValue>
+            <valueName>context_name</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Event</controllingFieldValue>
+            <valueName>event_end_date</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Event</controllingFieldValue>
+            <valueName>event_lookup</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Event</controllingFieldValue>
+            <valueName>event_start_date</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fee</controllingFieldValue>
+            <valueName>fee_name</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Outlet</controllingFieldValue>
+            <valueName>outlet</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment Plan</controllingFieldValue>
+            <valueName>payment_plan_name</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Price Code</controllingFieldValue>
+            <valueName>price_code_type</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Price Component</controllingFieldValue>
+            <valueName>Price Component Name 1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Price Component</controllingFieldValue>
+            <valueName>Price Component Name 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Price Component</controllingFieldValue>
+            <valueName>Price Component Name 3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Price Component</controllingFieldValue>
+            <valueName>Price Component Name 4</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Revenue Center</controllingFieldValue>
+            <valueName>Revenue Center Name</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Revenue Center</controllingFieldValue>
+            <valueName>Revenue Center Code</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Venue</controllingFieldValue>
+            <valueName>venue_name</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Venue</controllingFieldValue>
+            <valueName>venue_state</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

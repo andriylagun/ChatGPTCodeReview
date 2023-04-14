@@ -1,0 +1,2 @@
+<apex:page id="ClassifyPaymentRecords" standardController="FIN_Payment__c" extensions="FIN_UnclassifiedRecordsController" recordSetVar="payments" action="{!onPaymentsClassify}">
+</apex:page>

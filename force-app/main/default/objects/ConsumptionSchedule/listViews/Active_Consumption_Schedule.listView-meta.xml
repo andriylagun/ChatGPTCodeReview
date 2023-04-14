@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Consumption_Schedule</fullName>
+    <columns>Name</columns>
+    <columns>RecordType</columns>
+    <columns>IsActive</columns>
+    <columns>Contract__c</columns>
+    <columns>FIN_TotalRevenue__c</columns>
+    <columns>FIN_TotalTicketCount__c</columns>
+    <columns>FIN_AvailableBalanceNew__c</columns>
+    <columns>FIN_Financial_Code__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>IsActive</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Active Consumption Schedule</label>
+</ListView>

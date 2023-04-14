@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FIN_PaymentType__c</fullName>
+    <externalId>false</externalId>
+    <label>Payment Type</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>VI</fullName>
+                <default>false</default>
+                <label>VI</label>
+            </value>
+            <value>
+                <fullName>MC</fullName>
+                <default>false</default>
+                <label>MC</label>
+            </value>
+            <value>
+                <fullName>AX</fullName>
+                <default>false</default>
+                <label>AX</label>
+            </value>
+            <value>
+                <fullName>DI</fullName>
+                <default>false</default>
+                <label>DI</label>
+            </value>
+            <value>
+                <fullName>Cash</fullName>
+                <default>false</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>Damai</fullName>
+                <default>false</default>
+                <label>Damai</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
