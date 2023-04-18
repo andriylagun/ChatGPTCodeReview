@@ -24,6 +24,7 @@ global class ConsumptionScheduleBatch implements Database.Batchable<sObject> {
                         WHERE Active__c = true )
             FROM ConsumptionSchedule
             WHERE Contract__c = :contractId AND IsActive = true
+            AND FIN_ActiveTodayBasedonDates__c = true
         ]);
         scope.addAll([
             SELECT Id, FIN_QuantityforInvoiceQty__c,

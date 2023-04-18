@@ -692,6 +692,7 @@ public with sharing class FIN_InvoiceItemHelper {
                 FROM ConsumptionSchedule
                 WHERE Contract__c = :contractIds
                 AND IsActive = true
+                AND FIN_ActiveTodayBasedonDates__c = true
                 AND (RecordType.DeveloperName = 'Revenue_Amount' OR RecordType.DeveloperName = 'Ticket_Quantity')
             ];
 

@@ -9,7 +9,7 @@ public with sharing class FIN_ReclassifyRelatedRecordsController {
         });
         if (!contracts.isEmpty()) {
             this.ctrct = this.contracts[0];
-            if (String.isBlank(ctrct.FIN_ParentContract__c) && ctrct.ApprovalStatus__c == 'Approved') {
+            if (String.isBlank(ctrct.FIN_ParentContract__c) && ctrct.Status == 'Activated') {
                 contracts.addAll(ctrct.SubContracts__r);
             }
         }
@@ -18,11 +18,15 @@ public with sharing class FIN_ReclassifyRelatedRecordsController {
 
     public PageReference onReclassify() {
         for (Contract contract : this.contracts) {
-            if (contract.ApprovalStatus__c == 'Approved') {
+            if (contract.Status == 'Activated') {
                 this.contractsIds.add(contract.Id);
             }
         }
-        Database.executeBatch(new ReclassifyUpdateBatch('Order', this.ctrct.FIN_Context__c, this.contractsIds), 500);
+
+        if (!this.contractsIds.isEmpty()) {
+            Database.executeBatch(new ReclassifyUpdateBatch('Order', this.ctrct.FIN_Context__c, this.contractsIds), 500);
+        }
+
 
         return new PageReference('/' + this.ctrct.Id);
     }

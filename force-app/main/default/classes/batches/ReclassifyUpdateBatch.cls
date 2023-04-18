@@ -18,8 +18,12 @@ global class ReclassifyUpdateBatch implements Database.Batchable<sObject>, Datab
     public void execute(Database.BatchableContext BC, List<sObject> scope) {
         List<String> contractIds = this.contractIds;
         List<SObject> updatedRecordsList = new List<SObject>();
+        Map<String, Order> salesIdMap = new Map<String, Order>();
         List<Contract> masterContract = [SELECT Id, StartDate, EndDate, AccountId FROM Contract WHERE FIN_ParentContract__c = NULL AND Id IN :contractIds LIMIT 1];
-        String classifiedGroupId = FIN_GroupSelector.getGroupByDeveloperName(Constants.CLASSIFIED_QUEUE_US).Id;
+        Map<String, FIN_Payment__c> paymentIdMap = new Map<String, FIN_Payment__c>();
+        List<String> transactionIds = new List<String>();
+        List<String> paymentTransactionIds = new List<String>();
+
         if (batchType == Schema.Order.getSObjectType().getDescribe().getName()) {
             FIN_ClassifyRecordsBatch.matchContractToSales((List<Order>) scope, FIN_ContractAssociationSelector.getAllContractAssociationsByContractIdInAndContextId(this.contextId, this.contractIds),
                     classifiedGroupId, masterContract, updatedRecordsList);

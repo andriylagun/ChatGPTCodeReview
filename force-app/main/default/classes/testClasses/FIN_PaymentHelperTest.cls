@@ -9,22 +9,22 @@ private class FIN_PaymentHelperTest {
             ];
             Id paymentRecordTypeId = Schema.SObjectType.FIN_RetroactiveAdjustment__c.getRecordTypeInfosByName().get('Payment').getRecordTypeId();
             Account acc = TestDataFactory.createAccount();
-            Contract parentContract = TestDataFactory.createParentContract(acc.Id);
-            Contract contract = TestDataFactory.createContract(acc.Id, parentContract.Id);
+            Contact cont = TestDataFactory.createContactForAccount(acc.Id, 'test@g.com');
             Product2 pro = TestDataFactory.createProduct2();
             PricebookEntry standardPriceEntry = TestDataFactory.createPricebookEntry(pro.Id);
-            Order ord = TestDataFactory.createTestOrderWithContract(acc.Id, contract.Id);
+            Order ord = TestDataFactory.createTestOrder(acc.Id);
             OrderItem orderItem = TestDataFactory.createTestOrderLine(ord.Id, pro.Id, standardPriceEntry.Id);
-            FIN_Payment__c payment = TestDataFactory.createPayment(ord.Id, contract.Id);
+            FIN_Payment__c payment = TestDataFactory.createPayment(ord.Id, cont.Id);
 
+            Test.startTest();
             payment.FIN_Region__c = 'UK';
-            payment.FIN_PaymentAmount__c = 10;
             update payment;
 
             List<FIN_RetroactiveAdjustment__c> newRetroList = [
                 SELECT Id, RecordTypeId
                 FROM FIN_RetroactiveAdjustment__c
             ];
+            Test.stopTest();
 
             System.assertEquals(oldRetroList.size() + 1, newRetroList.size());
             System.assertEquals(newRetroList[0].RecordTypeId, paymentRecordTypeId);
@@ -44,7 +44,6 @@ private class FIN_PaymentHelperTest {
             FIN_Payment__c payment = TestDataFactory.createPayment(ord.Id, contract.Id);
             SBQQ__ContractedPrice__c la = TestDataFactory.createLibraryAssociation(acc.Id);
             payment.FIN_LibraryAssociation__c = la.Id;
-            payment.FIN_PaymentAmount__c = 10;
             update payment;
 
             Journalizing_Schedule__c js = TestDataFactory.createJournalizingSchedule(contract.Id);

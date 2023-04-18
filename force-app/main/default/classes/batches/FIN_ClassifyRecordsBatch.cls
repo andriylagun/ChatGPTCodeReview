@@ -52,7 +52,7 @@ global class FIN_ClassifyRecordsBatch implements Database.Batchable<SObject> {
         List<SObject> updatedRecordsList = new List<SObject>();
         Map<String, Order> salesIdMap = new Map<String, Order>();
         Map<String, FIN_Payment__c> paymentIdMap = new Map<String, FIN_Payment__c>();
-        List<Contract> masterContract = [SELECT Id, StartDate, EndDate, AccountId FROM Contract WHERE FIN_ParentContract__c = NULL AND FIN_Context__c = :this.contextId LIMIT 1];
+        List<Contract> masterContract = [SELECT Id, StartDate, EndDate, Pricebook2Id, AccountId FROM Contract WHERE FIN_ParentContract__c = NULL AND FIN_Context__c = :this.contextId LIMIT 1];
         List<String> transactionIds = new List<String>();
         List<String> paymentTransactionIds = new List<String>();
 
@@ -126,7 +126,8 @@ global class FIN_ClassifyRecordsBatch implements Database.Batchable<SObject> {
                         && String.isNotBlank(saleToCompare.contextId) && String.isNotBlank(saleToCompare.clientId)) {
                     if (getContractMatchingLevel(contractToCompare, saleToCompare) == ca.FIN_ContractAssociationMatchingLevel__c &&
                         sale.EffectiveDate >= ca.Contract__r.StartDate && sale.EffectiveDate <= ca.Contract__r.EndDate &&
-                        sale.AccountId == ca.Contract__r.AccountId) {
+                        sale.AccountId == ca.Contract__r.AccountId && (String.isBlank(sale.Pricebook2Id) ||
+                        String.isBlank(ca.Contract__r.Pricebook2Id) || (String.isNotBlank(sale.Pricebook2Id) && String.isNotBlank(ca.Contract__r.Pricebook2Id) && sale.Pricebook2Id == ca.Contract__r.Pricebook2Id))) {
                         fillSaleRecord(sale, ca, ownerId);
                         updatedRecordsList.add(sale);
                         records.remove(i);
@@ -134,7 +135,8 @@ global class FIN_ClassifyRecordsBatch implements Database.Batchable<SObject> {
                 } else {
                     if (!masterContract.isEmpty() && sale.ContractId != masterContract[0].Id &&
                         sale.EffectiveDate >= masterContract[0].StartDate && sale.EffectiveDate <= masterContract[0].EndDate &&
-                        sale.AccountId == masterContract[0].AccountId) {
+                        sale.AccountId == masterContract[0].AccountId && (String.isBlank(sale.Pricebook2Id) ||
+                        String.isBlank(masterContract[0].Pricebook2Id) || (String.isNotBlank(sale.Pricebook2Id) && String.isNotBlank(masterContract[0].Pricebook2Id) && sale.Pricebook2Id == masterContract[0].Pricebook2Id))) {
                         sale.ContractId = masterContract[0].Id;
                         updatedRecordsList.add(sale);
                         records.remove(i);

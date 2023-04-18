@@ -82,19 +82,6 @@ public class TestDataFactory {
         return priceBook;
     }
 
-    public static Product2 createProduct2ByName(String prodName) {
-        Product2 prod = new Product2(
-                Name = prodName,
-                ProductCode = prodName,
-                isActive = true,
-                CurrencyIsoCode = 'USD'
-        );
-
-        insert prod;
-
-        return prod;
-    }
-
     public static Product2 createProduct2() {
         Product2 prod = new Product2(
             Name = 'Product X',
@@ -254,10 +241,10 @@ public class TestDataFactory {
 
         insert lineItem;
 
-//        Order order = new Order();
-//        order.Id = orderId;
-////        order.Status = 'Posted';
-//        update order;
+        Order order = new Order();
+        order.Id = orderId;
+//        order.Status = 'Posted';
+        update order;
 
         return lineItem;
     }
