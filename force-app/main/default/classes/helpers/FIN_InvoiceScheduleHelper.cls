@@ -255,6 +255,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                 FROM ConsumptionSchedule
                 WHERE Contract__c = :contractIds
                 AND IsActive = true
+                AND FIN_ActiveTodayBasedonDates__c = true
             ];
 
             // InvoiceInProgress -> Complete

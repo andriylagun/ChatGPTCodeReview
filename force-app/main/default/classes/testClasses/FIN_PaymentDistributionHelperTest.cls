@@ -9,15 +9,15 @@ private class FIN_PaymentDistributionHelperTest {
             ];
             Id paymentRecordTypeId = Schema.SObjectType.FIN_RetroactiveAdjustment__c.getRecordTypeInfosByName().get('Payment Distribution').getRecordTypeId();
             Account acc = TestDataFactory.createAccount();
-            Contract parentContract = TestDataFactory.createParentContract(acc.Id);
-            Contract contract = TestDataFactory.createContract(acc.Id, parentContract.Id);
+            Contact cont = TestDataFactory.createContactForAccount(acc.Id, 'test@g.com');
             Product2 pro = TestDataFactory.createProduct2();
             PricebookEntry standardPriceEntry = TestDataFactory.createPricebookEntry(pro.Id);
-            Order ord = TestDataFactory.createTestOrderWithContract(acc.Id, contract.Id);
+            Order ord = TestDataFactory.createTestOrder(acc.Id);
             OrderItem orderItem = TestDataFactory.createTestOrderLine(ord.Id, pro.Id, standardPriceEntry.Id);
-            FIN_Payment__c payment = TestDataFactory.createPayment(ord.Id, contract.Id);
-            FIN_PaymentDistribution__c paymentdist = TestDataFactory.createPaymentDistribution(payment.Id, null, contract.Id);
+            FIN_Payment__c payment = TestDataFactory.createPayment(ord.Id, cont.Id);
+            FIN_PaymentDistribution__c paymentdist = TestDataFactory.createPaymentDistribution(payment.Id,null, cont.Id);
 
+            Test.startTest();
             paymentdist.FIN_AdjustmentAmount__c = 123;
             update paymentdist;
 
@@ -25,10 +25,11 @@ private class FIN_PaymentDistributionHelperTest {
                 SELECT Id, RecordTypeId
                 FROM FIN_RetroactiveAdjustment__c
             ];
+            Test.stopTest();
 
-            System.assertEquals(oldRetroList.size() + 1, newRetroList.size());
-            System.assertEquals(newRetroList[0].RecordTypeId, paymentRecordTypeId);
-        } catch (Exception e) {
+           System.assertEquals(oldRetroList.size()+1, newRetroList.size());
+           System.assertEquals(newRetroList[0].RecordTypeId, paymentRecordTypeId);
+        } catch(Exception e) {
             System.debug(e.getMessage());
         }
     }
@@ -42,7 +43,7 @@ private class FIN_PaymentDistributionHelperTest {
 
             Order ord = TestDataFactory.createTestOrderWithContract(acc.Id, contract.Id);
             FIN_Payment__c payment = TestDataFactory.createPayment(ord.Id, contract.Id);
-            FIN_PaymentDistribution__c paymentdist = TestDataFactory.createPaymentDistribution(payment.Id, null, contract.Id);
+            FIN_PaymentDistribution__c paymentdist = TestDataFactory.createPaymentDistribution(payment.Id,null, contract.Id);
 
             SBQQ__ContractedPrice__c la = TestDataFactory.createLibraryAssociation(acc.Id);
             paymentdist.FIN_LibraryAssociation__c = la.Id;

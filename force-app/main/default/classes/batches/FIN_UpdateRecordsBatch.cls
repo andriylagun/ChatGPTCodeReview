@@ -20,14 +20,14 @@ public with sharing class FIN_UpdateRecordsBatch implements Database.Batchable<S
 
     private static List<SObject> processRuleActions(List<FIN_AXSRuleAction__c> axsRuleActions, List<SObject> records) {
         List<SObject> updatedRecords = new List<SObject>();
-        for (FIN_AXSRuleAction__c action : axsRuleActions) {
-            for (SObject record : records) {
+        for (SObject record : records) {
+            for (FIN_AXSRuleAction__c action : axsRuleActions) {
                 String valueToCheck = String.valueOf(record.get(action.FIN_DestinationField__c));
                 if (valueToCheck == null || valueToCheck == 'New' || valueToCheck == 'NotApplicable') {
                     record.put(action.FIN_DestinationField__c, parseValueWithType(action.FIN_DestinationField__c, action.FIN_Object__c, action.FIN_DestinationFieldValue__c));
                 }
-                updatedRecords.add(record);
             }
+            updatedRecords.add(record);
         }
         return updatedRecords;
     }

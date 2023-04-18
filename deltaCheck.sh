@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Define required plugins
 REQUIRED_PLUGINS=(
@@ -7,7 +7,21 @@ REQUIRED_PLUGINS=(
   "sfdx-git-delta"
 )
 CONFIG_FILE=config.yml
-
+parse_yaml() {
+    local prefix=$2
+    local s='[[:space:]]*' w='[a-zA-Z0-9_]*' fs=$(echo @|tr @ '\034')
+    sed -ne "s|^\($s\)\($w\)$s:$s\"\(.*\)\"$s\$|\1$fs\2$fs\3|p" \
+         -e "s|^\($s\)\($w\)$s:$s\(.*\)$s\$|\1$fs\2$fs\3|p" "$1" |
+    awk -F$fs '{
+        indent = length($1)/2;
+        vname[indent] = $2;
+        for (i in vname) {if (i > indent) {delete vname[i]}}
+        if (length($3) > 0) {
+            vn=""; for (i=0; i<indent; i++) {vn=(vn)(vname[i])("_")}
+            printf("%s%s%s=\"%s\"\n", "'$prefix'",vn, $2, $3);
+        }
+    }'
+}
 # Check if plugins are installed and install if necessary
 for PLUGIN in "${REQUIRED_PLUGINS[@]}"; do
   if ! sfdx plugins --core | grep -q "$PLUGIN"; then
@@ -16,7 +30,6 @@ for PLUGIN in "${REQUIRED_PLUGINS[@]}"; do
   fi
 done
 
-#!/bin/bash
 
 if ! command -v hub &> /dev/null
 then
@@ -24,7 +37,7 @@ then
 
     if [[ "$OSTYPE" == "msys"* ]]; then
         echo "Installing hub via curl"
-        curl -L -o hub.zip https://github.com/github/hub/releases/download/v2.15.1/hub-windows-amd64-2.15.1.zip
+        curl -L -o hub.zip https://github.com/github/hub/releases/download/v2.14.2/hub-windows-amd64-2.14.2.zip
         unzip hub.zip
         mv hub-windows-amd64-2.15.1/bin/hub /usr/bin/hub
         rm -rf hub.zip hub-windows-amd64-2.15.1
@@ -46,7 +59,7 @@ if [ ! -f "$CONFIG_FILE" ]; then
   echo "Configuration file not found: $CONFIG_FILE"
   exit 1
 fi
-eval $(parse_yaml $CONFIG_FILE)
+eval $(parse_yaml config.yml "")
 
 
 
@@ -176,3 +189,4 @@ else
     pr_title="$(hub pr show -f '%t' $pr_id)"
     hub pr edit -m "$pr_title [$pr_check_result]" $pr_id
 fi
+

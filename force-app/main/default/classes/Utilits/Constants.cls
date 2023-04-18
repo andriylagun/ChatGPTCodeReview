@@ -29,7 +29,7 @@ public with sharing class Constants {
     public static Map<String, String> finProcessMapForSettlement = new Map<String, String>{
             'Sales' => 'Order',
             'Payment' => 'FIN_Payment__c',
-            'Payment Distribution' => 'FIN_PaymentDistribution__c',
+            'Payment_Distribution' => 'FIN_PaymentDistribution__c',
             'Sales Transactions' => 'OrderItem'
     };
 
@@ -55,7 +55,7 @@ public with sharing class Constants {
     };
 
     public static Map<String, String> fieldsToGetMap = new Map<String, String>{
-            'Order' => ', FIN_OrderContext__c, AccountId, FIN_Event__c, FIN_ZoneType__c, FIN_Venue__c, EffectiveDate',
+            'Order' => ', FIN_OrderContext__c, AccountId, FIN_Event__c, FIN_ZoneType__c, FIN_Venue__c, EffectiveDate, Pricebook2Id',
             'FIN_Payment__c' => ', FIN_PaymentTransactionId__c',
             'FIN_PaymentDistribution__c' => ', FIN_PaymentTransactionId__c',
             'OrderItem' => ''
@@ -135,7 +135,7 @@ public with sharing class Constants {
         String query = '';
         switch on batchType {
             when 'Order' {
-                query = 'SELECT Id, ContractId, EffectiveDate, FIN_TransactionId__c, FIN_ZoneType__c, FIN_OrderContext__c, FIN_Venue__c, AccountId, FIN_Reclassify__c, FIN_Event__c FROM Order WHERE Status != \'Approved\' AND ';
+                query = 'SELECT Id, ContractId, Pricebook2Id, EffectiveDate, FIN_TransactionId__c, FIN_ZoneType__c, FIN_OrderContext__c, FIN_Venue__c, AccountId, FIN_Reclassify__c, FIN_Event__c FROM Order WHERE Status != \'Approved\' AND ';
             } when 'FIN_PaymentDistribution__c' {
                 query = 'SELECT Id, FIN_Order_ID__r.ContractId, FIN_TransactionId__c, FIN_PaymentTransactionId__c, Contract__c FROM FIN_PaymentDistribution__c WHERE ';
             } when 'FIN_Payment__c' {

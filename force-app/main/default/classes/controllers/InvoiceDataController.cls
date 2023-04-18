@@ -100,12 +100,7 @@ public with sharing class InvoiceDataController {
                     FIN_InvoiceSchedule__c invoiceSchedule = invoiceSh.clone(false);
                     invoiceSchedule.FIN_Contract__c = selectedRecord;
                     invoiceSchedule.FIN_Type__c = type;
-                    if (invoiceSh.FIN_Mode__c != null) {
-                        invoiceSchedule.FIN_Mode__c = invoiceSh.FIN_Mode__c;
-                    } else {
-                        invoiceSchedule.FIN_Mode__c = 'ByAmount';
-                    }
-                    
+                    invoiceSchedule.FIN_Mode__c = 'ByAmount';
 
                     invoiceSchedules.put(selectedRecord, invoiceSchedule);
                     selectedChild.addAll(selectedRecords.get(selectedRecord));
@@ -169,8 +164,7 @@ public with sharing class InvoiceDataController {
                 }
             } else if (type == 'SalesTransactions') {
                 List<OrderItem> listSalesTr = [
-                    SELECT Id, SBQQ__Contract__c, FIN_LibraryAssociation__c, FIN_TotalNetAmount__c, Quantity,
-                    FIN_BaseRateUnitCost__c
+                    SELECT Id, SBQQ__Contract__c, FIN_LibraryAssociation__c, FIN_TotalNetAmount__c, Quantity
                     FROM OrderItem
                     WHERE Id IN :selectedChild
                 ];
@@ -190,20 +184,11 @@ public with sharing class InvoiceDataController {
                         FIN_LibraryAssociation__c = salesTr.FIN_LibraryAssociation__c,
                         FIN_EntryType__c = 'StandardEntry',
                         FIN_QuantityforInvoiceQty__c = salesTr.Quantity,
-                        FIN_TotalNetAmountforInvoice__c = salesTr.FIN_TotalNetAmount__c,
-                        FIN_AmountbyQty__c = salesTr.Quantity * salesTr.FIN_BaseRateUnitCost__c
+                        FIN_TotalNetAmountforInvoice__c = salesTr.FIN_TotalNetAmount__c
                     ));
                 }
             }
             System.debug('invoiceItems'+invoiceItems);
-
-
-
-
-
-
-
-
 
             insert invoiceItems;
             return invoiceItems.size();

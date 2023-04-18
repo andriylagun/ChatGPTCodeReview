@@ -18,15 +18,11 @@ global class ReclassifyUpdateBatch implements Database.Batchable<sObject>, Datab
     public void execute(Database.BatchableContext BC, List<sObject> scope) {
         List<String> contractIds = this.contractIds;
         List<SObject> updatedRecordsList = new List<SObject>();
-        Map<String, Order> salesIdMap = new Map<String, Order>();
-        List<Contract> masterContract = [SELECT Id, StartDate, EndDate, AccountId FROM Contract WHERE FIN_ParentContract__c = NULL AND Id IN :contractIds LIMIT 1];
-        Map<String, FIN_Payment__c> paymentIdMap = new Map<String, FIN_Payment__c>();
-        List<String> transactionIds = new List<String>();
-        List<String> paymentTransactionIds = new List<String>();
-
+        List<Contract> masterContract = [SELECT Id, StartDate, EndDate, Pricebook2Id, AccountId FROM Contract WHERE FIN_ParentContract__c = NULL AND Id IN :contractIds LIMIT 1];
+        String classifiedGroupId = FIN_GroupSelector.getGroupByDeveloperName(Constants.CLASSIFIED_QUEUE_US).Id;
         if (batchType == Schema.Order.getSObjectType().getDescribe().getName()) {
             FIN_ClassifyRecordsBatch.matchContractToSales((List<Order>) scope, FIN_ContractAssociationSelector.getAllContractAssociationsByContractIdInAndContextId(this.contextId, this.contractIds),
-                    null, masterContract, updatedRecordsList);
+                    classifiedGroupId, masterContract, updatedRecordsList);
         }
 
         for (SObject record : scope) {
@@ -44,7 +40,8 @@ global class ReclassifyUpdateBatch implements Database.Batchable<sObject>, Datab
                 } when Order sale {
                     if (!masterContract.isEmpty() && sale.ContractId != masterContract[0].Id &&
                         sale.EffectiveDate >= masterContract[0].StartDate && sale.EffectiveDate <= masterContract[0].EndDate &&
-                        sale.AccountId == masterContract[0].AccountId) {
+                        sale.AccountId == masterContract[0].AccountId && (String.isBlank(sale.Pricebook2Id) ||
+                        String.isBlank(masterContract[0].Pricebook2Id) || (String.isNotBlank(sale.Pricebook2Id) && String.isNotBlank(masterContract[0].Pricebook2Id) && sale.Pricebook2Id == masterContract[0].Pricebook2Id))) {
                         sale.ContractId = masterContract[0].Id;
                         updatedRecordsList.add(sale);
                     }
