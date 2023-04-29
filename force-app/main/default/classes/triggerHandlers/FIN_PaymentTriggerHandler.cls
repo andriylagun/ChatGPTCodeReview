@@ -13,6 +13,6 @@ public with sharing class FIN_PaymentTriggerHandler extends TriggerHandler {
 
     protected override void afterUpdate() {
         FIN_PaymentHelper.updateJournalEntrySignAndAmount((List<FIN_Payment__c>) this.triggerNew, (Map<Id, FIN_Payment__c>) this.triggerOldMap);
-        FIN_PaymentHelper.createRetroactiveAdjustment((List<FIN_Payment__c>) this.triggerNew, (Map<Id, FIN_Payment__c>) this.triggerOldMap);
+//        FIN_PaymentHelper.createRetroactiveAdjustment((List<FIN_Payment__c>) this.triggerNew, (Map<Id, FIN_Payment__c>) this.triggerOldMap);
     }
 }

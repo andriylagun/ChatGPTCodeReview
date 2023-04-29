@@ -1,5 +1,39 @@
 public with sharing class Constants {
 
+    public enum ConditionType {
+        EQUALS_CONDITION, LIKE_CONDITION, IN_CONDITION, GREATER_THEN
+    }
+
+    public enum LikeConditionType {
+        STARTS_WITH, ENDS_WITH, CONTAINS
+    }
+
+    public enum ConditionOperatorType {
+        AND_CONDITION, OR_CONDITION
+    }
+
+
+    public enum Direction {
+        ASC_DIRECTION, DESC_DIRECTION
+    }
+
+
+    public enum DmlOperation {
+        INSERT_OP,
+        UPDATE_OP,
+        DELETE_OP,
+        UPSERT_OP
+    }
+
+    public static List<String> getFieldNames(List<Schema.SObjectField> fieldList) {
+        List<String> fieldNames = new List<String>();
+        for (Schema.SObjectField field : fieldList) {
+            fieldNames.add(field.getDescribe().getName());
+        }
+        return fieldNames;
+    }
+
+
     public static Map<String, String> getFinProcessMap() {
         Map<String, String> finProcessMap = new Map<String, String>();
         for (PicklistEntry pe : FIN_SystemDataLoadLog__c.FIN_Process__c.getDescribe().getPicklistValues()) {
@@ -16,7 +50,9 @@ public with sharing class Constants {
         return systemDataLoadLogOrder;
     }
 
-    public static Set<String> idFieldsFromRuleAction = new Set<String>{'FIN_LibraryAssociation__c', 'FIN_Reviewer__c'};
+    public static Set<String> idFieldsFromRuleAction = new Set<String>{
+            'FIN_LibraryAssociation__c', 'FIN_Reviewer__c'
+    };
 
     public static Map<String, String> finProcessMap = new Map<String, String>{
             'Sales' => 'Order',
@@ -24,6 +60,12 @@ public with sharing class Constants {
             'Payment_Distribution' => 'FIN_PaymentDistribution__c',
             'Contract' => 'Contract',
             'Sales Transactions' => 'OrderItem'
+    };
+
+    public static Map<String, String> amountFields = new Map<String, String>{
+            Schema.OrderItem.getSObjectType().getDescribe().getName() => OrderItem.FIN_TotalNetAmount__c.getDescribe().getName(),
+            Schema.FIN_Payment__c.getSObjectType().getDescribe().getName() => FIN_Payment__c.FIN_PaymentAmount__c.getDescribe().getName(),
+            Schema.FIN_PaymentDistribution__c.getSObjectType().getDescribe().getName() => FIN_PaymentDistribution__c.FIN_DistributionAmount__c.getDescribe().getName()
     };
 
     public static Map<String, String> finProcessMapForSettlement = new Map<String, String>{
@@ -67,6 +109,54 @@ public with sharing class Constants {
             'Payment_Distribution' => 'FIN_Payment_Distribution_Unique_ID__c'
     };
 
+    public static Map<String, Map<String, String>> statusFields = new Map<String, Map<String, String>>{
+            FIN_InvoiceItem__c.SObjectType.getDescribe().getName() => new Map<String, String>{
+                    FIN_PaymentDistribution__c.SObjectType.getDescribe().getName() => FIN_PaymentDistribution__c.Invoices_Status__c.getDescribe().getName(),
+                    FIN_Payment__c.SObjectType.getDescribe().getName() => FIN_Payment__c.FIN_Invoices_Status__c.getDescribe().getName(),
+                    Order.SObjectType.getDescribe().getName() => Order.Invoices_Status__c.getDescribe().getName(),
+                    OrderItem.SObjectType.getDescribe().getName() => OrderItem.FIN_Invoices_Status__c.getDescribe().getName()
+            },
+            FIN_SettlementItem__c.SObjectType.getDescribe().getName() => new Map<String, String>{
+                    FIN_PaymentDistribution__c.SObjectType.getDescribe().getName() => FIN_PaymentDistribution__c.FIN_Settlement_Status__c.getDescribe().getName(),
+                    FIN_Payment__c.SObjectType.getDescribe().getName() => FIN_Payment__c.FIN_Settlement_Status__c.getDescribe().getName(),
+                    Order.SObjectType.getDescribe().getName() => Order.Settlement_Status__c.getDescribe().getName(),
+                    OrderItem.SObjectType.getDescribe().getName() => OrderItem.Settlement_Status__c.getDescribe().getName()
+            },
+            FIN_Journalizing_Item__c.SObjectType.getDescribe().getName() => new Map<String, String>{
+                    FIN_PaymentDistribution__c.SObjectType.getDescribe().getName() => FIN_PaymentDistribution__c.FIN_Journalizing_Status__c.getDescribe().getName(),
+                    FIN_Payment__c.SObjectType.getDescribe().getName() => FIN_Payment__c.FIN_Journalizing_Status__c.getDescribe().getName(),
+                    Order.SObjectType.getDescribe().getName() => Order.FIN_Journalizing_Status__c.getDescribe().getName(),
+                    OrderItem.SObjectType.getDescribe().getName() => OrderItem.FIN_Journalizing_Status__c.getDescribe().getName()
+            }
+    };
+
+    public static Map<String, List<String>> retroactiveAdjFieldsMap = new Map<String, List<String>>{
+            FIN_InvoiceItem__c.SObjectType.getDescribe().getName() => new List<String>{
+                    'FIN_Order__c',
+                    'FIN_Region__c',
+                    'FIN_PaymentDate__c',
+                    'FIN_DepositDate__c',
+                    'FIN_PaymentAdjustment__c'
+            },
+            FIN_SettlementItem__c.SObjectType.getDescribe().getName() => new List<String>{
+                    'FIN_Order__c',
+                    'FIN_Region__c',
+                    'FIN_PaymentDate__c',
+                    'FIN_DepositDate__c',
+                    'FIN_PaymentAdjustment__c'
+            },
+            FIN_Journalizing_Item__c.SObjectType.getDescribe().getName() => new List<String>{
+                    'FIN_Order__c',
+                    'FIN_Region__c',
+                    'FIN_PaymentDate__c',
+                    'FIN_DepositDate__c',
+                    'FIN_PaymentAdjustment__c'
+            }
+    };
+
+    public static final String PDS_CONST = 'PDs';
+    public static final String PAYMENTS_CONST = 'Payments';
+
     public static final String STANDART_SELECT_QUERY = 'SELECT :fields FROM :object WHERE :conditions';
 
     public static final String UNCLASSIFIED_QUEUE_US = 'FIN_US_Unclassified';
@@ -90,7 +180,7 @@ public with sharing class Constants {
             Schema.OrderItem.getSObjectType().getDescribe().getName() => OrderItem.FIN_ContextID__c.getDescribe().getName()
     };
 
-    public static final Map<String, String> fieldToCheckConditions = new Map<String, String> {
+    public static final Map<String, String> fieldToCheckConditions = new Map<String, String>{
             'Order' => ' AND ContractId = null AND Status != \'Approved\'',
             'FIN_Payment__c' => '',
             'FIN_PaymentDistribution__c' => ''
@@ -165,11 +255,73 @@ public with sharing class Constants {
         }
     }
 
+    /**
+     * This utility method retrieves the record type ID for the given sObjectApiName.
+     *
+     * @param recordTypeName - String to search in Record Type API name
+     * @param sObjectType - API name of the sObject
+     * @return recordTypeId - Record Type ID
+     */
+    public static Id getRecordTypeIdByName(String recordTypeName, String sObjectType) {
+        Id recordTypeId = null;
+
+        // Iterate over record type infos to find the matching record type ID
+        for (RecordTypeInfo recordTypeInfo : Schema.getGlobalDescribe().get(sObjectType).getDescribe().getRecordTypeInfos()) {
+            if (recordTypeInfo.getDeveloperName().contains(recordTypeName)) {
+                recordTypeId = recordTypeInfo.getRecordTypeId();
+                break;
+            }
+        }
+
+        return recordTypeId;
+    }
+
     public static Decimal getTicketComponentType(String ticketComponentType) {
         if (ticketComponentType.substring(ticketComponentType.length() - 1).isNumeric()) {
             return Decimal.valueOf(ticketComponentType.substring(ticketComponentType.length() - 1));
         } else {
             return Decimal.valueOf(0);
         }
+    }
+
+    public static String getContractFieldByType(SObjectType processType) {
+        switch on processType.newSObject() {
+            when FIN_Payment__c p {
+                return FIN_Payment__c.Contract__c.getDescribe().getName();
+            } when FIN_PaymentDistribution__c pd {
+                return FIN_PaymentDistribution__c.Contract__c.getDescribe().getName();
+            } when OrderItem oi {
+                return 'Order.' + Order.ContractId.getDescribe().getName();
+            }
+            when else {
+                throw new AuraHandledException('Process type is incorrect');
+            }
+        }
+    }
+
+    public static String getLookupFieldByRelatedObjectName(String parentSObjectName, String relatedSObjectName) {
+        Schema.SObjectType parentSObjectType = Schema.getGlobalDescribe().get(parentSObjectName);
+        if (parentSObjectType != null) {
+            Map<String, Schema.SObjectField> fieldMap = parentSObjectType.getDescribe().fields.getMap();
+
+            for (Schema.SObjectField field : fieldMap.values()) {
+                Schema.DescribeFieldResult fieldDescribe = field.getDescribe();
+                if (fieldDescribe.getRelationshipName() != null) {
+                    String relationshipObjectName = fieldDescribe.getReferenceTo()[0].getDescribe().getName();
+                    if (relationshipObjectName == relatedSObjectName) {
+                        return fieldDescribe.name;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public static Map<String, String> getPicklistEntriesByValueMapFromPicklist(List<PicklistEntry> picklistEntries) {
+        Map<String, String> picklistMap = new Map<String, String>();
+        for (PicklistEntry picklistEntry : picklistEntries) {
+            picklistMap.put(picklistEntry.getValue(), picklistEntry.getLabel());
+        }
+        return picklistMap;
     }
 }

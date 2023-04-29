@@ -1,53 +1,66 @@
 public with sharing class FIN_SettlementItemHelper {
+
     public static void updateStatusesAfterInsert(List<FIN_SettlementItem__c> items, Map<Id, FIN_SettlementItem__c> oldMap) {
         Set<Id> pdIds = new Set<Id>();
         Set<Id> salesIds = new Set<Id>();
 
-        try {
-            if (!items.isEmpty()) {
-                for (FIN_SettlementItem__c item : [
-                    SELECT Id, FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__c, FIN_PaymentDistribution__c
-                    FROM FIN_SettlementItem__c
-                    WHERE Id IN :items
-                ]) {
-                    salesIds.add(item.FIN_PaymentDistribution__r?.FIN_Payment__r?.FIN_Order__c);
-                    pdIds.add(item.FIN_PaymentDistribution__c);
-                }
-
-                List<FIN_PaymentDistribution__c> pdList = new List<FIN_PaymentDistribution__c>();
-                if (!pdIds.isEmpty()) {
-                    for (FIN_PaymentDistribution__c pd : [
-                        SELECT Id, FIN_Settlement_Status__c
-                        FROM FIN_PaymentDistribution__c
-                        WHERE Id IN :pdIds
-                    ]) {
-                        pd.FIN_Settlement_Status__c = 'ScheduledSettlement';
-                        pdList.add(pd);
-                    }
-                }
-
-                List<Order> salesList = new List<Order>();
-                if (!salesIds.isEmpty()) {
-                    for (Order sales : [
-                        SELECT Id, Settlement_Status__c
-                        FROM Order
-                        WHERE Id IN :salesIds
-                    ]) {
-                        sales.Settlement_Status__c = 'ScheduledSettlement';
-                        salesList.add(sales);
-                    }
-                }
-                if (!salesList.isEmpty()) {
-                    update salesList;
-                }
-                if (!pdList.isEmpty()) {
-                    update pdList;
-                }
+        if (!items.isEmpty()) {
+            String statusToSet = 'ScheduledSettlement';
+            SOQLQueryBuilder itemsQueryBuilder = SOQLQueryBuilder.create()
+                    .selectClause()
+                    .field(FIN_SettlementItem__c.Id.getDescribe().getName())
+                    .field('FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__c')
+                    .field(FIN_SettlementItem__c.FIN_PaymentDistribution__c.getDescribe().getName())
+                    .endSelectSOQL()
+                    .fromClause(Schema.SObjectType.FIN_SettlementItem__c.getName())
+                    .whereClause()
+                    .useBindVariablesInQuery(true)
+                    .condition(FIN_SettlementItem__c.Id.getDescribe().getName(), items, Constants.ConditionType.IN_CONDITION, null, null)
+                    .endWhereSOQL();
+            List<FIN_SettlementItem__c> settlementItems = Database.queryWithBinds(itemsQueryBuilder.build(), itemsQueryBuilder.getBindVariables(), AccessLevel.USER_MODE);
+            for (FIN_SettlementItem__c settlementItem : settlementItems) {
+                pdIds.add(settlementItem.FIN_PaymentDistribution__c);
+                salesIds.add(settlementItem.FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__c);
             }
-        } catch (DmlException e) {
-            System.debug('The following exception has occurred: ' + e.getMessage());
+
+
+            SOQLQueryBuilder salesQueryBuilder = new SOQLQueryBuilder()
+                    .selectClause()
+                    .field(Order.Id.getDescribe().getName())
+                    .field(Order.Settlement_Status__c.getDescribe().getName())
+                    .endSelectSOQL()
+                    .fromClause(Order.SObjectType.getDescribe().getName())
+                    .whereClause()
+                    .useBindVariablesInQuery(true)
+                    .condition(Order.Id.getDescribe().getName(),
+                            (Object) salesIds, Constants.ConditionType.IN_CONDITION, null, null)
+                    .endWhereSOQL();
+
+            SOQLQueryBuilder pdQueryBuilder = new SOQLQueryBuilder()
+                    .selectClause()
+                    .field(FIN_PaymentDistribution__c.Id.getDescribe().getName())
+                    .field(FIN_PaymentDistribution__c.FIN_Settlement_Status__c.getDescribe().getName())
+                    .endSelectSOQL()
+                    .fromClause(Schema.SObjectType.FIN_PaymentDistribution__c.getName())
+                    .whereClause()
+                    .useBindVariablesInQuery(true)
+                    .condition(FIN_PaymentDistribution__c.Id.getDescribe().getName(),
+                            pdIds, Constants.ConditionType.IN_CONDITION, null, null)
+                    .endWhereSOQL();
+
+            List<FIN_PaymentDistribution__c> paymentDistributions = Database.queryWithBinds(pdQueryBuilder.build(), pdQueryBuilder.getBindVariables(), AccessLevel.USER_MODE);
+            for (FIN_PaymentDistribution__c pd : paymentDistributions) {
+                pd.FIN_Settlement_Status__c = statusToSet;
+            }
+            update paymentDistributions;
+            List<Order> sales = Database.queryWithBinds(salesQueryBuilder.build(), salesQueryBuilder.getBindVariables(), AccessLevel.USER_MODE);
+            for (Order ord : sales) {
+                ord.Settlement_Status__c = statusToSet;
+            }
+            update sales;
         }
     }
+
 
     public static void updateStatusesBeforeDelete(Map<Id, FIN_SettlementItem__c> itemsSett) {
         Set<Id> pdIds = new Set<Id>();
@@ -56,16 +69,16 @@ public with sharing class FIN_SettlementItemHelper {
 
         try {
             for (FIN_SettlementItem__c item : [
-                SELECT Id, FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__c, FIN_PaymentDistribution__c
-                FROM FIN_SettlementItem__c
-                WHERE Id IN :itemsSett.keySet()
+                    SELECT Id, FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__c, FIN_PaymentDistribution__c
+                    FROM FIN_SettlementItem__c
+                    WHERE Id IN :itemsSett.keySet()
             ]) {
                 pdIds.add(item.FIN_PaymentDistribution__c);
                 if (salesDeletedMap.containsKey(item.FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__c)) {
                     salesDeletedMap.get(item.FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__c).add(item.FIN_PaymentDistribution__c);
                 } else {
                     salesDeletedMap.put(item.FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__c, new List<Id>{
-                        item.FIN_PaymentDistribution__c
+                            item.FIN_PaymentDistribution__c
                     });
                 }
             }
@@ -73,9 +86,9 @@ public with sharing class FIN_SettlementItemHelper {
             List<FIN_PaymentDistribution__c> pdList = new List<FIN_PaymentDistribution__c>();
 
             for (FIN_PaymentDistribution__c pd : [
-                SELECT Id, FIN_Settlement_Status__c, FIN_Payment__r.FIN_Order__c
-                FROM FIN_PaymentDistribution__c
-                WHERE Id IN :pdIds
+                    SELECT Id, FIN_Settlement_Status__c, FIN_Payment__r.FIN_Order__c
+                    FROM FIN_PaymentDistribution__c
+                    WHERE Id IN :pdIds
             ]) {
                 pd.FIN_Settlement_Status__c = 'ToBeSettled';
                 pdList.add(pd);
@@ -85,10 +98,10 @@ public with sharing class FIN_SettlementItemHelper {
             }
 
             AggregateResult[] groupedResults = [
-                SELECT FIN_Payment__r.FIN_Order__c ord, COUNT(Id) quan
-                FROM FIN_PaymentDistribution__c
-                WHERE FIN_Payment__r.FIN_Order__c IN :salesDeletedMap.keySet()
-                GROUP BY FIN_Payment__r.FIN_Order__c
+                    SELECT FIN_Payment__r.FIN_Order__c ord, COUNT(Id) quan
+                    FROM FIN_PaymentDistribution__c
+                    WHERE FIN_Payment__r.FIN_Order__c IN :salesDeletedMap.keySet()
+                    GROUP BY FIN_Payment__r.FIN_Order__c
             ];
 
             for (AggregateResult ar : groupedResults) {
@@ -100,9 +113,9 @@ public with sharing class FIN_SettlementItemHelper {
             List<Order> salesList = new List<Order>();
 
             for (Order sales : [
-                SELECT Id, Settlement_Status__c
-                FROM Order
-                WHERE Id IN :salesIds
+                    SELECT Id, Settlement_Status__c
+                    FROM Order
+                    WHERE Id IN :salesIds
             ]) {
                 sales.Settlement_Status__c = 'ToBeSettled';
                 salesList.add(sales);
@@ -143,7 +156,7 @@ public with sharing class FIN_SettlementItemHelper {
                         FIN_PaymentDistribution__c,
                         FIN_ParentSettlementSchedule__c,
                         FIN_SubContract__r.FIN_RemittanceAccount__c,
-                        
+
                         FIN_EntryType__c,
 
                         FIN_InvoiceSchedule__c,
@@ -159,15 +172,15 @@ public with sharing class FIN_SettlementItemHelper {
                 FROM FIN_SettlementItem__c
                 WHERE FIN_ParentSettlementSchedule__c IN :parentSettleScheduleIDs
         ]);
-        
+
         System.debug('allSIs -----> SIZE: ' + allSIs.size());   //get all types there
-        
+
         List<FIN_SettlementItem__c> standardEntrySIs = new List<FIN_SettlementItem__c>();
         List<FIN_SettlementItem__c> manualAdjSIs = new List<FIN_SettlementItem__c>();
         List<FIN_SettlementItem__c> invoiceAdjSIs = new List<FIN_SettlementItem__c>();
         //
         List<FIN_SettlementItem__c> adjustmentsSIs = new List<FIN_SettlementItem__c>();
-        
+
         for (FIN_SettlementItem__c si : allSIs.values()) {
             if (si.FIN_EntryType__c == 'Standard Entry') {
                 standardEntrySIs.add(si);
@@ -200,7 +213,7 @@ public with sharing class FIN_SettlementItemHelper {
 
         for (FIN_SettlementItem__c si : allSIs.values()) {
             //if (si.FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__r.FIN_Event__c != null) {
-                eventsIds.add(si.FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__r.FIN_Event__c);
+            eventsIds.add(si.FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__r.FIN_Event__c);
             //}
             if (si.FIN_PaymentDistribution__c != null) {
                 allPdIDs.add(si.FIN_PaymentDistribution__c);
@@ -217,9 +230,9 @@ public with sharing class FIN_SettlementItemHelper {
 
 
         List<FIN_Payee__c> uniquePayeesList = new List<FIN_Payee__c> ([
-            SELECT Id, FIN_LegalName__c
-            FROM FIN_Payee__c
-            WHERE Id IN :payeesIds
+                SELECT Id, FIN_LegalName__c
+                FROM FIN_Payee__c
+                WHERE Id IN :payeesIds
         ]);
 
 
@@ -267,8 +280,8 @@ public with sharing class FIN_SettlementItemHelper {
                             Contract__c,
                             Contract__r.FIN_SettlementReportGroup__c,
                             Contract__r.FIN_SettlementReportMode__c,
-                            
-                            (SELECT Id FROM Settlement_Items__r WHERE FIN_ParentSettlementSchedule__c IN :parentSettleScheduleIDs)
+
+                    (SELECT Id FROM Settlement_Items__r WHERE FIN_ParentSettlementSchedule__c IN :parentSettleScheduleIDs)
                     FROM FIN_PaymentDistribution__c
                     WHERE Id IN :allPdIDs
             ];
@@ -321,7 +334,7 @@ public with sharing class FIN_SettlementItemHelper {
                     newSL.FIN_Parking__c = 0;
 
                     //if (si.FIN_ParentSettlementSchedule__c != null) {
-                        newSL.FIN_SettlementSchedule__c = si.FIN_ParentSettlementSchedule__c;
+                    newSL.FIN_SettlementSchedule__c = si.FIN_ParentSettlementSchedule__c;
                     //}
                     if (event != null) {
                         newSL.FIN_EventID__c = event.FIN_EventID__c;
@@ -459,7 +472,7 @@ public with sharing class FIN_SettlementItemHelper {
 
                     Double gross = payeeGrossAmountMap.get(payee.Id);
                     payeeGrossAmountMap.put(payee.Id, gross + newSL.FIN_RemitAmount__c);
-                    
+
                 }
                 System.debug('newSL.FIN_Retain__c' + newSL.FIN_Retain__c);
                 if (!settlementLinesToInsert.containsKey(pdKey)) {
@@ -496,48 +509,58 @@ public with sharing class FIN_SettlementItemHelper {
         // create FIN_SettlementLine__c AdjustmentTotals
         List<FIN_SettlementLine__c> adjustmentTotalsToInsert = new List<FIN_SettlementLine__c>();
 
-        if (!adjustmentsSIs.isEmpty()) {
+        //if (!adjustmentsSIs.isEmpty()) {
 
-            for (FIN_Payee__c p : uniquePayeesList) {
+        for (FIN_Payee__c p : uniquePayeesList) {
 
-                FIN_SettlementLine__c newSLAdjustmentTotals = new FIN_SettlementLine__c();
-                newSLAdjustmentTotals.FIN_InvoiceAdjustmentAmount__c = 0;
-                newSLAdjustmentTotals.FIN_ManualAdjustmentAmount__c = 0;
-                newSLAdjustmentTotals.FIN_EntryType__c = 'Adjustment';
-                newSLAdjustmentTotals.FIN_Mode__c = 'AdjustmentTotals';
-                newSLAdjustmentTotals.FIN_RemitAmount__c = payeeGrossAmountMap.get(p.Id);
-                newSLAdjustmentTotals.FIN_TotalRemitAmount__c = payeeTotalRemitMap.get(p);
+            FIN_SettlementLine__c newSLAdjustmentTotals = new FIN_SettlementLine__c();
+            newSLAdjustmentTotals.FIN_InvoiceAdjustmentAmount__c = 0;
+            newSLAdjustmentTotals.FIN_ManualAdjustmentAmount__c = 0;
+            newSLAdjustmentTotals.FIN_EntryType__c = 'Adjustment';
+            newSLAdjustmentTotals.FIN_Mode__c = 'AdjustmentTotals';
+            newSLAdjustmentTotals.FIN_RemitAmount__c = payeeGrossAmountMap.get(p.Id);
+            newSLAdjustmentTotals.FIN_TotalRemitAmount__c = payeeTotalRemitMap.get(p);
 
-                if (!invoiceAdjSIs.isEmpty()) {
-                    for (FIN_SettlementItem__c si : invoiceAdjSIs) {
-                        if (si.FIN_RemittanceAccount__c == p.Id) {
-                            newSLAdjustmentTotals.FIN_SettlementSchedule__c = si.FIN_ParentSettlementSchedule__c;
-                            newSLAdjustmentTotals.FIN_RemittanceAccount__c = si.FIN_RemittanceAccount__c;
-                            newSLAdjustmentTotals.FIN_InvoiceAdjustmentAmount__c -= si.FIN_InvoiceSchedule__r.FIN_NetDue__c;
-                        }
+            if (!invoiceAdjSIs.isEmpty()) {
+                for (FIN_SettlementItem__c si : invoiceAdjSIs) {
+                    if (si.FIN_RemittanceAccount__c == p.Id) {
+                        newSLAdjustmentTotals.FIN_SettlementSchedule__c = si.FIN_ParentSettlementSchedule__c;
+                        newSLAdjustmentTotals.FIN_RemittanceAccount__c = si.FIN_RemittanceAccount__c;
+                        newSLAdjustmentTotals.FIN_InvoiceAdjustmentAmount__c -= si.FIN_InvoiceSchedule__r.FIN_NetDue__c;
                     }
-                }
-                if (!manualAdjSIs.isEmpty()) {
-                    for (FIN_SettlementItem__c si : manualAdjSIs) {
-                        if (si.FIN_SubContract__r.FIN_RemittanceAccount__c == p.Id) {
-                            newSLAdjustmentTotals.FIN_SettlementSchedule__c = si.FIN_ParentSettlementSchedule__c;
-                            newSLAdjustmentTotals.FIN_RemittanceAccount__c = si.FIN_SubContract__r.FIN_RemittanceAccount__c;
-                            newSLAdjustmentTotals.FIN_ManualAdjustmentAmount__c -= si.FIN_ManualAmount__c;
-                        }
-                    }
-                }
-
-                if (newSLAdjustmentTotals.FIN_RemittanceAccount__c != null) {
-                    adjustmentTotalsToInsert.add(newSLAdjustmentTotals);
                 }
             }
-        }
+            if (!manualAdjSIs.isEmpty()) {
+                for (FIN_SettlementItem__c si : manualAdjSIs) {
+                    if (si.FIN_SubContract__r.FIN_RemittanceAccount__c == p.Id) {
+                        newSLAdjustmentTotals.FIN_SettlementSchedule__c = si.FIN_ParentSettlementSchedule__c;
+                        newSLAdjustmentTotals.FIN_RemittanceAccount__c = si.FIN_SubContract__r.FIN_RemittanceAccount__c;
+                        newSLAdjustmentTotals.FIN_ManualAdjustmentAmount__c -= si.FIN_ManualAmount__c;
+                    }
+                }
+            }
+            for (FIN_SettlementItem__c si : standardEntrySIs) {
+                newSLAdjustmentTotals.FIN_SettlementSchedule__c = si.FIN_ParentSettlementSchedule__c;
+                if (si.FIN_RemittanceAccount__c != null) {
+                    System.debug('here AdjustmentTotals');
+                    newSLAdjustmentTotals.FIN_RemittanceAccount__c = si.FIN_RemittanceAccount__c;
+                } else {
+                    System.debug('else AdjustmentTotals');
+                    newSLAdjustmentTotals.FIN_RemittanceAccount__c = si.FIN_SubContract__r.FIN_RemittanceAccount__c;
+                }
+            }
 
-        System.debug('adjustmentTotalsToInsert: ' + adjustmentTotalsToInsert);
+            if (newSLAdjustmentTotals.FIN_RemittanceAccount__c != null) {
+                adjustmentTotalsToInsert.add(newSLAdjustmentTotals);
+            }
+        }
+        //}
+
+        System.debug('adjustmentTotalsToInsert: ' + adjustmentTotalsToInsert.size());
         if (!adjustmentTotalsToInsert.isEmpty()) {
+            System.debug('!adjustmentTotalsToInsert.isEmpty(): ' + !adjustmentTotalsToInsert.isEmpty());
             insert adjustmentTotalsToInsert;
         }
-
 
 
         // Integer adjustmentDetailsSize = 0;
@@ -556,9 +579,9 @@ public with sharing class FIN_SettlementItemHelper {
 
             for (FIN_Payee__c p : uniquePayeesList) {
                 for (FIN_SettlementItem__c si : adjustmentsSIs) {
-                    
+
                     if (si.FIN_RemittanceAccount__c == p.Id || si.FIN_SubContract__r.FIN_RemittanceAccount__c == p.Id) {
-                        
+
                         FIN_SettlementLine__c newSLAdjustmentDetails = new FIN_SettlementLine__c();
 
                         newSLAdjustmentDetails.FIN_SettlementSchedule__c = si.FIN_ParentSettlementSchedule__c;
@@ -583,10 +606,10 @@ public with sharing class FIN_SettlementItemHelper {
                 }
             }
         }
-        
+
         System.debug('adjustmentDetailsToInsert.size(): ' + adjustmentDetailsToInsert.size());
         if (!adjustmentDetailsToInsert.isEmpty()) {
             insert adjustmentDetailsToInsert;
-        }        
+        }
     }
 }

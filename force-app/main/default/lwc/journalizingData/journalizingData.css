@@ -33,7 +33,7 @@
     padding: 15px;
 }
 
-lightning-input, lightning-combobox {
+lightning-input, lightning-combobox, c-custom-lookup {
     padding-right: 7px;
 }
 
@@ -62,4 +62,8 @@ lightning-button {
 
 lightning-radio-group {
     margin: auto;
+}
+
+c-custom-lookup {
+    display: block;
 }

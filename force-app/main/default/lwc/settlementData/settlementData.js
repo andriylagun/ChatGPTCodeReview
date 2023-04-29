@@ -1,18 +1,16 @@
-import { LightningElement, api, track, wire  } from 'lwc';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { updateRecord } from 'lightning/uiRecordApi';
+import {LightningElement, api, track, wire} from 'lwc';
+import {ShowToastEvent} from 'lightning/platformShowToastEvent';
+import {updateRecord} from 'lightning/uiRecordApi';
 
-import getEvents from '@salesforce/apex/SettleDataController.getEvents';
-import getZones from '@salesforce/apex/SettleDataController.getZones';
 import getFilteredSubContractsWithPDs from '@salesforce/apex/SettleDataController.getFilteredSubContractsWithPDs';
 import createSI from '@salesforce/apex/SettleDataController.createSI';
 
 import SETTLEMENT_OBJECT from '@salesforce/schema/FIN_SettlementSchedule__c';
 import SETTLEMENTSCHEDULE_STATUS from '@salesforce/schema/FIN_SettlementSchedule__c.FIN_Status__c';
-import SETTLEMENTSCHEDULE_GENERATIONDATE from '@salesforce/schema/FIN_SettlementSchedule__c.FIN_SettlementReport_GenerationDate__c';
+import SETTLEMENTSCHEDULE_GENERATIONDATE
+    from '@salesforce/schema/FIN_SettlementSchedule__c.FIN_SettlementReport_GenerationDate__c';
 import SETTLEMENTSCHEDULE_PUBLISHINGDATE from '@salesforce/schema/FIN_SettlementSchedule__c.FIN_PublishingDate__c';
 import SETTLEMENTSCHEDULE_REMITTANCEDATE from '@salesforce/schema/FIN_SettlementSchedule__c.FIN_RemittanceDate__c';
-import SETTLEMENTSCHEDULE_APPLYACCUMULATORS from '@salesforce/schema/FIN_SettlementSchedule__c.FIN_ApplyAccumulators__c';
 import SETTLEMENTSCHEDULE_CONTRACT from '@salesforce/schema/FIN_SettlementSchedule__c.FIN_Contract__c';
 import SETTLEMENTSCHEDULE_ID from '@salesforce/schema/FIN_SettlementSchedule__c.Id';
 
@@ -24,7 +22,7 @@ export default class SettlementData extends LightningElement {
     @api recordId;
     @api settlementId;
     objectApiName = SETTLEMENT_OBJECT;
-    fields = [SETTLEMENTSCHEDULE_GENERATIONDATE, SETTLEMENTSCHEDULE_APPLYACCUMULATORS, SETTLEMENTSCHEDULE_STATUS, SETTLEMENTSCHEDULE_PUBLISHINGDATE, SETTLEMENTSCHEDULE_REMITTANCEDATE];
+    fields = [SETTLEMENTSCHEDULE_GENERATIONDATE, SETTLEMENTSCHEDULE_STATUS, SETTLEMENTSCHEDULE_PUBLISHINGDATE, SETTLEMENTSCHEDULE_REMITTANCEDATE];
     contract = SETTLEMENTSCHEDULE_CONTRACT;
 
     eventDateFrom = null;
@@ -61,46 +59,28 @@ export default class SettlementData extends LightningElement {
         this[event.target.name] = '';
     }
 
-    lookupRecord(event){
-        if(event.detail.selectedRecord) {
+    lookupSale(event) {
+        if (event.detail.selectedRecord) {
             this.sales = event.detail.selectedRecord.Id;
         } else {
             this.sales = ''
         }
     }
 
-    @wire(getEvents, {objectName: 'settlement', contractId: "$recordId"})
-    wiredEvents({data, error}) {
-        if (data) {
-            for (let i = 0; i < data.length; i++) {
-                this.eventMap = [...this.eventMap, {value: data[i].Id, label: data[i].Name}];
-            }
-            this.error = undefined;
-        } else if (error) {
-            this.error = error;
-            this.events = undefined;
+    lookupEvent(event) {
+        if (event.detail.selectedRecord) {
+            this.events = event.detail.selectedRecord.Id;
+        } else {
+            this.events = ''
         }
     }
 
-    get eventsOptions() {
-        return this.eventMap;
-    }
-
-    @wire(getZones, {contractId: "$recordId"})
-    wiredZones({data, error}) {
-        if (data) {
-            for (let i = 0; i < data.length; i++) {
-                this.zoneMap = [...this.zoneMap, {value: data[i].FIN_ZoneDesc__c, label: data[i].FIN_ZoneDesc__c}];
-            }
-            this.error = undefined;
-        } else if (error) {
-            this.error = error;
-            this.zones = undefined;
+    lookupZone(event) {
+        if (event.detail.selectedRecord) {
+            this.zones = event.detail.selectedRecord.FIN_ZoneDesc__c;
+        } else {
+            this.zones = ''
         }
-    }
-
-    get zonesOptions() {
-        return this.zoneMap;
     }
 
     handleClick(event) {
@@ -127,7 +107,6 @@ export default class SettlementData extends LightningElement {
         })
             .then((result) => {
                 this.filteredData = [];
-
                 for (const contract of result) {
                     this.filteredData.push(
                         {
@@ -136,7 +115,7 @@ export default class SettlementData extends LightningElement {
                             scName: contract?.Name,
                             child: contract?.Payment_Distributions__r.map(pd => pd.Id),
                             total: contract?.Payment_Distributions__r
-                                .reduce((prev, pd) => pd.FIN_DistributionAmount__c ? prev+pd.FIN_DistributionAmount__c : prev, 0)
+                                .reduce((prev, pd) => pd.FIN_DistributionAmount__c ? prev + pd.FIN_DistributionAmount__c : prev, 0)
                         }
                     );
                 }
@@ -206,6 +185,9 @@ export default class SettlementData extends LightningElement {
     handleSuccess(event) {
         this.closeModal();
 
+        let message;
+        let settlementShId;
+
         if (this.settlementId === undefined) {
             let parseStr = JSON.parse(JSON.stringify(event.detail));
 
@@ -237,12 +219,6 @@ export default class SettlementData extends LightningElement {
                         })
                     );
                 });
-        }
-
-        let message;
-        let settlementShId;
-
-        if (this.settlementId === undefined) {
             settlementShId = event.detail.id;
             message = " Settlement Items created successfully!";
         } else {
@@ -251,54 +227,63 @@ export default class SettlementData extends LightningElement {
         }
 
 
+        if (this.allSelectedContracts.length > 0) {
+            createSI({
+                pdIds: this.allSelectedContracts.reduce((prev, ctr) => prev.concat(ctr.child), []),
+                settlementSh: settlementShId
+            })
+                .then((result) => {
+                    if (result > 0) {
+                        const temp = this.filteredData.filter((el) => !this.allSelectedContracts.find(sel => sel.id === el.id));
+                        this.filteredData = temp
 
-        createSI({
-            paymentDis: this.allSelectedContracts.reduce((prev, ctr) => prev.concat(ctr.child), []),
-            settlementSh: settlementShId
-        })
-            .then((result) => {
-                console.log('result',result)
-                if (result > 0) {
-                    const temp = this.filteredData.filter((el) => !this.allSelectedContracts.find(sel => sel.id === el.id));
-                    this.filteredData = temp
+                        if (this.filteredData.length > 0) {
+                            this.openList()
+                            this.closeMessage()
+                        } else {
+                            this.openMessage()
+                            this.closeList()
+                        }
 
-                    if (this.filteredData.length > 0) {
-                        this.openList()
-                        this.closeMessage()
-                    } else {
-                        this.openMessage()
-                        this.closeList()
+                        this.disabledConfirm = false;
+
+                        this.dispatchEvent(
+                            new ShowToastEvent({
+                                title: "Success",
+                                message: result + message,
+                                variant: "success"
+                            })
+                        );
                     }
-
-                    this.disabledConfirm = false;
-
+                })
+                .catch((error) => {
+                    console.error(error);
                     this.dispatchEvent(
                         new ShowToastEvent({
-                            title: "Success",
-                            message: result + message,
-                            variant: "success"
+                            title: "Error creating record",
+                            message: error,
+                            variant: "error"
                         })
                     );
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: "Error creating record",
-                        message: error,
-                        variant: "error"
-                    })
-                );
-            })
-            .finally(() => {
-                const closeChildWindow = new CustomEvent("closechild", {
-                    detail: false
+                })
+                .finally(() => {
+                    const closeChildWindow = new CustomEvent("closechild", {
+                        detail: false
+                    });
+                    this.dispatchEvent(closeChildWindow);
+                    this.closeModal();
                 });
-                this.dispatchEvent(closeChildWindow);
-                this.closeModal();
-            });
+        } else {
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: "",
+                    message: "No Settlement Items were created",
+                    variant: "success"
+                })
+            );
+        }
     }
+
 
     openModal() {
         this.isModalOpen = true;
@@ -306,6 +291,7 @@ export default class SettlementData extends LightningElement {
 
     closeModal() {
         this.isModalOpen = false;
+        this.disabledConfirm = false
     }
 
     openForm() {

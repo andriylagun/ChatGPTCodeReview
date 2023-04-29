@@ -3,15 +3,4 @@
     <fullName>FIN_PaymentDistribution</fullName>
     <active>true</active>
     <label>Payment Distribution</label>
-    <picklistValues>
-        <picklist>FIN_Region__c</picklist>
-        <values>
-            <fullName>N%2FA</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>US</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
 </RecordType>

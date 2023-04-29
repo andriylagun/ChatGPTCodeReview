@@ -29,7 +29,7 @@
     padding: 15px;
 }
 
-lightning-input, lightning-combobox {
+lightning-input, lightning-combobox, c-custom-lookup {
     padding-right: 7px;
 }
 
@@ -40,4 +40,8 @@ lightning-button-icon {
 lightning-button {
     display: block;
     margin: 7px 0px;
+}
+
+c-custom-lookup {
+    display: block;
 }

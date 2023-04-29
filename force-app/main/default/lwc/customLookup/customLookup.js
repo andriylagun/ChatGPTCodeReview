@@ -1,4 +1,4 @@
-import { LightningElement,api,wire} from 'lwc';
+import {LightningElement, api, wire} from 'lwc';
 import fetchLookupData from '@salesforce/apex/CustomLookupController.fetchLookupData';
 import fetchDefaultRecord from '@salesforce/apex/CustomLookupController.fetchDefaultRecord';
 
@@ -13,10 +13,19 @@ export default class CustomLookup extends LightningElement {
     @api defaultRecordId = '';
     @api searchField = 'Name';
     @api contractId = null;
+    @api searchObj = null;
+    @api objectName = null;
+    @api type = null;
+    @api region = null;
 
     // private properties
     lstResult = []; // to store list of returned records
     hasRecords = true;
+    isSale = false;
+    isEvent = false;
+    isZone = false;
+    isContext = false;
+    isContract = false;
     searchKey = ''; // to store input field value
     isSearchLoading = false; // to control loading spinner
     delayTimeout;
@@ -24,12 +33,20 @@ export default class CustomLookup extends LightningElement {
 
     // initial function to populate default selected lookup record if defaultRecordId provided
     connectedCallback() {
-        console.log('recordId', this.defaultRecordId);
-        console.log('sObjectApiName', this.objectApiName);
-        console.log('searchField', this.searchField);
+        console.log('connected callback')
+        if (this.searchObj === 'Sale') {
+            this.isSale = true;
+        } else if (this.searchObj === 'Zone') {
+            this.isZone = true;
+        } else if (this.searchObj === 'Event') {
+            this.isEvent = true;
+        } else if (this.searchObj === 'Context') {
+            this.isContext = true;
+        } else if (this.searchObj === 'Contract') {
+            this.isContract = true;
+        }
 
         if (this.defaultRecordId !== '') {
-            console.log('connectedCallback')
             fetchDefaultRecord({
                 recordId: this.defaultRecordId,
                 sObjectApiName: this.objectApiName,
@@ -54,14 +71,20 @@ export default class CustomLookup extends LightningElement {
         searchKey: '$searchKey',
         sObjectApiName: '$objectApiName',
         searchField: '$searchField',
-        contractId: '$contractId'
+        searchObj: '$searchObj',
+        contractId: '$contractId',
+        objectName: '$objectName',
+        type: '$type',
+        region: '$region'
     })
     searchResult(value) {
+        console.log('searchResult');
         const {data, error} = value; // destructure the provisioned value
         this.isSearchLoading = false;
         if (data) {
             this.hasRecords = data.length == 0 ? false : true;
             this.lstResult = JSON.parse(JSON.stringify(data));
+            console.log('lstResult', this.lstResult);
         } else if (error) {
             console.log('(error---> ' + JSON.stringify(error));
         }
@@ -114,7 +137,12 @@ export default class CustomLookup extends LightningElement {
     // method to update selected record from search result
     handelSelectedRecord(event) {
         var objId = event.target.getAttribute('data-recid'); // get selected record Id
-        this.selectedRecord = this.lstResult.find(data => data.Id === objId); // find selected record from list
+
+        this.selectedRecord = this.lstResult.find(data => {
+            if ('Id' in data)
+                return data.Id === objId
+            return data.FIN_ZoneDesc__c === objId;
+        }); // find selected record from list
         this.lookupUpdatehandler(this.selectedRecord); // update value on parent component as well from helper function
         this.handelSelectRecordHelper(); // helper function to show/hide lookup result container on UI
     }

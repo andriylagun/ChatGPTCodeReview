@@ -36,12 +36,12 @@ public with sharing class FIN_OrderItemHelper {
             FIN_RetroactiveAdjustment__c newRetroactiveAdjustment = new FIN_RetroactiveAdjustment__c();
             newRetroactiveAdjustment.FIN_OrderProduct__c = orderItem.Id;
             newRetroactiveAdjustment.RecordTypeId = orderItemRecordTypeId;
-            newRetroactiveAdjustment.FIN_Contract__c = orderItem.SBQQ__Contract__c;
+            newRetroactiveAdjustment.FIN_Contract__c = orderItem.Order.ContractId;
             newRetroactiveAdjustment.FIN_Account__c = orderItem.FIN_Client__c;
             newRetroactiveAdjustment.FIN_Order__c = orderItem.OrderId;
             newRetroactiveAdjustment.FIN_PaymentDistribution__c = orderItem.FIN_PaymentDistribution__c;
             
-            for(String str : orderItemRAMap.keyset()) {
+            for (String str : orderItemRAMap.keyset()) {
                 if(orderItem.get(str) != oldO.get(str)) {
                     newRetroactiveAdjustment.put(orderItemRAMap.get(str), orderItem.get(str));
                     i++;

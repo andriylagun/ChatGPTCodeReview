@@ -5,6 +5,7 @@ import {getFieldValue, getRecord} from 'lightning/uiRecordApi';
 
 import getRelatedRecords from '@salesforce/apex/InvoiceDataController.getRelatedRecords';
 import removeRelatedIIs from '@salesforce/apex/InvoiceDataController.removeRelatedIIs';
+import getRelatedSalesTransaction from '@salesforce/apex/InvoiceDataController.getRelatedSalesTransaction';
 
 import CONTRACT_FIELD from '@salesforce/schema/FIN_InvoiceSchedule__c.FIN_Contract__c';
 import TYPE_FIELD from '@salesforce/schema/FIN_InvoiceSchedule__c.FIN_Type__c';
@@ -13,6 +14,11 @@ const fields = [CONTRACT_FIELD, TYPE_FIELD];
 import {
     COLUMNS_DEFINITION_BASIC, COLUMNS_SALESTR_BASIC
 } from 'c/invoiceData';
+import {
+    PAYMENT_DISTRIBUTION_SOBJECT_API,
+    PAYMENT_SOBJECT_API,
+    SALES_TRANSACTIONS_SOBJECT_API
+} from "../utilits/constants";
 
 export default class InvoiceItems extends LightningElement {
     @api recordId;
@@ -43,7 +49,7 @@ export default class InvoiceItems extends LightningElement {
             this.refreshTable = response;
             this.recordsData = [];
 
-            if (this.type === 'PDs') {
+            if (this.type === PAYMENT_DISTRIBUTION_SOBJECT_API) {
                 this.gridColumns = COLUMNS_DEFINITION_BASIC;
 
                 for (const contract of response.data) {
@@ -58,7 +64,7 @@ export default class InvoiceItems extends LightningElement {
                         }
                     );
                 }
-            } else if (this.type === 'Payments') {
+            } else if (this.type === PAYMENT_SOBJECT_API) {
                 this.gridColumns = COLUMNS_DEFINITION_BASIC;
 
                 for (const contract of response.data) {
@@ -73,23 +79,23 @@ export default class InvoiceItems extends LightningElement {
                         }
                     );
                 }
-            } else if (this.type === 'SalesTransactions') {
+            } else if (this.type === SALES_TRANSACTIONS_SOBJECT_API) {
                 this.gridColumns = COLUMNS_SALESTR_BASIC;
-
-                for (const contract of response.data) {
-                    this.recordsData.push(
-                        {
-                            id: contract.Id,
-                            scNumber: contract?.ContractNumber,
-                            scName: contract?.Name,
-                            child: contract?.SBQQ__OrderProducts__r.map(pd => pd.Id),
-                            total: contract?.SBQQ__OrderProducts__r
-                                .reduce((prev, pd) => pd.FIN_TotalNetAmount__c ? prev+pd.FIN_TotalNetAmount__c : prev, 0),
-                            qty: contract?.SBQQ__OrderProducts__r
-                                .reduce((prev, pd) => pd.Quantity ? prev+pd.Quantity : prev, 0)
-                        }
-                    );
-                }
+                this.getRelatedTransactions();
+                // for (const contract of response.data) {
+                //     this.recordsData.push(
+                //         {
+                //             id: contract.Id,
+                //             scNumber: contract?.ContractNumber,
+                //             scName: contract?.Name,
+                //             child: contract?.SBQQ__OrderProducts__r.map(pd => pd.Id),
+                //             total: contract?.SBQQ__OrderProducts__r
+                //                 .reduce((prev, pd) => pd.FIN_TotalNetAmount__c ? prev+pd.FIN_TotalNetAmount__c : prev, 0),
+                //             qty: contract?.SBQQ__OrderProducts__r
+                //                 .reduce((prev, pd) => pd.Quantity ? prev+pd.Quantity : prev, 0)
+                //         }
+                //     );
+                // }
             }
 
             if (this.recordsData.length > 0) {
@@ -106,6 +112,45 @@ export default class InvoiceItems extends LightningElement {
             this.data = undefined;
             this.closeList();
         }
+    }
+
+    getRelatedTransactions() {
+        console.log(this.recordId);
+    getRelatedSalesTransaction({invoiceSh: this.recordId})
+        .then(result => {
+            console.log(result)
+            const data = result;
+
+            for(const key in data) {
+                const contract = JSON.parse(key);
+                console.log('contract',contract);
+                console.log('data[key]',data[key]);
+                this.recordsData.push(
+                    {
+                        id: contract.Id,
+                        scNumber: contract?.ContractNumber,
+                        scName: contract?.Name,
+                        child: data[key].map(pd => pd.Id),
+                        total: data[key]
+                            .reduce((prev, pd) => pd.FIN_TotalNetAmount__c ? prev + pd.FIN_TotalNetAmount__c : prev, 0),
+                        qty: data[key]
+                            .reduce((prev, pd) => pd.Quantity ? prev + pd.Quantity : prev, 0)
+                    }
+                )
+            }
+
+            if (this.recordsData.length > 0) {
+                this.disabledRemove = false;
+                this.openList();
+            } else {
+                this.disabledRemove = true;
+                this.closeList();
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
     }
 
     handleRemove() {

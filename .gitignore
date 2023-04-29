@@ -19,6 +19,7 @@ logs
 *.log
 delta.bat
 config.ini
+/config/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

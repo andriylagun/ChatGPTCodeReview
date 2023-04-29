@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <description>Related Library Associations</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Related Library Associations</masterLabel>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property default="5" label="Default number of records o display" max="500" min="1" name="recordsToDisplay" type="Integer" />
+            <property default="500" label="Maximum number of records o display" max="500" min="1" name="maxRecordsToDisplay" type="Integer" />
+            <property label="Show Library Association from Master Contract?" name="showFromMasterContract" type="Boolean"/>
+            <property label="Related List Name" name="listName" type="String"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -4,10 +4,10 @@
     <option name="connections">
       <list>
         <IlluminatedCloudConnection>
-          <option name="connectionName" value="AXSFinanceDEV" />
+          <option name="connectionName" value="UAT_CORRECT" />
           <option name="connectionType" value="OAUTH" />
           <option name="defaultModuleName" value="AXSFinanceDevelop" />
-          <option name="offlineSymbolTablePath" value="$PROJECT_DIR$/IlluminatedCloud/AXSFinanceDEV/OfflineSymbolTable.zip" />
+          <option name="offlineSymbolTablePath" value="$PROJECT_DIR$/IlluminatedCloud/UAT_CORRECT/OfflineSymbolTable.zip" />
         </IlluminatedCloudConnection>
       </list>
     </option>
@@ -23,10 +23,12 @@
       <module fileurl="file://$PROJECT_DIR$/AXSFinanceDevelop.iml" filepath="$PROJECT_DIR$/AXSFinanceDevelop.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager">
-    <output url="file://$PROJECT_DIR$/out" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" project-jdk-name="IlluminatedCloud (salesforce-axsgroupllc/UAT_CORRECT)" project-jdk-type="IlluminatedCloud">
+    <output url="file://$PROJECT_DIR$/../../../../Program Files/sfdx/client/bin" />
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/gpt4all" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/gpt4all/peft" vcs="Git" />
   </component>
 </project>

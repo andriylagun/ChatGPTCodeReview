@@ -1,15 +1,14 @@
-import { LightningElement, api, track, wire  } from 'lwc';
-import { getPicklistValues, getObjectInfo} from 'lightning/uiObjectInfoApi';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { updateRecord} from 'lightning/uiRecordApi';
-
-import getEvents from '@salesforce/apex/SettleDataController.getEvents';
-import getZones from '@salesforce/apex/SettleDataController.getZones';
+import {LightningElement, api, track, wire} from 'lwc';
+import {getPicklistValues, getObjectInfo} from 'lightning/uiObjectInfoApi';
+import {ShowToastEvent} from 'lightning/platformShowToastEvent';
+import {updateRecord} from 'lightning/uiRecordApi';
+import {PAYMENT_SOBJECT_API, PAYMENT_DISTRIBUTION_SOBJECT_API, SALES_TRANSACTIONS_SOBJECT_API} from '../utilits/constants'
 import getFilteredSubContractsWithPDs from '@salesforce/apex/SettleDataController.getFilteredSubContractsWithPDs';
-import getFilteredSubContractsWithPayments from '@salesforce/apex/InvoiceDataController.getFilteredSubContractsWithPayments';
-import getFilteredSubContractsWithSalesTransactions from '@salesforce/apex/InvoiceDataController.getFilteredSubContractsWithSalesTransactions';
+import getFilteredSubContractsWithPayments
+    from '@salesforce/apex/InvoiceDataController.getFilteredSubContractsWithPayments';
+import getFilteredSubContractsWithSalesTransactions
+    from '@salesforce/apex/InvoiceDataController.getFilteredSubContractsWithSalesTransactions';
 import createInvoiceItems from '@salesforce/apex/InvoiceDataController.createInvoiceItems';
-
 import INVOICE_OBJECT from '@salesforce/schema/FIN_InvoiceSchedule__c';
 import INVOICE_ACCUMULATORS from '@salesforce/schema/FIN_InvoiceSchedule__c.FIN_ApplyAccumulators__c';
 import INVOICE_MODE from '@salesforce/schema/FIN_InvoiceSchedule__c.FIN_Mode__c';
@@ -90,11 +89,27 @@ export default class InvoiceData extends LightningElement {
     @wire(getObjectInfo, {objectApiName: INVOICE_OBJECT})
     objectInfo
 
-    lookupRecord(event){
-        if(event.detail.selectedRecord) {
+    lookupSale(event) {
+        if (event.detail.selectedRecord) {
             this.sales = event.detail.selectedRecord.Id;
         } else {
             this.sales = ''
+        }
+    }
+
+    lookupEvent(event) {
+        if (event.detail.selectedRecord) {
+            this.events = event.detail.selectedRecord.Id;
+        } else {
+            this.events = ''
+        }
+    }
+
+    lookupZone(event) {
+        if (event.detail.selectedRecord) {
+            this.zones = event.detail.selectedRecord.FIN_ZoneDesc__c;
+        } else {
+            this.zones = ''
         }
     }
 
@@ -115,40 +130,6 @@ export default class InvoiceData extends LightningElement {
         }
     }
 
-    @wire(getEvents, {contractId: "$recordId"})
-    wiredEvents({data, error}) {
-        if (data) {
-            for (let i = 0; i < data.length; i++) {
-                this.eventMap = [...this.eventMap, {value: data[i].Id, label: data[i].Name}]
-            }
-            this.error = undefined
-        } else if (error) {
-            this.error = error
-            this.events = undefined
-        }
-    }
-
-    get eventsOptions() {
-        return this.eventMap
-    }
-
-    @wire(getZones, {contractId: "$recordId"})
-    wiredZones({data, error}) {
-        if (data) {
-            for (let i = 0; i < data.length; i++) {
-                this.zoneMap = [...this.zoneMap, {value: data[i].FIN_ZoneDesc__c, label: data[i].FIN_ZoneDesc__c}]
-            }
-            this.error = undefined
-        } else if (error) {
-            this.error = error
-            this.zones = undefined
-        }
-    }
-
-    get zonesOptions() {
-        return this.zoneMap
-    }
-
     handleClick(event) {
         this.getData()
 
@@ -158,7 +139,8 @@ export default class InvoiceData extends LightningElement {
     }
 
     getData() {
-        if (this.value === 'PDs') {
+        console.log(this.value);
+        if (this.value === PAYMENT_DISTRIBUTION_SOBJECT_API) {
             this.gridColumns = COLUMNS_DEFINITION_BASIC
 
             getFilteredSubContractsWithPDs({
@@ -207,7 +189,7 @@ export default class InvoiceData extends LightningElement {
                     this.openMessage()
                     this.closeList()
                 })
-        } else if (this.value === 'Payments') {
+        } else if (this.value === PAYMENT_SOBJECT_API) {
             this.gridColumns = COLUMNS_DEFINITION_BASIC
 
             getFilteredSubContractsWithPayments({
@@ -252,7 +234,7 @@ export default class InvoiceData extends LightningElement {
                     this.openMessage()
                     this.closeList()
                 })
-        } else if (this.value === 'SalesTransactions') {
+        } else if (this.value === SALES_TRANSACTIONS_SOBJECT_API) {
             this.gridColumns = COLUMNS_SALESTR_BASIC
 
             getFilteredSubContractsWithSalesTransactions({
@@ -264,17 +246,21 @@ export default class InvoiceData extends LightningElement {
                 .then((result) => {
                     console.log('result', result)
                     this.filteredData = []
+                    const data = result;
 
-                    for (const contract of result) {
+                    for (const key in data) {
+                        const contract = JSON.parse(key);
+                        console.log('contract', contract);
+                        console.log('data[key]', data[key]);
                         this.filteredData.push(
                             {
                                 id: contract.Id,
                                 scNumber: contract?.ContractNumber,
                                 scName: contract?.Name,
-                                child: contract?.SBQQ__OrderProducts__r.map(pd => pd.Id),
-                                total: contract?.SBQQ__OrderProducts__r
+                                child: data[key].map(pd => pd.Id),
+                                total: data[key]
                                     .reduce((prev, pd) => pd.FIN_TotalNetAmount__c ? prev + pd.FIN_TotalNetAmount__c : prev, 0),
-                                qty: contract?.SBQQ__OrderProducts__r
+                                qty: data[key]
                                     .reduce((prev, pd) => pd.Quantity ? prev + pd.Quantity : prev, 0)
                             }
                         )
@@ -335,22 +321,27 @@ export default class InvoiceData extends LightningElement {
     }
 
     handleConfirmClick(event) {
-        console.log('this.invoiceId', this.invoiceId )
-        this.disabledConfirm = true;
-        if (this.invoiceId === undefined) {
-            this.openModal()
-            this.openForm()
+        if (this.allSelectedRecords.length > 0) {
+            this.disabledConfirm = true;
+            if (this.invoiceId === undefined) {
+                this.openModal();
+                this.openForm();
+            } else {
+                this.handleSubmit(event);
+            }
         } else {
-            this.handleSubmit()
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: "Error",
+                    message: "Please choose at least one sub-contract",
+                    variant: "error"
+                })
+            )
         }
     }
 
     handleSubmit(event) {
-        console.log('submit')
-        if (this.invoiceId === undefined) {
-            event.preventDefault();
-        }
-        console.log('submit 2')
+        this.value
         this.closeModal()
         let message = ''
         let invoiceSh
@@ -358,6 +349,7 @@ export default class InvoiceData extends LightningElement {
         this.allSelectedRecords.forEach((value) => {
             mapObj[value.id] = value.child;
         });
+
 
         if (this.invoiceId === undefined) {
             message = " Invoice Items created successfully!"
@@ -421,12 +413,11 @@ export default class InvoiceData extends LightningElement {
         this.selectedRows = []
         this.value = event.target.value
 
-        if (this.value === 'SalesTransactions') {
+        if (this.value === SALES_TRANSACTIONS_OBJECT.objectApiName) {
             this.fields = [INVOICE_DESCRIPTION, INVOICE_TERMS, INVOICE_PO, INVOICE_PUBLISHDATE, INVOICE_ACCUMULATORS, INVOICE_MODE]
         } else {
             this.fields = [INVOICE_DESCRIPTION, INVOICE_TERMS, INVOICE_PO, INVOICE_PUBLISHDATE, INVOICE_ACCUMULATORS]
         }
-
         this.getData()
     }
 
@@ -436,6 +427,7 @@ export default class InvoiceData extends LightningElement {
 
     closeModal() {
         this.isModalOpen = false
+        this.disabledConfirm = false
     }
 
     openForm() {

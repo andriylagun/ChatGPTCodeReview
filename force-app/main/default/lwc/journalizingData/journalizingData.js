@@ -3,8 +3,6 @@ import { getPicklistValues, getObjectInfo} from 'lightning/uiObjectInfoApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { getRecord, updateRecord } from 'lightning/uiRecordApi';
 
-import getContexts from '@salesforce/apex/SettleDataController.getContexts'
-import getContracts from '@salesforce/apex/SettleDataController.getContracts'
 import getFilteredSubContractsWithPDs from '@salesforce/apex/SettleDataController.getFilteredSubContractsWithPDs';
 import getFilteredSubContractsWithPayments from '@salesforce/apex/InvoiceDataController.getFilteredSubContractsWithPayments';
 import getRegionPickListValues from '@salesforce/apex/JournalizingDataController.getRegionPickListValues';
@@ -92,6 +90,22 @@ export default class JournalizingData extends LightningElement {
         this[event.target.name] = '';
     }
 
+    lookupContract(event) {
+        if (event.detail.selectedRecord) {
+            this.contracts = event.detail.selectedRecord.Id;
+        } else {
+            this.contracts = ''
+        }
+    }
+
+    lookupContext(event) {
+        if (event.detail.selectedRecord) {
+            this.contexts = event.detail.selectedRecord.Id;
+        } else {
+            this.contexts = ''
+        }
+    }
+
     @wire(getObjectInfo, {objectApiName: JOURNALIZING_OBJECT})
     objectInfo
 
@@ -134,45 +148,6 @@ export default class JournalizingData extends LightningElement {
             console.error(error)
             this.error = error
         }
-    }
-
-    @wire(getContexts, {type: "$value", region: "$regions"})
-    wiredContext({data, error}) {
-        if (data) {
-            this.contextMap = []
-            for (let i = 0; i < data.length; i++) {
-                this.contextMap = this.contextMap.concat([{value: data[i].Id, label: data[i].Name}])
-            }
-            this.error = undefined
-        } else if (error) {
-            console.error(error)
-            this.error = error
-            this.contexts = undefined
-        }
-    }
-
-    get contextOptions() {
-        return this.contextMap
-    }
-
-    @wire(getContracts, {region: "$regions"})
-    wiredContract({data, error}) {
-        if(data) {
-            for (let i = 0; i < data.length; i++) {
-                this.contractMap =[...this.contractMap, {value: data[i].Id, label:data[i].ContractNumber.concat(' ', data[i]?.Name), number: parseInt(data[i].ContractNumber,10) }]
-            }
-            this.contractMap = this.contractMap.sort((r1, r2) => (r1.number > r2.number) ? 1 : (r1.number < r2.number) ? -1 : 0);
-
-            this.error = undefined
-        } else if (error) {
-            console.error(error)
-            this.error = error
-            this.contracts = undefined
-        }
-    }
-
-    get contractOptions() {
-        return this.contractMap
     }
 
     handleClick() {

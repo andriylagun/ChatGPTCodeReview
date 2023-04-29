@@ -289,7 +289,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                 if (invoice.FIN_Mode__c == 'ByAmount') {
                     for (ConsumptionSchedule cs : allCS) {                  
                         if (cs.RecordType.DeveloperName == 'Revenue_Amount') {
-                            cs.FIN_Actual_Revenue__c -= invoice.FIN_TotalInvoiceRegularAmountRevenue__c;
+                            cs.FIN_Actual_Revenue__c -= invoice.FIN_TotalInvoiceRegularAmountRevenue_App__c;
                             csToUpdate.add(cs);
                         } 
                     }
@@ -297,7 +297,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                 } else if (invoice.FIN_Mode__c == 'ByTicketQuantity') {
                     for (ConsumptionSchedule cs : allCS) {
                         if (cs.RecordType.DeveloperName == 'Ticket_Quantity') {
-                            cs.FIN_Actual_Count__c -= invoice.FIN_TotalQuantity__c;
+                            cs.FIN_Actual_Count__c -= invoice.FIN_TotalQuantityApplicable__c;
                             csToUpdate.add(cs);
                         }
                     }                           
@@ -315,7 +315,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                             cs.FIN_CalculatedBalance__c -= invoice.FIN_NetDue__c;
                             csToUpdate.add(cs);
                         } else if (cs.RecordType.DeveloperName == 'Revenue_Amount') {
-                            cs.FIN_Actual_Revenue__c -= invoice.FIN_TotalInvoiceRegularAmountRevenue__c;
+                            cs.FIN_Actual_Revenue__c -= invoice.FIN_TotalInvoiceRegularAmountRevenue_App__c;
                             csToUpdate.add(cs);
                         } 
                     }
@@ -329,7 +329,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                             cs.FIN_CalculatedBalance__c -= invoice.FIN_NetDue__c;
                             csToUpdate.add(cs);
                         } else if (cs.RecordType.DeveloperName == 'Ticket_Quantity') {
-                            cs.FIN_Actual_Count__c -= invoice.FIN_TotalQuantity__c;
+                            cs.FIN_Actual_Count__c -= invoice.FIN_TotalQuantityApplicable__c;
                             csToUpdate.add(cs);
                         }
                     }                           
@@ -367,7 +367,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                 if (invoice.FIN_Mode__c == 'ByAmount') {
                     for (ConsumptionSchedule cs : allCS) {                  
                         if (cs.RecordType.DeveloperName == 'Revenue_Amount') {
-                            cs.FIN_Actual_Revenue__c += invoice.FIN_TotalInvoiceRegularAmountRevenue__c;
+                            cs.FIN_Actual_Revenue__c += invoice.FIN_TotalInvoiceRegularAmountRevenue_App__c;
                             csToUpdate.add(cs);
                         } 
                     }
@@ -375,7 +375,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                 } else if (invoice.FIN_Mode__c == 'ByTicketQuantity') {
                     for (ConsumptionSchedule cs : allCS) {
                         if (cs.RecordType.DeveloperName == 'Ticket_Quantity') {
-                            cs.FIN_Actual_Count__c += invoice.FIN_TotalQuantity__c;
+                            cs.FIN_Actual_Count__c += invoice.FIN_TotalQuantityApplicable__c;
                             csToUpdate.add(cs);
                         }
                     }                           
@@ -393,7 +393,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                             cs.FIN_CalculatedBalance__c += invoice.FIN_NetDue__c;
                             csToUpdate.add(cs);
                         } else if (cs.RecordType.DeveloperName == 'Revenue_Amount') {
-                            cs.FIN_Actual_Revenue__c += invoice.FIN_TotalInvoiceRegularAmountRevenue__c;
+                            cs.FIN_Actual_Revenue__c += invoice.FIN_TotalInvoiceRegularAmountRevenue_App__c;
                             csToUpdate.add(cs);
                         } 
                     }
@@ -407,7 +407,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                             cs.FIN_CalculatedBalance__c += invoice.FIN_NetDue__c;
                             csToUpdate.add(cs);
                         } else if (cs.RecordType.DeveloperName == 'Ticket_Quantity') {
-                            cs.FIN_Actual_Count__c += invoice.FIN_TotalQuantity__c;
+                            cs.FIN_Actual_Count__c += invoice.FIN_TotalQuantityApplicable__c;
                             csToUpdate.add(cs);
                         }
                     }                           
@@ -425,7 +425,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                 } else if (item.Accumulation_to_Target__c != null && item.Starting_Balance__c != null && item.FIN_CalculatedBalance__c > item.Accumulation_to_Target__c - item.Starting_Balance__c) {
                     item.FIN_CalculatedBalance__c = item.Accumulation_to_Target__c - item.Starting_Balance__c;
                 } else if (item.Recoupment_Balance__c != null && item.Starting_Balance__c != null && item.FIN_CalculatedBalance__c > item.Recoupment_Balance__c - item.Starting_Balance__c) {
-                    item.FIN_CalculatedBalance__c = item.FIN_CalculatedBalance__c - item.Starting_Balance__c;
+                    item.FIN_CalculatedBalance__c = item.Recoupment_Balance__c - item.Starting_Balance__c;
                 }
             }
             
@@ -434,6 +434,24 @@ public with sharing class FIN_InvoiceScheduleHelper {
 
         } catch (DmlException e) {
             System.debug('The following exception has occurred: ' + e.getMessage());
+        }
+    }
+
+    public static void runAccumulationRulesOnInsert(List<FIN_InvoiceSchedule__c> invoices, Map<Id, FIN_InvoiceSchedule__c> oldMap) {
+        for (FIN_InvoiceSchedule__c is : invoices) {
+            if (is.FIN_ApplyAccumulators__c == true) {
+                ConsumptionScheduleBatch objbatch = new ConsumptionScheduleBatch(is.Id, is.FIN_Contract__c);
+                Database.executeBatch(objbatch);
+            } 
+        }
+    }
+
+    public static void runAccumulationRules(List<FIN_InvoiceSchedule__c> invoices, Map<Id, FIN_InvoiceSchedule__c> oldMap) {
+        for (FIN_InvoiceSchedule__c is : invoices) {
+            if (is.FIN_ApplyAccumulators__c != oldMap?.get(is.Id)?.FIN_ApplyAccumulators__c) {
+                ConsumptionScheduleBatch objbatch = new ConsumptionScheduleBatch(is.Id, is.FIN_Contract__c);
+                Database.executeBatch(objbatch);
+            }
         }
     }
 }

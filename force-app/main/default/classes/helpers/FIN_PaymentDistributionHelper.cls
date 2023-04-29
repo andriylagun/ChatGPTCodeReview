@@ -82,7 +82,8 @@ public with sharing class FIN_PaymentDistributionHelper {
             if (pd.FIN_FinancialResponsibilty__c == 'AXS') {
                 pd.FIN_Settlement_Status__c = 'ToBeSettled';
                 pd.FIN_Journalizing_Status__c = 'ToBePosted';
-            } else {
+                pd.Invoices_Status__c = 'ToBeInvoiced';
+            } else if (pd.FIN_FinancialResponsibilty__c == 'N/A') {
                 pd.FIN_Settlement_Status__c = 'NotApplicable';
                 pd.FIN_Journalizing_Status__c = 'NotApplicable';
                 pd.Invoices_Status__c = 'NotApplicable';

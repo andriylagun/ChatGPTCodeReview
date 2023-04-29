@@ -29,42 +29,27 @@
                     </div>
 
                     <div class="slds-col slds-size_1-of-3">
-                        <div class="slds-grid">
-                            <span class="slds-size_1-of-1">
-                                <lightning-combobox
-                                        name="contracts"
-                                        label="Contract:"
-                                        placeholder="Choose Contract"
-                                        value={contracts}
-                                        options={contractOptions}
-                                        onchange={handleFormInputChange} >
-                                </lightning-combobox>
-                            </span>
-                            <lightning-button-icon
-                                    icon-name="utility:undo"
-                                    name="contracts"
-                                    variant="bare"
-                                    onclick={handleUndoClick}
-                            ></lightning-button-icon>
-                        </div>
-                        <div class="slds-grid">
-                            <span class="slds-size_1-of-1">
-                                <lightning-combobox
-                                        name="contexts"
-                                        label="Context:"
-                                        placeholder="Choose Context"
-                                        value={contexts}
-                                        options={contextOptions}
-                                        onchange={handleFormInputChange}
-                                ></lightning-combobox>
-                            </span>
-                            <lightning-button-icon
-                                    icon-name="utility:undo"
-                                    name="contexts"
-                                    variant="bare"
-                                    onclick={handleUndoClick}
-                            ></lightning-button-icon>
-                        </div>
+                        <c-custom-lookup
+                                icon-name="standard:contract"
+                                label="Contract:"
+                                search-field="ContractNumber"
+                                region={regions}
+                                object-api-name="Contract"
+                                search-obj="Contract"
+                                placeholder="Search Contract here..."
+                                onlookupupdate={lookupContract}>
+                        </c-custom-lookup>
+                        <c-custom-lookup
+                                icon-name="standard:form"
+                                label="Context:"
+                                search-field="Name"
+                                type={value}
+                                region={regions}
+                                search-obj="Context"
+                                object-api-name="FIN_Context__c"
+                                placeholder="Search Context here..."
+                                onlookupupdate={lookupContext}>
+                        </c-custom-lookup>
                     </div>
 
                     <div class="slds-col slds-size_1-of-3">

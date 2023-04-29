@@ -88,7 +88,8 @@ public with sharing class FIN_PaymentHelper {
             if (payment.FIN_FinancialResponsibilty__c == 'AXS') {
                 payment.FIN_Settlement_Status__c = 'ToBeSettled';
                 payment.FIN_Journalizing_Status__c = 'ToBePosted';
-            } else {
+                payment.FIN_Invoices_Status__c = 'ToBeInvoiced';
+            } else if (payment.FIN_FinancialResponsibilty__c == 'N/A') {
                 payment.FIN_Settlement_Status__c = 'NotApplicable';
                 payment.FIN_Journalizing_Status__c = 'NotApplicable';
                 payment.FIN_Invoices_Status__c = 'NotApplicable';

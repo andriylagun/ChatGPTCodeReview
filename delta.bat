@@ -78,10 +78,11 @@ goto :validateAndDeploy
 :validateAndDeploy
 REM 6. Validate and deploy changes to source sandbox
 echo Validating and deploying changes to source sandbox...
-for /f "tokens=*" %%a in ('sfdx-git-delta --json --prefix !sourceBranch!- -t "from:HEAD" -f "from:origin/!sourceBranch!" --output "!packageXmlPath!"') do (
+if not exist delta mkdir delta
+for /f "tokens=*" %%a in ('sfdx sgd:source:delta -f "!FEATURE_BRANCH!" -t "origin/!targetBranch!" --output "!packageXmlPath!"') do (
     echo %%a
-
 )
+set TESTS_RUN="None"
 set /p TESTS_RUN=Which tests do you want to run? (All/None/Some/SpecifiedTests):
 if /i "!TESTS_RUN!"=="Some" (
     goto :someTests
@@ -91,12 +92,12 @@ if /i "!TESTS_RUN!"=="Some" (
 
 :someTests
 set /p TEST_CLASSES=Enter comma-separated test classes:
-sfdx force:source:deploy -u %sourceSandbox% -x %SFDX_GIT_DELTA_PACKAGE_XML% -c -l !TESTS_RUN!:!TEST_CLASSES!
+sfdx force:source:deploy -u %sourceSandbox% -x %SFDX_GIT_DELTA_PACKAGE_XML% -c --testlevel !TESTS_RUN!:!TEST_CLASSES!
 echo Validation and deployment to source sandbox completed.
 goto :scanner
 
 :deploy
-sfdx force:source:deploy -u %sourceSandbox% -x %SFDX_GIT_DELTA_PACKAGE_XML% -c -l !TESTS_RUN!
+sfdx force:source:deploy -u %sourceSandbox% -x %SFDX_GIT_DELTA_PACKAGE_XML% -c --testlevel !TESTS_RUN!
 goto :scanner
 
 :scanner

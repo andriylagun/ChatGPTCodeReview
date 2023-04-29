@@ -1,0 +1,69 @@
+<template>
+    <article class="slds-card slds-card_boundary slds-is-relative">
+        <div class="slds-grid slds-page-header">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="custom:custom8" class="slds-icon-standard-orders slds-icon_container">
+                    </lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2><span style="font-weight: 700;" class="slds-text-heading_small">{listName} ({relatedAssociations.length})</span>
+                    </h2>
+                </div>
+                <div class="slds-media__body">
+                </div>
+                <div style="float: right;" class="slds-media__figure">
+                    <lightning-button-icon variant="border-filled" icon-name="utility:refresh" onclick={refreshData}>
+                    </lightning-button-icon>
+                </div>
+            </header>
+        </div>
+        <div class="slds-scrollable">
+            <template if:true={loading}>
+                <lightning-spinner alternative-text="Loading" size="medium" variant="brand"></lightning-spinner>
+            </template>
+            <template if:true={relatedAssociations}>
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                    <thead>
+                    <tr>
+                        <th scope="col">Library Association Number</th>
+                        <th scope="col">Fee</th>
+                        <th scope="col">Context</th>
+                        <th scope="col">Fee Component</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Active</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <template for:each={displayedAssociations} for:item="relatedAssociation">
+                        <tr key={relatedAssociation.Id}>
+                            <td><a href={relatedAssociation.nameUrl}>{relatedAssociation.Name}</a></td>
+                            <td><a href={relatedAssociation.feeUrl}>{relatedAssociation.feeName}</a></td>
+                            <td><a href={relatedAssociation.contextUrl}>{relatedAssociation.contextName}</a></td>
+                            <td><a href={relatedAssociation.feeComponentUrl}>{relatedAssociation.feeComponentName}</a>
+                            </td>
+                            <td>{relatedAssociation.SBQQ__EffectiveDate__c}</td>
+                            <td>{relatedAssociation.SBQQ__ExpirationDate__c}</td>
+                            <td>
+                                <lightning-input type="checkbox" disabled="true"
+                                                 checked={relatedAssociation.FIN_Active__c}></lightning-input>
+                            </td>
+                            <td><img src={relatedAssociation.imageURL}/> {relatedAssociation.status}</td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+                <div class="slds-card__footer">
+                    <template if:false={returnedRecords}>
+                        <div class="slds-text-color_default">Contract doesn't have related Library Associations</div>
+                    </template>
+                    <template if:true={returnedRecords}>
+                        <a onclick={handleViewAll}>{viewAllLabel}</a>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </article>
+</template>

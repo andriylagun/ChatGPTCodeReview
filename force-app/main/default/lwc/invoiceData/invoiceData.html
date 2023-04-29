@@ -28,49 +28,32 @@
                     <div class="slds-col slds-size_1-of-3">
                         <c-custom-lookup
                                 icon-name="standard:orders"
-                                object-api-name="Order"
                                 label="Sale:"
                                 search-field="OrderNumber"
                                 contract-id={recordId}
+                                search-obj="Sale"
                                 placeholder="Search Sale here..."
-                                onlookupupdate={lookupRecord}>
+                                onlookupupdate={lookupSale}>
                         </c-custom-lookup>
-                        <div class="slds-grid">
-                            <span class="slds-size_1-of-1">
-                                <lightning-combobox
-                                        name="events"
-                                        label="Event:"
-                                        placeholder="Choose Event"
-                                        value={events}
-                                        options={eventsOptions}
-                                        onchange={handleFormInputChange}
-                                ></lightning-combobox>
-                            </span>
-                            <lightning-button-icon
-                                    icon-name="utility:undo"
-                                    name="events"
-                                    variant="bare"
-                                    onclick={handleUndoClick}
-                            ></lightning-button-icon>
-                        </div>
-                        <div class="slds-grid">
-                            <span class="slds-size_1-of-1">
-                                <lightning-combobox
-                                        name="zones"
-                                        label="Zone Description:"
-                                        placeholder="Choose Zone"
-                                        value={zones}
-                                        options={zonesOptions}
-                                        onchange={handleFormInputChange}
-                                ></lightning-combobox>
-                            </span>
-                            <lightning-button-icon
-                                    icon-name="utility:undo"
-                                    name="zones"
-                                    variant="bare"
-                                    onclick={handleUndoClick}
-                            ></lightning-button-icon>
-                        </div>
+                        <c-custom-lookup
+                                icon-name="standard:event"
+                                label="Event:"
+                                search-field="Name"
+                                contract-id={recordId}
+                                search-obj="Event"
+                                placeholder="Search Event here..."
+                                object-name="invoice"
+                                onlookupupdate={lookupEvent}>
+                        </c-custom-lookup>
+                        <c-custom-lookup
+                                icon-name="standard:dashboard_ea"
+                                label="Zone:"
+                                search-field="FIN_ZoneDesc__c"
+                                contract-id={recordId}
+                                search-obj="Zone"
+                                placeholder="Search Zone here..."
+                                onlookupupdate={lookupZone}>
+                        </c-custom-lookup>
                     </div>
 
                     <div class="slds-col slds-size_1-of-3">

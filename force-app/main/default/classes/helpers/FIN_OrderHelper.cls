@@ -56,50 +56,11 @@ public class FIN_OrderHelper {
     }
 
     public static void createRetroactiveAdjustment(List<Order> orders, Map<Id, Order> oldMap) {
-        List<FIN_RetroactiveAdjustment__c> retroactiveAdjustments = new List<FIN_RetroactiveAdjustment__c>();
-        Id orderRecordTypeId = Schema.SObjectType.FIN_RetroactiveAdjustment__c.getRecordTypeInfosByName().get('Order').getRecordTypeId();
-        Map<String, String> orderRAMap = new Map<String, String>{
-            'AccountId' => 'FIN_Account__c',
-            'FIN_Region__c' => 'FIN_Region__c',
-            'TotalAmount' => 'FIN_AdjustmentAmount__c',
-            'EffectiveDate' => 'FIN_OrderStartDate__c',
-            'ContractId' => 'FIN_Contract__c',
-            'FIN_Payment__c' => 'FIN_Payment__c',
-            'FIN_total_sales_amount__c' => 'FIN_Total_Sales_Amount__c',
-            'FIN_Total_Sales_Gross_Amoun__c' => 'FIN_Total_Sales_Gross_Amount__c',
-            'Adjustment_Amount__c' => 'FIN_AdjustmentAmount__c',
-            'FIN_ReferencePrice__c' => 'FIN_ReferencePrice__c'
-        };
-
         //Bypass this method when CPQ SBAA Approval Status changed
         if (orders[0].ApprovalStatus__c != oldMap?.get(orders[0].Id)?.ApprovalStatus__c) {
             return;
         }
 
-        for (Order order : orders) {
-            Order oldO = oldMap.get(order.Id);
-            Integer i = 0;
-
-            FIN_RetroactiveAdjustment__c newRetroactiveAdjustment = new FIN_RetroactiveAdjustment__c();
-            newRetroactiveAdjustment.FIN_Order__c = order.Id;
-            newRetroactiveAdjustment.FIN_Account__c = order.AccountId;
-            newRetroactiveAdjustment.FIN_Contract__c = order.ContractId;
-            newRetroactiveAdjustment.FIN_Payment__c = order.FIN_Payment__c;
-            newRetroactiveAdjustment.RecordTypeId = orderRecordTypeId;
-
-            for (String str : orderRAMap.keyset()) {
-                if (order.get(str) != oldO.get(str)) {
-                    newRetroactiveAdjustment.put(orderRAMap.get(str), order.get(str));
-                    i++;
-                }
-            }
-
-            if (i != 0) {
-                retroactiveAdjustments.add(newRetroactiveAdjustment);
-            }
-        }
-        System.debug('orders in trigger: ' + orders.size());
-        insert retroactiveAdjustments;
     }
 
 //    public static void updateOwnerOnClassifiedRecord(List<Order> sales) {
