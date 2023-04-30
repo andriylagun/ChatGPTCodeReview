@@ -10,10 +10,10 @@
         <members>FIN_SettlementItemHelper</members>
         <members>FIN_SettlementItemTriggerHandler</members>
         <members>SettleDataController</members>
-<!--        <members>SOSLQueryBuilder</members>-->
+        <members>SOSLQueryBuilder</members>
         <members>CustomLookupController</members>
-<!--        <members>GeneralBatchUpdater</members>-->
-<!--        <members>FIN_GenericDMLOperationsBatch</members>-->
+        <members>GeneralBatchUpdater</members>
+        <members>FIN_GenericDMLOperationsBatch</members>
         <members>FIN_PaymentHelper</members>
         <members>FIN_PaymentDistributionHelper</members>
         <members>InvoiceDataController</members>
@@ -24,9 +24,9 @@
         <name>ApexClass</name>
     </types>
     <types>
-<!--        <members>settlementData</members>-->
-<!--        <members>customLookup</members>-->
-<!--        <members>journalizingData</members>-->
+        <members>settlementData</members>
+        <members>customLookup</members>
+        <members>journalizingData</members>
         <members>invoiceData</members>
         <members>invoiceItems</members>
         <members>utilits</members>
