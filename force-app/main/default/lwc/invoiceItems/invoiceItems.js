@@ -18,7 +18,7 @@ import {
     PAYMENT_DISTRIBUTION_SOBJECT_API,
     PAYMENT_SOBJECT_API,
     SALES_TRANSACTIONS_SOBJECT_API
-} from "../utilits/constants";
+} from "c/utilits";
 
 export default class InvoiceItems extends LightningElement {
     @api recordId;
@@ -51,7 +51,6 @@ export default class InvoiceItems extends LightningElement {
 
             if (this.type === PAYMENT_DISTRIBUTION_SOBJECT_API) {
                 this.gridColumns = COLUMNS_DEFINITION_BASIC;
-
                 for (const contract of response.data) {
                     this.recordsData.push(
                         {

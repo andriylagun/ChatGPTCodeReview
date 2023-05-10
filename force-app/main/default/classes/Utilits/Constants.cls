@@ -104,9 +104,9 @@ public with sharing class Constants {
     };
 
     public static Map<String, String> uniqueIdsMap = new Map<String, String>{
-            'Sales' => 'FIN_TransactionId__c',
+            'Payment_Distribution' => 'FIN_Payment_Distribution_Unique_ID__c',
             'Payment' => 'FIN_Payment_Unique_ID__c',
-            'Payment_Distribution' => 'FIN_Payment_Distribution_Unique_ID__c'
+            'Sales' => 'FIN_TransactionId__c'
     };
 
     public static Map<String, Map<String, String>> statusFields = new Map<String, Map<String, String>>{
@@ -164,6 +164,8 @@ public with sharing class Constants {
     public static final String CLASSIFIED_QUEUE_US = 'FIN_US_Classified';
 
     public static final String FEE_ASSOCIATION_TYPE = 'Fee';
+
+    public static final String SUCCESS_STATUS = 'Success';
 
     public static final String UNCLASSIFIED_QUERY_CONDITION = 'OwnerId = :ownerId';
 

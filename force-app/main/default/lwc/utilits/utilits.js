@@ -1,7 +1,7 @@
 import { LightningElement, wire } from 'lwc';
 import {handlePlatformEvent} from "./toastByPlatformEvent";
 import { subscribe, onError, setDebugFlag, isEmpEnabled } from 'lightning/empApi';
-export {Constants} from "./constants";
+export {PAYMENT_SOBJECT_API, PAYMENT_DISTRIBUTION_SOBJECT_API, SALES_TRANSACTIONS_SOBJECT_API} from "./constants";
 
 export default class Utilits extends LightningElement {
     subscription = null;

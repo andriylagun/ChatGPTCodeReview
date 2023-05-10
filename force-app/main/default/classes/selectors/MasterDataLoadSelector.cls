@@ -1,6 +1,7 @@
 public with sharing class MasterDataLoadSelector {
     public static List<Master_Data_Load__c> getMasterDataLoadRecordByProcessDate(Date systemLoadLogProcessDate) {
-        return [SELECT Id, Sales__c, Payment_Distribution__c, Payment__c, ProcessDate__c, FIN_Region__c
+        return [SELECT Id, Sales__c, Payment_Distribution__c, Payment__c, ProcessDate__c, FIN_Region__c,
+                Sales__r.FIN_BusinessRuleProcessCompleteStatus__c, Payment__r.FIN_BusinessRuleProcessCompleteStatus__c, Payment_Distribution__r.FIN_BusinessRuleProcessCompleteStatus__c
                 FROM Master_Data_Load__c
                 WHERE ProcessDate__c = :systemLoadLogProcessDate];
     }

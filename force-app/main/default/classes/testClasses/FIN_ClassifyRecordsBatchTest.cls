@@ -426,11 +426,9 @@ public with sharing class FIN_ClassifyRecordsBatchTest {
         oldSale.FIN_SystemDataLoadLog__c = sysDataLog.Id;
         update oldSale;
 
-        List<FIN_Context__c> finContexts = FIN_ContextSelector.getAllActiveContexts();
 
         Test.startTest();
-            FIN_ClassifyRecordsBatch recordsBatch = new FIN_ClassifyRecordsBatch(Constants.sObjectToFieldsMap.get(sObjectTypeName), sObjectTypeName, fieldsToGet + Constants.fieldsToGetMap.get(sObjectTypeName), sysDataLog, finContexts);
-            Database.executeBatch(recordsBatch);
+            FIN_ResponsePublisherService.classifyRecords(sysDataLog);
         Test.stopTest();
 
         Order classifiedSale = [SELECT Id

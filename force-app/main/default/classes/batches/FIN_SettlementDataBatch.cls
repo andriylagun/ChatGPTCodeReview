@@ -41,8 +41,8 @@ public with sharing class FIN_SettlementDataBatch implements Database.Batchable<
     }
 
     public void finish(Database.BatchableContext param1) {
-        EventBus.publish(new FIN_ToastNotification__e(Status__c = 'Success',
-                Message__c = insertedRecordsCount + ' records was created successfully'));
+//        EventBus.publish(new FIN_ToastNotification__e(Status__c = 'Success',
+//                Message__c = insertedRecordsCount + ' records was created successfully'));
     }
 
     public Database.QueryLocator start(Database.BatchableContext param1) {

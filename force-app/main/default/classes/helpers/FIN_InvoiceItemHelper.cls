@@ -62,6 +62,16 @@ public with sharing class FIN_InvoiceItemHelper {
             }
         }
 
+        SOQLQueryBuilder invoiceLinesToRemoveQueryBuilder = SOQLQueryBuilder.create()
+            .selectClause()
+            .field(FIN_InvoiceLine__c.Id.getDescribe().getName())
+            .endSelectSOQL()
+            .fromClause(Schema.SObjectType.FIN_InvoiceLine__c.getName())
+            .whereClause()
+            .useBindVariablesInQuery(true)
+            .condition(FIN_InvoiceLine__c.FIN_ParentInvoiceSchedule__c.getDescribe().getName(), parentInvoiceScheduleIDs,Constants.ConditionType.IN_CONDITION, null, null)
+            .endWhereSOQL();
+
         List<FIN_InvoiceLine__c> invoiceLinesToRemove = [
                 SELECT Id
                 FROM FIN_InvoiceLine__c
@@ -86,50 +96,55 @@ public with sharing class FIN_InvoiceItemHelper {
         //     }
         // }
         // update updateIIs;
-        String invoiceItemLAReference = FIN_InvoiceItem__c.FIN_LibraryAssociation__r.getDescribe().getName() + '.' + SBQQ__ContractedPrice__c.FIN_Financial_Code__r.getDescribe().getName() + '.';
-        String invoiceItemPDPaymentReference = FIN_InvoiceItem__c.FIN_PaymentDistribution__r.getDescribe().getReferenceTargetField()  + '.' +
-                + FIN_PaymentDistribution__c.FIN_Payment__r.getDescribe().getName() + '.';
-        String invoiceItemPDReference = FIN_InvoiceItem__c.FIN_PaymentDistribution__r.getDescribe().getName() + '.';
-        String invoiceItemPaymentReference = FIN_InvoiceItem__c.FIN_Payment__r.getDescribe().getName() + '.';
-        List<String> fields = new List<String> {
-                FIN_InvoiceItem__c.Id.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_TotalGrossAmountforInvoice__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_BaseRateUnitCost__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_ManualAmount__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_EntryType__c.getDescribe().getName(),
+        String invoiceItemLAReference = FIN_InvoiceItem__c.FIN_LibraryAssociation__c.getDescribe().getReferenceTargetField() + '.' + SBQQ__ContractedPrice__c.FIN_Financial_Code__c.getDescribe().getReferenceTargetField() + '.';
+        String invoiceItemPDPaymentReference = FIN_InvoiceItem__c.FIN_PaymentDistribution__c.getDescribe().getReferenceTargetField()  + '.' +
+                + FIN_PaymentDistribution__c.FIN_Payment__c.getDescribe().getReferenceTargetField() + '.';
+        String invoiceItemPDReference = FIN_InvoiceItem__c.FIN_PaymentDistribution__c.getDescribe().getReferenceTargetField() + '.';
+        String invoiceItemPaymentReference = FIN_InvoiceItem__c.FIN_Payment__c.getDescribe().getReferenceTargetField() + '.';
+        String invoiceItemSTReference = FIN_InvoiceItem__c.FIN_SalesTransactions__c.getDescribe().getReferenceTargetField() + '.';
+        String invoiceItemISReference = FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__c.getDescribe().getReferenceTargetField() + '.';
+        String invoiceItemISContractReference = FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__c.getDescribe().getReferenceTargetField() + '.' + FIN_InvoiceSchedule__c.FIN_Contract__c.getDescribe().getReferenceTargetField() + '.';
+        String invoiceItemISMasterContractReference = FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__c.getDescribe().getReferenceTargetField() + '.' + FIN_InvoiceSchedule__c.FIN_Contract__c.getDescribe().getReferenceTargetField() + '.' + Contract.FIN_ParentContract__c.getDescribe().getReferenceTargetField() + '.';
 
-                invoiceItemLAReference + FIN_Financial_Code__c.FIN_Chart_of_Accounts_Description__c.getDescribe().getName(),
-                invoiceItemLAReference + FIN_Financial_Code__c.FIN_Subledger_Code__c.getDescribe().getName(),
-                invoiceItemLAReference + FIN_Financial_Code__c.FIN_Business_Unit__c.getDescribe().getName(),
-                invoiceItemLAReference.replace(SBQQ__ContractedPrice__c.FIN_Financial_Code__r.getDescribe().getName() + '.', '') + SBQQ__ContractedPrice__c.FIN_Financial_Code__c.getDescribe().getName(),
+        List<String> fields = new List<String>{
+            FIN_InvoiceItem__c.Id.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_TotalGrossAmountforInvoice__c.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_BaseRateUnitCost__c.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_ManualAmount__c.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_EntryType__c.getDescribe().getName(),
 
-                FIN_InvoiceItem__c.FIN_PaymentDistribution__c.getDescribe().getName(),
-                invoiceItemPDPaymentReference + FIN_Payment__c.FIN_Order__r.getDescribe().getName() + '.' + Order.FIN_Event__c.getDescribe().getName(),
-                invoiceItemPDPaymentReference + FIN_Payment__c.FIN_Order__c.getDescribe().getName(),
-                invoiceItemPDReference + FIN_PaymentDistribution__c.FIN_Channel__c.getDescribe().getName(),
+            invoiceItemLAReference + FIN_Financial_Code__c.FIN_Chart_of_Accounts_Description__c.getDescribe().getName(),
+            invoiceItemLAReference + FIN_Financial_Code__c.FIN_Subledger_Code__c.getDescribe().getName(),
+            invoiceItemLAReference + FIN_Financial_Code__c.FIN_Business_Unit__c.getDescribe().getName(),
+            invoiceItemLAReference.replace(SBQQ__ContractedPrice__c.FIN_Financial_Code__c.getDescribe().getName() + '.', '') + SBQQ__ContractedPrice__c.FIN_Financial_Code__c.getDescribe().getName(),
 
-                FIN_InvoiceItem__c.FIN_Payment__c.getDescribe().getName(),
-                invoiceItemPaymentReference + '.' + FIN_Payment__c.FIN_Order__r.getDescribe().getReferenceTargetField().FIN_Event__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_Payment__r.FIN_Order__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_Payment__r.FIN_Channel__c.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_PaymentDistribution__c.getDescribe().getName(),
+            invoiceItemPDPaymentReference + FIN_Payment__c.FIN_Order__c.getDescribe().getName() + '.' + Order.FIN_Event__c.getDescribe().getName(),
+            invoiceItemPDPaymentReference + FIN_Payment__c.FIN_Order__c.getDescribe().getName(),
+            invoiceItemPDReference + FIN_PaymentDistribution__c.FIN_Channel__c.getDescribe().getName(),
 
-                FIN_InvoiceItem__c.FIN_SalesTransactions__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_SalesTransactions__r.Order.FIN_Event__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_SalesTransactions__r.OrderId,
-                FIN_InvoiceItem__c.FIN_SalesTransactions__r.FIN_Channel__c.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_Payment__c.getDescribe().getName(),
+            invoiceItemPaymentReference + '.' + FIN_Payment__c.FIN_Order__c.getDescribe().getReferenceTargetField() + '.' + Order.FIN_Event__c.getDescribe().getName(),
+            invoiceItemPaymentReference + '.' + FIN_Payment__c.FIN_Order__c.getDescribe().getName(),
+            invoiceItemPaymentReference + '.' + FIN_Payment__c.FIN_Channel__c.getDescribe().getName(),
 
-                FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__r.FIN_Mode__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_TotalAmountbyQty__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_AmountbyQty__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_AdjustmentforInvoice__c.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_SalesTransactions__c.getDescribe().getName(),
+            invoiceItemSTReference + OrderItem.OrderId.getDescribe().getReferenceTargetField() + '.' + Order.FIN_Event__c.getDescribe().getName(),
+            invoiceItemSTReference + OrderItem.OrderId.getDescribe().getName(),
+            invoiceItemSTReference + OrderItem.FIN_Channel__c.getDescribe().getName(),
 
-                FIN_InvoiceItem__c.FIN_QuantityforInvoiceQty__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_AppliedRateforInvoice__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_AppliedUnitPriceforInvoice__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__r.FIN_Contract__r.FIN_BaseRate_UnitCost__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__r.FIN_Contract__r.FIN_ParentContract__r.FIN_BaseRate_UnitCost__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__r.FIN_Contract__r.FIN_InvoiceRate_del__c.getDescribe().getName(),
-                FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__r.FIN_Contract__r.FIN_ParentContract__r.FIN_InvoiceRate_del__c
+            invoiceItemISReference + FIN_InvoiceSchedule__c.FIN_Mode__c.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_TotalAmountbyQty__c.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_AmountbyQty__c.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_AdjustmentforInvoice__c.getDescribe().getName(),
+
+            FIN_InvoiceItem__c.FIN_QuantityforInvoiceQty__c.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_AppliedRateforInvoice__c.getDescribe().getName(),
+            FIN_InvoiceItem__c.FIN_AppliedUnitPriceforInvoice__c.getDescribe().getName(),
+            invoiceItemISContractReference + Contract.FIN_BaseRate_UnitCost__c.getDescribe().getName(),
+            invoiceItemISMasterContractReference + Contract.FIN_BaseRate_UnitCost__c.getDescribe().getName(),
+            invoiceItemISContractReference + Contract.FIN_InvoiceRate_del__c.getDescribe().getName(),
+            invoiceItemISMasterContractReference + Contract.FIN_InvoiceRate_del__c.getDescribe().getName()
         };
 
         List<FIN_InvoiceItem__c> allIIs = [
@@ -226,6 +241,18 @@ public with sharing class FIN_InvoiceItemHelper {
         }
         System.debug('channelsSet: ' + channelsSet);
 
+        SOQLQueryBuilder bUnitListQueryBuilder = SOQLQueryBuilder.create()
+            .selectClause()
+            .field(FIN_BusinessUnit__c.Id.getDescribe().getName())
+            .field(FIN_BusinessUnit__c.Name.getDescribe().getName())
+            .field(FIN_BusinessUnit__c.FIN_Description__c.getDescribe().getName())
+            .endSelectSOQL()
+            .fromClause(Schema.SObjectType.FIN_BusinessUnit__c.getName())
+            .whereClause()
+            .useBindVariablesInQuery(true)
+            .condition(FIN_BusinessUnit__c.Id.getDescribe().getName(), bUnitIdsSet,Constants.ConditionType.IN_CONDITION, null, null)
+            .endWhereSOQL();
+
         // get actual business units
         List<FIN_BusinessUnit__c> bUnitList = [
                 SELECT Id, Name, FIN_Description__c
@@ -234,6 +261,18 @@ public with sharing class FIN_InvoiceItemHelper {
         ];
         //FIN_Remark__c
 
+
+        SOQLQueryBuilder subCodeListQueryBuilder = SOQLQueryBuilder.create()
+            .selectClause()
+            .field(FIN_SubledgerCode__c.Id.getDescribe().getName())
+            .field(FIN_SubledgerCode__c.Name.getDescribe().getName())
+            .endSelectSOQL()
+            .fromClause(Schema.SObjectType.FIN_SubledgerCode__c.getName())
+            .whereClause()
+            .useBindVariablesInQuery(true)
+            .condition(FIN_SubledgerCode__c.Id.getDescribe().getName(), subledgerIdsSet,Constants.ConditionType.IN_CONDITION, null, null)
+            .endWhereSOQL();
+
         // get actual subledgers
         List<FIN_SubledgerCode__c> subCodeList = [
                 SELECT Id, Name
@@ -241,12 +280,36 @@ public with sharing class FIN_InvoiceItemHelper {
                 WHERE Id IN :subledgerIdsSet
         ];
 
+        SOQLQueryBuilder salesListQueryBuilder = SOQLQueryBuilder.create()
+            .selectClause()
+            .field(Order.Id.getDescribe().getName())
+            .field(Order.FIN_EventLookupCode__c.getDescribe().getName())
+            .field(Order.FIN_PriceCodeType__c.getDescribe().getName())
+            .endSelectSOQL()
+            .fromClause(Schema.SObjectType.Order.getName())
+            .whereClause()
+            .useBindVariablesInQuery(true)
+            .condition(Order.Id.getDescribe().getName(), salesIdsSet,Constants.ConditionType.IN_CONDITION, null, null)
+            .endWhereSOQL();
+
         // get actual sales
         List<Order> salesList = [
                 SELECT Id, FIN_EventLookupCode__c, FIN_PriceCodeType__c
                 FROM Order
                 WHERE Id IN :salesIdsSet
         ];
+
+        SOQLQueryBuilder eventsListQueryBuilder = SOQLQueryBuilder.create()
+            .selectClause()
+            .field(Campaign.Id.getDescribe().getName())
+            .field(Campaign.Description.getDescribe().getName())
+            .field(Campaign.FIN_LookupCode__c.getDescribe().getName())
+            .endSelectSOQL()
+            .fromClause(Schema.SObjectType.Campaign.getName())
+            .whereClause()
+            .useBindVariablesInQuery(true)
+            .condition(Campaign.Id.getDescribe().getName(), eventsIdsSet,Constants.ConditionType.IN_CONDITION, null, null)
+            .endWhereSOQL();
 
         // get actual events
         List<Campaign> eventsList = [
@@ -268,6 +331,26 @@ public with sharing class FIN_InvoiceItemHelper {
                     ////////////////////////////////// BusinessUnit //////////////////////////////////
                     for (FIN_BusinessUnit__c bu : bUnitList) {
                         // list of invoice items related to this bUnit
+
+                        SOQLQueryBuilder iiRelatedToThisBUQueryBuilder = SOQLQueryBuilder.create()
+                            .selectClause()
+                            .field(FIN_InvoiceItem__c.Id.getDescribe().getName())
+                            .field(FIN_InvoiceItem__c.FIN_TotalGrossAmountforInvoice__c.getDescribe().getName())
+                            .field(FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__c.getDescribe().getReferenceTargetField() + FIN_InvoiceSchedule__c.FIN_Mode__c.getDescribe().getName())
+                            .field(FIN_InvoiceItem__c.FIN_BaseRateUnitCost__c.getDescribe().getName())
+                            .field(FIN_InvoiceItem__c.FIN_TotalAmountbyQty__c.getDescribe().getName())
+                            .field(FIN_InvoiceItem__c.FIN_AmountbyQty__c.getDescribe().getName())
+                            .field(FIN_InvoiceItem__c.FIN_AdjustmentforInvoice__c.getDescribe().getName())
+                            .field(FIN_InvoiceItem__c.FIN_EntryType__c.getDescribe().getName())
+                            .field(FIN_InvoiceItem__c.FIN_ManualAmount__c.getDescribe().getName())
+                            .endSelectSOQL()
+                            .fromClause(Schema.SObjectType.FIN_InvoiceItem__c.getName())
+                            .whereClause()
+                            .useBindVariablesInQuery(true)
+                            .condition(invoiceItemLAReference + FIN_Financial_Code__c.FIN_Business_Unit__c.getDescribe().getName(), isId,Constants.ConditionType.EQUALS_CONDITION, null, null)
+                            .condition(FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__c.getDescribe().getName(), bu.Id,Constants.ConditionType.IN_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION)
+                            .endWhereSOQL();
+
                         List<FIN_InvoiceItem__c> iiRelatedToThisBU = [
                                 SELECT Id, FIN_TotalGrossAmountforInvoice__c,
                                         FIN_ParentInvoiceSchedule__r.FIN_Mode__c,
@@ -322,6 +405,25 @@ public with sharing class FIN_InvoiceItemHelper {
                     ////////////////////////////////// CofASubledger //////////////////////////////////
                     for (FIN_SubledgerCode__c subCode : subCodeList) {
                         for (String cOfaDesc : cOfaDescSet) {
+                            SOQLQueryBuilder iiRelatedToThisSubCodeAndCofAQueryBuilder = SOQLQueryBuilder.create()
+                                .selectClause()
+                                .field(FIN_InvoiceItem__c.Id.getDescribe().getName())
+                                .field(FIN_InvoiceItem__c.FIN_LibraryAssociation__c.getDescribe().getReferenceTargetField() + '.' + SBQQ__ContractedPrice__c.FIN_SubledgerType__c.getDescribe().getName())
+                                .field(FIN_InvoiceItem__c.FIN_LibraryAssociation__c.getDescribe().getReferenceTargetField() + '.' + SBQQ__ContractedPrice__c.FIN_Subledger__c.getDescribe().getName())
+                                .field(invoiceItemISReference + '.' + FIN_InvoiceSchedule__c.FIN_Mode__c.getDescribe().getName())
+                                .field(FIN_InvoiceItem__c.FIN_AdjustmentforInvoice__c.getDescribe().getName())
+                                .field(FIN_InvoiceItem__c.FIN_TotalGrossAmountforInvoice__c.getDescribe().getName())
+                                .field(FIN_InvoiceItem__c.FIN_AmountbyQty__c.getDescribe().getName())
+                                .field(FIN_InvoiceItem__c.FIN_EntryType__c.getDescribe().getName())
+                                .field(FIN_InvoiceItem__c.FIN_ManualAmount__c.getDescribe().getName())
+                                .endSelectSOQL()
+                                .fromClause(Schema.SObjectType.FIN_InvoiceItem__c.getName())
+                                .whereClause()
+                                .useBindVariablesInQuery(true)
+                                .condition(invoiceItemLAReference + FIN_Financial_Code__c.FIN_Subledger_Code__c.getDescribe().getName(), subCode.Id,Constants.ConditionType.EQUALS_CONDITION, null, null)
+                                .condition(invoiceItemLAReference + FIN_Financial_Code__c.FIN_Chart_of_Accounts_Description__c.getDescribe().getName(), cOfaDesc,Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION)
+                                .condition(FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__c.getDescribe().getName(), isId,Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION)
+                                .endWhereSOQL();
 
                             // list of related invoice items
                             List<FIN_InvoiceItem__c> iiRelatedToThisSubCodeAndCofA = [
@@ -374,6 +476,27 @@ public with sharing class FIN_InvoiceItemHelper {
                         }
 
                 ////////////////////////////////// AccountSubledger //////////////////////////////////
+                SOQLQueryBuilder iiRelatedToThisSubCodeOnlyQueryBuilder = SOQLQueryBuilder.create()
+                    .selectClause()
+                    .field(FIN_InvoiceItem__c.Id.getDescribe().getName())
+                    .field(FIN_InvoiceItem__c.FIN_LibraryAssociation__c.getDescribe().getReferenceTargetField() + '.' + SBQQ__ContractedPrice__c.FIN_SubledgerType__c.getDescribe().getName())
+                    .field(FIN_InvoiceItem__c.FIN_AccountforInvoice__c.getDescribe().getName())
+                    .field(FIN_InvoiceItem__c.FIN_LibraryAssociation__c.getDescribe().getReferenceTargetField() + '.' + SBQQ__ContractedPrice__c.FIN_Subledger__c.getDescribe().getName())
+                    .field(invoiceItemISReference + '.' + FIN_InvoiceSchedule__c.FIN_Mode__c.getDescribe().getName())
+                    .field(FIN_InvoiceItem__c.FIN_AdjustmentforInvoice__c.getDescribe().getName())
+                    .field(FIN_InvoiceItem__c.FIN_TotalGrossAmountforInvoice__c.getDescribe().getName())
+                    .field(FIN_InvoiceItem__c.FIN_TotalAmountbyQty__c.getDescribe().getName())
+                    .field(FIN_InvoiceItem__c.FIN_AmountbyQty__c.getDescribe().getName())
+                    .field(FIN_InvoiceItem__c.FIN_EntryType__c.getDescribe().getName())
+                    .field(FIN_InvoiceItem__c.FIN_ManualAmount__c.getDescribe().getName())
+                    .endSelectSOQL()
+                    .fromClause(Schema.SObjectType.FIN_InvoiceItem__c.getName())
+                    .whereClause()
+                    .useBindVariablesInQuery(true)
+                    .condition(invoiceItemLAReference + FIN_Financial_Code__c.FIN_Subledger_Code__c.getDescribe().getName(), subCode.Id,Constants.ConditionType.EQUALS_CONDITION, null, null)
+                    .condition(FIN_InvoiceItem__c.FIN_ParentInvoiceSchedule__c.getDescribe().getName(), isId,Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION)
+                    .endWhereSOQL();
+
                 List<FIN_InvoiceItem__c> iiRelatedToThisSubCodeOnly = [
                         SELECT Id, FIN_LibraryAssociation__r.FIN_SubledgerType__c, FIN_AccountforInvoice__c,
                                 FIN_LibraryAssociation__r.FIN_Subledger__c, FIN_TotalGrossAmountforInvoice__c,
@@ -851,10 +974,17 @@ public with sharing class FIN_InvoiceItemHelper {
             System.debug('isApplied: ' + isApplied);
             if (operator == 'OR') {
                 //System.debug('isApplied.contains(false);'+isApplied.contains(true));
-                return isApplied.contains(true);
+//                return isApplied.contains(true);
+                boolean suitable = true;
+
+                if (isApplied.contains(true)) {
+                    suitable = false;
+                }
+
+                return suitable;
             } else if (operator == 'AND') {
                 //System.debug('isApplied.contains(false);'+!isApplied.contains(false));
-                return !isApplied.contains(false);
+                return isApplied.contains(false);
             } else {
                 return null;
             }

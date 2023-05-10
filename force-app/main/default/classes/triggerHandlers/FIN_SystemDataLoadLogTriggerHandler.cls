@@ -11,7 +11,6 @@ public class FIN_SystemDataLoadLogTriggerHandler extends TriggerHandler {
                dataLoadLog.FIN_BusinessRuleStartTime__c = System.now();
                dataLoadLog.FIN_BusinessRuleProcessCompleteStatus__c= 'In-Progress';
             }
-            System.debug('In system data trigger:  ' + dataLoadLog);
             if (dataLoadLog.FIN_BusinessRuleProcessCompleteStatus__c == 'Success' && dataLoadLog.FIN_SalesforceRulesStartTime__c == null) {
                 dataLoadLog.FIN_SalesforceRulesStartTime__c = System.now();
                 dataLoadLog.FIN_SalesforceRulesStatus__c = 'In-Progress';
@@ -40,8 +39,11 @@ public class FIN_SystemDataLoadLogTriggerHandler extends TriggerHandler {
                 }
             }
             if (dataLoadLog.FIN_ProcessCompletionStatus__c != null && dataLoadLog.FIN_ProcessCompletionStatus__c != 'In-Progress') {
-                FIN_SystemDataLoadLogService.sendNotification(dataLoadLog.FIN_BusinessRuleProcessCompleteStatus__c,
-                        dataLoadLog.FIN_Region__c, dataLoadLog);
+//                FIN_SystemDataLoadLogService.sendNotification(dataLoadLog.FIN_BusinessRuleProcessCompleteStatus__c,
+//                        dataLoadLog.FIN_Region__c, dataLoadLog);
+                EventBus.publish(new FIN_ToastNotification__e(Status__c = dataLoadLog.FIN_ProcessCompletionStatus__c,
+                        Message__c = 'Your process was '
+                                + (dataLoadLog.FIN_ProcessCompletionStatus__c == Constants.SUCCESS_STATUS ? 'finished successfully' : 'failed please review the errors')));
             }
         }
     }

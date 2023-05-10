@@ -12,14 +12,14 @@ public with sharing class FIN_UpdateRecordsBatch implements Database.Batchable<S
     }
 
     public void execute(Database.BatchableContext param1, List<SObject> records) {
-        Database.update(processRuleActions(ruleActions, records));
+        processRuleActions(ruleActions, records);
+        Database.update(records, false);
     }
 
     public void finish(Database.BatchableContext param1) {
     }
 
-    private static List<SObject> processRuleActions(List<FIN_AXSRuleAction__c> axsRuleActions, List<SObject> records) {
-        List<SObject> updatedRecords = new List<SObject>();
+    private static void processRuleActions(List<FIN_AXSRuleAction__c> axsRuleActions, List<SObject> records) {
         for (SObject record : records) {
             for (FIN_AXSRuleAction__c action : axsRuleActions) {
                 String valueToCheck = String.valueOf(record.get(action.FIN_DestinationField__c));
@@ -27,9 +27,7 @@ public with sharing class FIN_UpdateRecordsBatch implements Database.Batchable<S
                     record.put(action.FIN_DestinationField__c, parseValueWithType(action.FIN_DestinationField__c, action.FIN_Object__c, action.FIN_DestinationFieldValue__c));
                 }
             }
-            updatedRecords.add(record);
         }
-        return updatedRecords;
     }
 
     private static String getObjectAttributeType(String objectAttribute, String objName) {

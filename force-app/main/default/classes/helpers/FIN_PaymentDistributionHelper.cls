@@ -62,7 +62,7 @@ public with sharing class FIN_PaymentDistributionHelper {
             }
         }
         if (!retroactiveAdjustments.isEmpty()) {
-            insert retroactiveAdjustments;
+                insert retroactiveAdjustments;
         }
     }
 

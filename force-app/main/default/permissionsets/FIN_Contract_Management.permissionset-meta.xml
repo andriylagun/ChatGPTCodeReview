@@ -138,11 +138,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contract.FIN_EventName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Contract.FIN_EventZone__c</field>
         <readable>true</readable>
     </fieldPermissions>

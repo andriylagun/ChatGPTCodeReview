@@ -28,7 +28,7 @@ public class TestDataFactory {
     public static List<Contract> getParentContract() {
         RecordType clientRecordType = getClientRecordType();
         Account account = [SELECT Id, Name FROM Account WHERE Name LIKE '%Test Account%' AND RecordTypeId = :clientRecordType.Id];
-        return [SELECT Id, AccountId, FIN_Context__c, Status, ApprovalStatus__c, (SELECT Id, ApprovalStatus__c, Status, FIN_Context__c FROM SubContracts__r)
+        return [SELECT Id, AccountId, FIN_Context__c, Status, ApprovalStatus__c,RecordTypeId, FIN_Financial_Standard__c,FIN_Statistical_Standard__c, (SELECT Id, ApprovalStatus__c, Status, FIN_Context__c FROM SubContracts__r)
         FROM Contract
         WHERE AccountId = :account.Id AND FIN_ParentContract__c = NULL];
     }
@@ -56,13 +56,13 @@ public class TestDataFactory {
         return con;
     }
 
-    public static Opportunity createOpportunityForAccount(Id accId, String Stagename) {
+    public static Opportunity createOpportunityForAccount(Id accId, String StageName) {
         Opportunity opp = new Opportunity();
         opp.Name = 'Test';
         opp.AccountID = accId;
         opp.Type = 'New';
         opp.CloseDate = System.today();
-        opp.StageName = Stagename;
+        opp.StageName = StageName;
 
         insert opp;
 
@@ -80,6 +80,19 @@ public class TestDataFactory {
         insert priceBook;
 
         return priceBook;
+    }
+
+    public static Product2 createProduct2ByName(String prodName) {
+        Product2 prod = new Product2(
+                Name = prodName,
+                ProductCode = prodName,
+                isActive = true,
+                CurrencyIsoCode = 'USD'
+        );
+
+        insert prod;
+
+        return prod;
     }
 
     public static Product2 createProduct2() {
@@ -162,6 +175,7 @@ public class TestDataFactory {
         Id finRecordTypeId = Schema.SObjectType.FIN_Standardization__c.getRecordTypeInfosByName().get('Financial Standard').getRecordTypeId();
         FIN_Standardization__c standardizationFin = new FIN_Standardization__c(
                 Name = 'standardizationFin',
+                StartDate__c = System.today(),
                 RecordTypeId = finRecordTypeId
         );
         insert standardizationFin;
@@ -169,6 +183,7 @@ public class TestDataFactory {
         Id statRecordTypeId = Schema.SObjectType.FIN_Standardization__c.getRecordTypeInfosByName().get('Statistical Standard').getRecordTypeId();
         FIN_Standardization__c standardizationStat = new FIN_Standardization__c(
                 Name = 'standardizationStat',
+                StartDate__c = System.today(),
                 RecordTypeId = statRecordTypeId
         );
         insert standardizationStat;
@@ -241,10 +256,10 @@ public class TestDataFactory {
 
         insert lineItem;
 
-        Order order = new Order();
-        order.Id = orderId;
-//        order.Status = 'Posted';
-        update order;
+//        Order order = new Order();
+//        order.Id = orderId;
+////        order.Status = 'Posted';
+//        update order;
 
         return lineItem;
     }
@@ -340,6 +355,7 @@ public class TestDataFactory {
         FIN_ChartOfAccounts__c chartOfAccounts = new FIN_ChartOfAccounts__c(
             Name = '1234',
             FIN_Account_Type__c = 'Asset',
+            Region__c = 'US',
             FIN_Start_Date__c = Date.today()
         );
         insert chartOfAccounts;
@@ -373,6 +389,7 @@ public class TestDataFactory {
             FIN_Concept_Use__c = 'Liability',
             FIN_Payee__c = payee.Id,
             FIN_Financial_Code__c = finCode.Id,
+            FIN_Ticket_price_Component__c = 'Venue Delivery Fee',
             SBQQ__Discount__c = 10,
             SBQQ__Price__c = 10,
             SBQQ__FilterField__c = 'Product',
@@ -404,6 +421,7 @@ public class TestDataFactory {
         consSchedule.Name = 'TestSchedule';
         consSchedule.FIN_Start_Date__c = System.today();
         consSchedule.FIN_ApprovalStatus__c = 'Approved';
+        //consSchedule.IsActive  = true;
 
         return consSchedule;
     }
@@ -640,5 +658,16 @@ public class TestDataFactory {
 
     public static RecordType getClientRecordType() {
         return [SELECT Id FROM RecordType WHERE DeveloperName = 'FIN_Client'];
+    }
+
+    public static FIN_Payment_Type_Channel__c createPaymentTypeChannel(String contextId) {
+        FIN_Payment_Type_Channel__c paymentTypeChannel = new FIN_Payment_Type_Channel__c();
+        paymentTypeChannel.Name = 'Test';
+        paymentTypeChannel.FIN_Context__c = contextId;
+        paymentTypeChannel.FIN_Back_Office__c = 'Client';
+        paymentTypeChannel.FIN_Remote_Promoter__c = 'Client';
+        paymentTypeChannel.FIN_Call_Center__c = 'Client';
+
+        return  paymentTypeChannel;
     }
 }

@@ -28,7 +28,5 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/gpt4all" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/gpt4all/peft" vcs="Git" />
   </component>
 </project>

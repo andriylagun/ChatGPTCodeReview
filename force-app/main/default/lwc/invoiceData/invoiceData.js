@@ -2,7 +2,7 @@ import {LightningElement, api, track, wire} from 'lwc';
 import {getPicklistValues, getObjectInfo} from 'lightning/uiObjectInfoApi';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
 import {updateRecord} from 'lightning/uiRecordApi';
-import {PAYMENT_SOBJECT_API, PAYMENT_DISTRIBUTION_SOBJECT_API, SALES_TRANSACTIONS_SOBJECT_API} from '../utilits/constants'
+import {PAYMENT_SOBJECT_API, PAYMENT_DISTRIBUTION_SOBJECT_API, SALES_TRANSACTIONS_SOBJECT_API} from 'c/utilits'
 import getFilteredSubContractsWithPDs from '@salesforce/apex/SettleDataController.getFilteredSubContractsWithPDs';
 import getFilteredSubContractsWithPayments
     from '@salesforce/apex/InvoiceDataController.getFilteredSubContractsWithPayments';

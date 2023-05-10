@@ -107,13 +107,13 @@ if [ "$commit_changes" = "y" ]; then
     git commit -m "$commit_message"
 fi
 
-# Step 6: Validate differences between featureBranch and sourceBranch using sfdx-git-delta package.xml, and deploy with specified parameters
+# Step 6: Validate differences between featureBranch and sourceBranch using sfdx-git-delta package1.xml, and deploy with specified parameters
 
-# Check if $testsRun ~= "RunSpecifiedTests" to get list of test classes from package.xml and scan triggers and classes categories for Test suffix
+# Check if $testsRun ~= "RunSpecifiedTests" to get list of test classes from package1.xml and scan triggers and classes categories for Test suffix
 if [[ $testsRun =~ ^RunSpecifiedTests$ ]]
 then
   echo "Getting list of test classes from package.xml"
-  testClasses=($(grep -o -P "(?<=<members>).*(?=</members>)" manifest/package.xml | grep "Test"))
+  testClasses=($(grep -o -P "(?<=<members>).*(?=</members>)" manifest/package1.xml | grep "Test"))
   echo "Scanning triggers and classes categories for Test suffix"
   for file in $(sfdx force:source:retrieve -m ApexTrigger,ApexClass --json | jq -r '.result[].files | keys[]')
   do
@@ -143,7 +143,7 @@ then
 fi
 
 #Step 6:  Deploy with specified parameters
-sfdx force:source:deploy -x manifest/package.xml -c -l $testLevel -r $testsRun --json --loglevel fatal --sourcebranch $sourceBranch --targetusername $targetOrgAlias --checkonly $checkonly > deploy_output.json
+sfdx force:source:deploy -x manifest/package1.xml -c -l $testLevel -r $testsRun --json --loglevel fatal --sourcebranch $sourceBranch --targetusername $targetOrgAlias --checkonly $checkonly > deploy_output.json
 
 if grep -q "\"status\": 0" deploy_output.json; then
         echo "Deployment succeeded"
@@ -161,7 +161,7 @@ fi
 
 # Step 8: Validate and deploy from $featureBranch to $targetSandbox
 echo "Validating and deploying changes from $featureBranch to $targetSandbox"
-delta="$(sfdx git:delta -r $featureBranch -x manifest/package.xml -c -q)"
+delta="$(sfdx git:delta -r $featureBranch -x manifest/package1.xml -c -q)"
 if [[ "$delta" == *"No changes found"* ]]; then
     echo "No changes found between $featureBranch and $targetBranch, skipping validation and deployment"
 else
@@ -173,7 +173,7 @@ else
         hub pull-request -h $featureBranch -b $targetBranch -r $reviewer
     fi
     # Deploy changes to $targetSandbox and run tests specified in config
-    sfdx force:source:deploy -x manifest/package.xml -c -l RunSpecifiedTests -r $testsRun --json --loglevel fatal --sourcebranch $sourceBranch --targetusername $targetOrgAlias --checkonly $checkonly > deploy_output.json
+    sfdx force:source:deploy -x manifest/package1.xml -c -l RunSpecifiedTests -r $testsRun --json --loglevel fatal --sourcebranch $sourceBranch --targetusername $targetOrgAlias --checkonly $checkonly > deploy_output.json
     # Check if deployment succeeded
     if grep -q "\"status\": 0" deploy_output.json; then
         echo "Deployment succeeded"

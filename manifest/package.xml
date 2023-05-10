@@ -4,13 +4,16 @@
         <members>Constants</members>
         <members>CustomLookupController</members>
         <members>FIN_GenericDMLOperationsBatch</members>
-        <members>FIN_InvoiceItemHelper</members>
-        <members>FIN_InvoiceItemTriggerHandler</members>
-        <members>FIN_InvoiceScheduleHelper</members>
-        <members>FIN_InvoiceScheduleTriggerHandler</members>
+        <members>MasterDataLoadSelector</members>
+        <members>FIN_ResponsePublisherService</members>
+        <members>FIN_UpdateRecordsBatch</members>
+        <members>FIN_UnclassifiedRecordsController</members>
+        <members>FIN_RecalculateAccumulatorsTest</members>
+        <members>FIN_ClassifyRecordsBatch</members>
+        <members>FIN_ClassifyRecordsBatchTest</members>
         <members>FIN_PaymentHelper</members>
-        <members>FIN_RecordsForwarderHelper</members>
-        <members>FIN_RecordsForwarderTriggerHandler</members>
+<!--        <members>FIN_RecordsForwarderHelper</members>-->
+<!--        <members>FIN_RecordsForwarderTriggerHandler</members>-->
         <members>FIN_ReportingService</members>
         <members>FIN_SettlementDataBatch</members>
         <members>FIN_SettlementItemHelper</members>
@@ -19,23 +22,26 @@
         <members>FIN_SettlementItemsService</members>
         <members>FieldMapping</members>
         <members>GeneralBatchUpdater</members>
+        <members>InvoiceDataController</members>
+        <members>InvoiceDataControllerTest</members>
         <members>SOQLQueryBuilder</members>
         <members>SOSLQueryBuilder</members>
         <members>SelectQueryBuilder</members>
         <members>SettleDataController</members>
+        <members>TestDataFactory</members>
         <members>WhereClauseBuilder</members>
         <name>ApexClass</name>
     </types>
-    <types>
-        <members>FIN_RecordsForwarderTrigger</members>
-        <name>ApexTrigger</name>
-    </types>
+<!--    <types>-->
+<!--        <members>FIN_RecordsForwarderTrigger</members>-->
+<!--        <name>ApexTrigger</name>-->
+<!--    </types>-->
     <types>
         <members>platformEventToastServiceWrapper</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
-        <members>FIN_RecordsForwarder__e</members>
+<!--        <members>FIN_RecordsForwarder__e</members>-->
         <members>FIN_ToastNotification__e</members>
         <name>CustomObject</name>
     </types>
@@ -48,12 +54,51 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
-        <members>FIN_RetroactiveAdjustment__c.FIN_Event</members>
-        <members>FIN_RetroactiveAdjustment__c.FIN_Order</members>
-        <members>FIN_RetroactiveAdjustment__c.FIN_OrderItem</members>
-        <members>FIN_RetroactiveAdjustment__c.FIN_Payment</members>
-        <members>FIN_RetroactiveAdjustment__c.FIN_PaymentDistribution</members>
-        <name>RecordType</name>
+        <members>Admin</members>
+        <members>Bulk_API_Hard_Delete</members>
+        <members>FIN_Approval_Management</members>
+        <members>FIN_Contract_Editing</members>
+        <members>FIN_Contract_Management</members>
+        <members>FIN_ManageUsers</members>
+        <members>FIN_Read_Contract_CPQ_Base</members>
+        <members>FIN_Rules</members>
+        <members>FIN_Subcontract_Creation</members>
+        <members>FIN_Subcontract_Editing</members>
+        <members>Sales_User</members>
+        <members>SteelBrickCPQStandardObjectsAccess</members>
+        <members>sf_devops_InitializeEnvironments</members>
+        <members>sf_devops_NamedCredentials</members>
+        <members>sfdcInternalInt__sfdc_cpq</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <members>Business Admin</members>
+        <members>CPQ Integration User</members>
+        <members>Chatter External User</members>
+        <members>Chatter Free User</members>
+        <members>Chatter Moderator User</members>
+        <members>ContractManager</members>
+        <members>Customer Community Plus User</members>
+        <members>End User</members>
+        <members>Executive Sponsor</members>
+        <members>FIN-CustomerInformationPortal Profile</members>
+        <members>Finance Customer Plus User</members>
+        <members>Guest License User</members>
+        <members>Heroku Profile</members>
+        <members>Identity User</members>
+        <members>MarketingProfile</members>
+        <members>Minimum Access - Salesforce</members>
+        <members>Read Only</members>
+        <members>Sales Insights Integration User</members>
+        <members>Salesforce API Only System Integrations</members>
+        <members>SolutionManager</members>
+        <members>Standard</members>
+        <members>US FIN Accounting Staff</members>
+        <members>US FIN Manager</members>
+        <members>US FIN Settlement Manager</members>
+        <members>US FIN Settlement Staff</members>
+        <name>Profile</name>
     </types>
     <version>57.0</version>
 </Package>

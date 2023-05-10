@@ -4,11 +4,11 @@
         <members>Constants</members>
         <members>CustomLookupController</members>
         <members>FIN_GenericDMLOperationsBatch</members>
-<!--        <members>FIN_InvoiceItemHelper</members>-->
-<!--        <members>FIN_InvoiceItemTriggerHandler</members>-->
-<!--        <members>FIN_InvoiceScheduleHelper</members>-->
-<!--        <members>FIN_InvoiceScheduleTriggerHandler</members>-->
-<!--        <members>FIN_PaymentHelper</members>-->
+        <members>FIN_InvoiceItemHelper</members>
+        <members>FIN_InvoiceItemTriggerHandler</members>
+        <members>FIN_InvoiceScheduleHelper</members>
+        <members>FIN_InvoiceScheduleTriggerHandler</members>
+        <members>FIN_PaymentHelper</members>
         <members>FIN_RecordsForwarderHelper</members>
         <members>FIN_RecordsForwarderTriggerHandler</members>
         <members>FIN_ReportingService</members>
@@ -23,7 +23,6 @@
         <members>SOSLQueryBuilder</members>
         <members>SelectQueryBuilder</members>
         <members>SettleDataController</members>
-        <members>InvoiceDataController</members>
         <members>WhereClauseBuilder</members>
         <name>ApexClass</name>
     </types>
@@ -48,13 +47,13 @@
         <members>utilits</members>
         <name>LightningComponentBundle</name>
     </types>
-<!--    <types>-->
-<!--        <members>FIN_RetroactiveAdjustment__c.FIN_Event</members>-->
-<!--        <members>FIN_RetroactiveAdjustment__c.FIN_Order</members>-->
-<!--        <members>FIN_RetroactiveAdjustment__c.FIN_OrderItem</members>-->
-<!--        <members>FIN_RetroactiveAdjustment__c.FIN_Payment</members>-->
-<!--        <members>FIN_RetroactiveAdjustment__c.FIN_PaymentDistribution</members>-->
-<!--        <name>RecordType</name>-->
-<!--    </types>-->
+    <types>
+        <members>FIN_RetroactiveAdjustment__c.FIN_Event</members>
+        <members>FIN_RetroactiveAdjustment__c.FIN_Order</members>
+        <members>FIN_RetroactiveAdjustment__c.FIN_OrderItem</members>
+        <members>FIN_RetroactiveAdjustment__c.FIN_Payment</members>
+        <members>FIN_RetroactiveAdjustment__c.FIN_PaymentDistribution</members>
+        <name>RecordType</name>
+    </types>
     <version>57.0</version>
 </Package>

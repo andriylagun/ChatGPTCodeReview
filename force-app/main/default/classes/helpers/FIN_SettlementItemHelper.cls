@@ -67,6 +67,19 @@ public with sharing class FIN_SettlementItemHelper {
         Set<Id> salesIds = new Set<Id>();
         Map<Id, List<Id>> salesDeletedMap = new Map<Id, List<Id>>();
 
+//        SOQLQueryBuilder settlementItemQueryBuilder = SOQLQueryBuilder.create()
+//            .selectClause()
+//            .field(FIN_SettlementItem__c.Id.getDescribe().getName())
+//            .field(FIN_SettlementItem__c.FIN_PaymentDistribution__c.getDescribe().getName())
+//            .field(FIN_SettlementItem__c.FIN_PaymentDistribution__c.getDescribe().getName())
+//            .endSelectSOQL()
+//            .fromClause(Schema.SObjectType.FIN_SettlementItem__c.getName())
+//            .whereClause()
+//            .useBindVariablesInQuery(true)
+//            .condition(FIN_SettlementItem__c.Id.getDescribe().getName(), itemsSett.keySet(),Constants.ConditionType.IN_CONDITION, null, null)
+//            .endWhereSOQL();
+
+
         try {
             for (FIN_SettlementItem__c item : [
                     SELECT Id, FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__c, FIN_PaymentDistribution__c
@@ -142,6 +155,18 @@ public with sharing class FIN_SettlementItemHelper {
             }
         }
 
+
+        SOQLQueryBuilder settlementLinesToRemoveQueryBuilder = SOQLQueryBuilder.create()
+            .selectClause()
+            .field(FIN_SettlementLine__c.Id.getDescribe().getName())
+            .field(FIN_SettlementLine__c.FIN_SettlementSchedule__c.getDescribe().getName())
+            .endSelectSOQL()
+            .fromClause(Schema.SObjectType.FIN_SettlementLine__c.getName())
+            .whereClause()
+            .useBindVariablesInQuery(true)
+            .condition(FIN_SettlementLine__c.FIN_SettlementSchedule__c.getDescribe().getName(), parentSettleScheduleIDs,Constants.ConditionType.IN_CONDITION, null, null)
+            .endWhereSOQL();
+
         // remove existing settlement lines
         List<FIN_SettlementLine__c> settlementLinesToRemove = [
                 SELECT Id, FIN_SettlementSchedule__c
@@ -149,6 +174,32 @@ public with sharing class FIN_SettlementItemHelper {
                 WHERE FIN_SettlementSchedule__c IN :parentSettleScheduleIDs
         ];
         delete settlementLinesToRemove;
+
+
+        String settlementItemSubContractReference = FIN_SettlementItem__c.FIN_SubContract__c.getDescribe().getReferenceTargetField() + '.';
+        String settlementItemInvoiceScheduleReference = FIN_SettlementItem__c.FIN_InvoiceSchedule__c.getDescribe().getReferenceTargetField() + '.';
+        String settlementItemLAReference = FIN_SettlementItem__c.FIN_LibraryAssociation__c.getDescribe().getReferenceTargetField() + '.' + SBQQ__ContractedPrice__c.FIN_Financial_Code__c.getDescribe().getName() + '.';
+        String settlementItemPDPaymentReference = FIN_SettlementItem__c.FIN_PaymentDistribution__c.getDescribe().getReferenceTargetField()  + '.' +
+            + FIN_PaymentDistribution__c.FIN_Payment__c.getDescribe().getReferenceTargetField() + '.';
+
+        List<String> fields = new List<String> {
+            FIN_SettlementItem__c.FIN_PaymentDistribution__c.getDescribe().getName(),
+            FIN_SettlementItem__c.FIN_ParentSettlementSchedule__c.getDescribe().getName(),
+            settlementItemSubContractReference + Contract.FIN_RemittanceAccount__c.getDescribe().getName(),
+
+            FIN_SettlementItem__c.FIN_EntryType__c.getDescribe().getName(),
+
+            FIN_SettlementItem__c.FIN_InvoiceSchedule__c.getDescribe().getName(),
+            settlementItemInvoiceScheduleReference + FIN_InvoiceSchedule__c.Invoice_Number__c.getDescribe().getName(),
+            settlementItemInvoiceScheduleReference + FIN_InvoiceSchedule__c.FIN_NetDue__c.getDescribe().getName(),
+            FIN_SettlementItem__c.FIN_RemittanceAccount__c.getDescribe().getName(),
+
+            FIN_SettlementItem__c.FIN_Amount__c.getDescribe().getName(),
+            FIN_SettlementItem__c.FIN_ManualAmount__c.getDescribe().getName(),
+            settlementItemLAReference + FIN_Financial_Code__c.FIN_Subledger_Code__c.getDescribe().getName(),
+
+            settlementItemPDPaymentReference + FIN_Payment__c.FIN_Order__c.getDescribe().getReferenceTargetField() + '.' + Order.FIN_Event__c.getDescribe().getName()
+        };
 
 
         Map<Id, FIN_SettlementItem__c> allSIs = new Map<Id, FIN_SettlementItem__c>([
@@ -228,6 +279,16 @@ public with sharing class FIN_SettlementItemHelper {
         System.debug('payeesIds -----> SIZE: ' + payeesIds.size());
         System.debug('--------------------------------------------');
 
+        SOQLQueryBuilder uniquePayeesListQueryBuilder = SOQLQueryBuilder.create()
+            .selectClause()
+            .field(FIN_Payee__c.Id.getDescribe().getName())
+            .field(FIN_Payee__c.FIN_LegalName__c.getDescribe().getName())
+            .endSelectSOQL()
+            .fromClause(Schema.SObjectType.FIN_Payee__c.getName())
+            .whereClause()
+            .useBindVariablesInQuery(true)
+            .condition(FIN_Payee__c.Id.getDescribe().getName(), payeesIds,Constants.ConditionType.IN_CONDITION, null, null)
+            .endWhereSOQL();
 
         List<FIN_Payee__c> uniquePayeesList = new List<FIN_Payee__c> ([
                 SELECT Id, FIN_LegalName__c
@@ -246,18 +307,93 @@ public with sharing class FIN_SettlementItemHelper {
         // REVIEW: SEEMS LIKE HERE IS REGULAR BY EVENT+PAYEE
         // create new FIN_SettlementLine__c records
         Map<String, FIN_SettlementLine__c> settlementLinesToInsert = new Map<String, FIN_SettlementLine__c>();
+
+        SOQLQueryBuilder eventQueryBuilder = SOQLQueryBuilder.create()
+            .selectClause()
+            .field(Campaign.Id.getDescribe().getName())
+            .field(Campaign.FIN_EventID__c.getDescribe().getName())
+            .field(Campaign.FIN_LookupCode__c.getDescribe().getName())
+            .field(Campaign.StartDate.getDescribe().getName())
+            .field(Campaign.Description.getDescribe().getName())
+            .field(Campaign.Name.getDescribe().getName())
+            .field(Campaign.FIN_EventIDWithoutContextID__c.getDescribe().getName())
+            .endSelectSOQL()
+            .fromClause(Schema.SObjectType.Campaign.getName())
+            .whereClause()
+            .useBindVariablesInQuery(true)
+            .condition(Campaign.Id.getDescribe().getName(), eventsIds,Constants.ConditionType.IN_CONDITION, null, null)
+            .endWhereSOQL();
+
         Map<Id, Campaign> eventsMap = new Map<Id, Campaign>(
         [
-                SELECT Id, FIN_EventID__c, FIN_LookupCode__c, StartDate, Description, Name
+                SELECT
+                    Id,
+                    FIN_EventID__c,
+                    FIN_LookupCode__c,
+                    StartDate,
+                    Description,
+                    Name,
+                    FIN_EventIDWithoutContextID__c
                 FROM Campaign
                 WHERE Id IN :eventsIds
         ]);
         if (!allPDIDs.isEmpty()) {
+
+            SOQLQueryBuilder uniqueEventQueryBuilder = SOQLQueryBuilder.create()
+                .selectClause()
+                .field(Campaign.Id.getDescribe().getName())
+                .field(Campaign.FIN_EventID__c.getDescribe().getName())
+                .field(Campaign.FIN_LookupCode__c.getDescribe().getName())
+                .field(Campaign.StartDate.getDescribe().getName())
+                .field(Campaign.Description.getDescribe().getName())
+                .field(Campaign.FIN_EventIDWithoutContextID__c.getDescribe().getName())
+                .endSelectSOQL()
+                .fromClause(Schema.SObjectType.Campaign.getName())
+                .whereClause()
+                .useBindVariablesInQuery(true)
+                .endWhereSOQL();
+
+            //чому вони унікальні і де кондишини?
+
             List<Campaign> uniqueEvents = [
-                    SELECT Id, FIN_EventID__c, FIN_LookupCode__c, StartDate, Description
+                    SELECT Id, FIN_EventID__c, FIN_LookupCode__c, StartDate, Description, FIN_EventIDWithoutContextID__c
                     FROM Campaign
             ];
             System.debug(uniqueEvents);
+
+
+            String pdLAReference = FIN_PaymentDistribution__c.FIN_LibraryAssociation__c.getDescribe().getReferenceTargetField() + '.';
+            String pdPaymentReference = FIN_PaymentDistribution__c.FIN_Payment__c.getDescribe().getReferenceTargetField() + '.' ;
+            String pdPaymentOrderReference = FIN_PaymentDistribution__c.FIN_Payment__c.getDescribe().getReferenceTargetField() + '.' + FIN_Payment__c.FIN_Order__c.getDescribe().getReferenceTargetField() + '.';
+            String pdContractReference = FIN_PaymentDistribution__c.Contract__c.getDescribe().getReferenceTargetField() + '.' ;
+
+             // ДОДАТИ ВКЛАДЕНИЙ (SELECT Id FROM Settlement_Items__r WHERE FIN_ParentSettlementSchedule__c IN :parentSettleScheduleIDs)
+            SOQLQueryBuilder allPDQueryBuilder = SOQLQueryBuilder.create()
+                .selectClause()
+                .field(FIN_PaymentDistribution__c.Id.getDescribe().getName())
+                .field(FIN_PaymentDistribution__c.FIN_DistributionAmount__c.getDescribe().getName())
+                .field(FIN_PaymentDistribution__c.FIN_LibraryAssociation__c.getDescribe().getName())
+                .field(pdLAReference + SBQQ__ContractedPrice__c.FIN_TicketCategories__c.getDescribe().getName())
+                .field(pdLAReference + SBQQ__ContractedPrice__c.FIN_Ticket_price_Component__c.getDescribe().getName())
+                .field(pdLAReference + SBQQ__ContractedPrice__c.FIN_Fee_and_Component__c.getDescribe().getName())
+                .field(pdLAReference + SBQQ__ContractedPrice__c.FIN_Concept_Use__c.getDescribe().getName())
+                .field(pdContractReference + Contract.FIN_RemittanceAccount__c.getDescribe().getName())
+                .field(pdPaymentReference + FIN_Payment__c.FIN_Order__c.getDescribe().getName())
+                .field(FIN_PaymentDistribution__c.FIN_EventZoneType__c.getDescribe().getName())
+                .field(pdPaymentOrderReference + Order.FIN_ZoneDesc__c.getDescribe().getName())
+                .field(pdPaymentOrderReference + Order.FIN_Venue__c.getDescribe().getReferenceTargetField() + '.' + Account.Name.getDescribe().getName())
+                .field(pdPaymentOrderReference + Order.AccountId.getDescribe().getReferenceTargetField() + '.' + Account.Name.getDescribe().getName())
+                .field(pdPaymentOrderReference + Order.FIN_TotalTickets__c.getDescribe().getName())
+                .field(pdPaymentOrderReference + Order.FIN_Event__c.getDescribe().getName())
+                .field(FIN_PaymentDistribution__c.Contract__c.getDescribe().getName())
+                .field(pdContractReference + Contract.FIN_SettlementReportGroup__c.getDescribe().getName())
+                .field(pdContractReference + Contract.FIN_SettlementReportMode__c.getDescribe().getName())
+                .endSelectSOQL()
+                .fromClause(Schema.SObjectType.Campaign.getName())
+                .whereClause()
+                .useBindVariablesInQuery(true)
+                .condition(Campaign.Id.getDescribe().getName(), allPdIDs,Constants.ConditionType.IN_CONDITION, null, null)
+                .endWhereSOQL();
 
             List<FIN_PaymentDistribution__c> allPDs = [
                     SELECT Id, FIN_DistributionAmount__c,
@@ -285,6 +421,17 @@ public with sharing class FIN_SettlementItemHelper {
                     FROM FIN_PaymentDistribution__c
                     WHERE Id IN :allPdIDs
             ];
+
+            SOQLQueryBuilder uniquePayeesQueryBuilder = SOQLQueryBuilder.create()
+                .selectClause()
+                .field(FIN_Payee__c.Id.getDescribe().getName())
+                .field(FIN_Payee__c.FIN_LegalName__c.getDescribe().getName())
+                .endSelectSOQL()
+                .fromClause(Schema.SObjectType.FIN_Payee__c.getName())
+                .whereClause()
+                .useBindVariablesInQuery(true)
+                .condition(FIN_Payee__c.Id.getDescribe().getName(), payeesIds,Constants.ConditionType.IN_CONDITION, null, null)
+                .endWhereSOQL();
 
             Map<Id, FIN_Payee__c> uniquePayees = new Map<Id, FIN_Payee__c> ([
                     SELECT Id, FIN_LegalName__c
@@ -337,7 +484,7 @@ public with sharing class FIN_SettlementItemHelper {
                     newSL.FIN_SettlementSchedule__c = si.FIN_ParentSettlementSchedule__c;
                     //}
                     if (event != null) {
-                        newSL.FIN_EventID__c = event.FIN_EventID__c;
+                        newSL.FIN_EventID__c = event.FIN_EventIDWithoutContextID__c;
                         newSL.FIN_EventLookupCode__c = event.FIN_LookupCode__c;
                         newSL.FIN_EventDescription__c = event.Description;
                         newSL.FIN_EventStartDate__c = event.StartDate;
@@ -485,6 +632,18 @@ public with sharing class FIN_SettlementItemHelper {
         if (!settlementLinesToInsert.isEmpty()) {
             insert settlementLinesToInsert.values();
         }
+
+        SOQLQueryBuilder uniquePayeeQueryBuilder = SOQLQueryBuilder.create()
+            .selectClause()
+            .field(FIN_Payee__c.Id.getDescribe().getName())
+            .field(FIN_Payee__c.FIN_LegalName__c.getDescribe().getName())
+            .endSelectSOQL()
+            .fromClause(Schema.SObjectType.FIN_Payee__c.getName())
+            .whereClause()
+            .useBindVariablesInQuery(true)
+            .condition(FIN_Payee__c.Id.getDescribe().getName(), payeesIds,Constants.ConditionType.IN_CONDITION, null, null)
+            .endWhereSOQL();
+
 
         Map<Id, FIN_Payee__c> uniquePayees = new Map<Id, FIN_Payee__c> ([
                 SELECT Id, FIN_LegalName__c

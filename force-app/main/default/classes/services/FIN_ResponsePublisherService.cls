@@ -16,7 +16,6 @@ public with sharing class FIN_ResponsePublisherService {
             return;
         }
         if (responseBodyWrapper.isProcessed && !responseBodyWrapper.hasErrors && responseBodyWrapper.isFromMarkingProcessed) {
-            classifyRecords(systemDataLoadLog);
             loadLog.FIN_BusinessRuleProcessCompleteStatus__c = 'Success';
             loadLog.FIN_BusinessRuleEndTime__c = System.now();
             if (responseBodyWrapper.markedAsProcessedCount != null) {
@@ -26,6 +25,7 @@ public with sharing class FIN_ResponsePublisherService {
                 loadLog.FIN_RecordsProcessed__c += ',\n' + 'Records was failed: ' + responseBodyWrapper.failedRecords;
             }
             update loadLog;
+            classifyRecords(systemDataLoadLog);
             return;
         }
         if (responseBodyWrapper.hasErrors) {
@@ -43,7 +43,12 @@ public with sharing class FIN_ResponsePublisherService {
     }
 
     public static void classifyRecords(FIN_SystemDataLoadLog__c systemDataLoadLog) {
-        FIN_UnclassifiedRecordsController.runBatchJob(Constants.finProcessMap.get(systemDataLoadLog.FIN_Process__c), systemDataLoadLog);
+        Master_Data_Load__c mdl = MasterDataLoadSelector.getMasterDataLoadRecordByProcessDate(systemDataLoadLog.FIN_ProcessDate__c.date())[0];
+        if (mdl.Sales__r.FIN_BusinessRuleProcessCompleteStatus__c == Constants.SUCCESS_STATUS
+                && mdl.Payment__r.FIN_BusinessRuleProcessCompleteStatus__c == Constants.SUCCESS_STATUS
+                && mdl.Payment_Distribution__r.FIN_BusinessRuleProcessCompleteStatus__c == Constants.SUCCESS_STATUS) {
+            FIN_UnclassifiedRecordsController.runBatchJob(mdl);
+        }
     }
 
     private static void abortCronJobs(FIN_SystemDataLoadLog__c systemDataLoadLog) {

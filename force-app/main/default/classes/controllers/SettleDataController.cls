@@ -119,9 +119,9 @@ public with sharing class SettleDataController {
                         Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION)
                 .condition(FIN_PaymentDistribution__c.FIN_Region__c.getDescribe().getName(), region,
                         Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION)
-                .condition('FIN_Event__r.StartDate', eventDateFrom,
+                .condition('FIN_Payment__r.FIN_Order__r.FIN_Event__r.StartDate', eventDateFrom,
                         Constants.ConditionType.GREATER_THEN, null, Constants.ConditionOperatorType.AND_CONDITION)
-                .negative('FIN_Event__r.EndDate', eventDateTo,
+                .negative('FIN_Payment__r.FIN_Order__r.FIN_Event__r.EndDate', eventDateTo,
                         Constants.ConditionType.GREATER_THEN, null, Constants.ConditionOperatorType.AND_CONDITION)
                 .condition(FIN_PaymentDistribution__c.FIN_DistributionDate__c.getDescribe().getName(), transactionDateFrom,
                         Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION)
@@ -129,7 +129,7 @@ public with sharing class SettleDataController {
                         Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION)
                 .condition('FIN_Payment__r.FIN_Order__c', sale,
                         Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION)
-                .condition(FIN_PaymentDistribution__c.FIN_Event__c.getDescribe().getName(), event,
+                .condition('FIN_Payment__r.FIN_Order__r.FIN_Event__c', event,
                         Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION)
                 .condition('FIN_Payment__r.FIN_Order__r.FIN_ZoneDesc__c', zone,
                         Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION);
@@ -150,11 +150,11 @@ public with sharing class SettleDataController {
         } else if (objectName == 'journalizing') {
             builder.condition(FIN_PaymentDistribution__c.FIN_Journalizing_Status__c.getDescribe().getName(), 'ToBePosted',
                     Constants.ConditionType.EQUALS_CONDITION, null, null)
-                    .condition(FIN_PaymentDistribution__c.Contract__c.getDescribe().getName(), contractId,
+                    .condition(FIN_PaymentDistribution__c.FIN_Order_ID__c.getDescribe().getRelationshipName() + '.' + Order.ContractId.getDescribe().getName(), contractId,
                             Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION);
         }
         if (isForEvents) {
-            builder.condition(FIN_PaymentDistribution__c.Contract__c.getDescribe().getName(), contractId,
+            builder.condition(FIN_PaymentDistribution__c.FIN_Order_ID__c.getDescribe().getRelationshipName() + '.' + Order.ContractId.getDescribe().getName(), contractId,
                     Constants.ConditionType.EQUALS_CONDITION, null, Constants.ConditionOperatorType.AND_CONDITION);
         }
         return builder.endGroup()
