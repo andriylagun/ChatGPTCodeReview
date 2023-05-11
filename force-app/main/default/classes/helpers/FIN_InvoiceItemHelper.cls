@@ -77,8 +77,7 @@ public with sharing class FIN_InvoiceItemHelper {
                 FROM FIN_InvoiceLine__c
                 WHERE FIN_ParentInvoiceSchedule__c IN :parentInvoiceScheduleIDs
         ];
-        EventBus.publish(new FIN_RecordsForwarder__e(RecordsToProcessNew__c = JSON.serialize(invoiceLinesToRemove), OperationName__c = 'deleteRecords', ObjectType__c = FIN_InvoiceLine__c.SObjectType.getDescribe().getName()));
-
+        delete invoiceLinesToRemove;
 
         // // update rates
         // List<FIN_InvoiceItem__c> updateIIs = [
@@ -779,113 +778,209 @@ public with sharing class FIN_InvoiceItemHelper {
         }
     }
 
-    public static void checkIfApplicableForConsumption(List<FIN_InvoiceItem__c> items) {
-        //FIN_Applicable__c
-        System.debug('checkIfApplicableForConsumption ');
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    // NEED TO REWRITE IMPLEMENTATION DOWNSTAIRS
+    //////////////////////////////////////////////////////////////////////////////////////////////
 
-        Set<Id> iiIdsSet = new Set<Id>();
+    // public static void runAccumulationRulesOnInsert(List<FIN_InvoiceItem__c> items) {
+    //     Set<Id> isIdSet = new Set<Id>();
+        
+    //     for (FIN_InvoiceItem__c ii : items) {
+    //         isIdSet.add(ii.FIN_ParentInvoiceSchedule__c);
+    //     }
+
+    //     List<FIN_InvoiceSchedule__c> isList = [
+    //         SELECT Id, FIN_ApplyAccumulators__c, FIN_Contract__c
+    //         FROM FIN_InvoiceSchedule__c
+    //         WHERE Id IN :isIdSet
+    //     ];
+
+    //     for (FIN_InvoiceSchedule__c is : isList) {
+    //         if (is.FIN_ApplyAccumulators__c == true) {
+    //             ConsumptionScheduleBatch objbatch = new ConsumptionScheduleBatch(is.Id, is.FIN_Contract__c);
+    //             Database.executeBatch(objbatch);
+    //         } 
+    //     }
+    // }
+
+    public static void runAccumulationRulesOnInsert(List<FIN_InvoiceItem__c> items) {
+        Set<Id> isIdSet = new Set<Id>();
+        
         for (FIN_InvoiceItem__c ii : items) {
-            iiIdsSet.add(ii.Id);
-        }
-
-        List<FIN_InvoiceItem__c> currentInvoiceItems = [
-                SELECT Id, FIN_EntryType__c, FIN_TotalNetAmountforInvoice__c, FIN_QuantityforInvoiceQty__c, FIN_ParentInvoiceSchedule__c
-                FROM FIN_InvoiceItem__c
-                WHERE Id IN :iiIdsSet
-        ];
-        List<FIN_InvoiceItem__c> invoiceItemsToUpdate = new List<FIN_InvoiceItem__c>();
-
-        Set<Id> isIdsSet = new Set<Id>();
-        Set<Id> subContractIds = new Set<Id>();
-        Set<Id> contractIds = new Set<Id>();
-
-        for (FIN_InvoiceItem__c ii : items) {
-            if (ii.FIN_EntryType__c == 'StandardEntry') {
-                isIdsSet.add(ii.FIN_ParentInvoiceSchedule__c);
-            }
+            isIdSet.add(ii.FIN_ParentInvoiceSchedule__c);
         }
 
         List<FIN_InvoiceSchedule__c> isList = [
-                SELECT Id, FIN_Contract__c, FIN_Mode__c
-                FROM FIN_InvoiceSchedule__c
-                WHERE Id IN :isIdsSet
+            SELECT Id, FIN_ApplyAccumulators__c, FIN_Contract__c
+            FROM FIN_InvoiceSchedule__c
+            WHERE Id IN :isIdSet
         ];
-        List<Id> isRevenueList = new List<Id>();
-        List<Id> isQtyList = new List<Id>();
-        for (FIN_InvoiceSchedule__c is : isList) {
-            if (is.FIN_Mode__c == 'ByAmount') {
-                isRevenueList.add(is.Id);
-            } else if (is.FIN_Mode__c == 'ByTicketQuantity') {
-                isQtyList.add(is.Id);
-            }
-        }
-
+        List<Id> subcontractId = new List<Id>();
 
         for (FIN_InvoiceSchedule__c is : isList) {
-            subContractIds.add(is.FIN_Contract__c);
+            subcontractId.add(is.FIN_Contract__c);
         }
 
-        for (Contract c : [
-                SELECT FIN_ParentContract__c
-                FROM Contract
-                WHERE Id IN :subContractIds
-        ]) {
-            contractIds.add(c.FIN_ParentContract__c);
+        List<Contract> subcontractList = [
+            SELECT FIN_ParentContract__c
+            FROM Contract
+            WHERE Id IN :subcontractId
+        ];
+
+        Set<Id> mastercontractIdSet = new Set<Id>();
+        
+        for (Contract c : subcontractList) {
+            mastercontractIdSet.add(c.FIN_ParentContract__c);
         }
+
+        List<Contract> mastercontractList = [
+            SELECT Id
+            FROM Contract
+            WHERE Id IN :mastercontractIdSet
+        ];
 
         List<ConsumptionSchedule> consumptionSchedule = [
-                SELECT Id, Contract__c, Contract__r.FIN_Region__c, FIN_Conditional_Logic__c, FIN_Starting_Ticket_Count__c,
-                        Advanced_Custom_Logic__c, FIN_Actual_Revenue__c, FIN_Starting_Revenue__c, FIN_Actual_Count__c,
-                        RecordTypeId, RecordType.DeveloperName, FIN_CalculatedBalance__c, FIN_TotalRevenue__c, (
-                        SELECT Id, FIN_Consumption_Schedule__c, Object__c, FIN_Object_Attribute__c, Operator__c, FIN_Value__c, FIN_Number__c
-                        FROM Accumulator_Conditions__r
-                ), (
-                        SELECT Id, ConsumptionScheduleId, LowerBound, UpperBound, Active__c, FIN_Unit_Price__c, FIN_Rate__c, FIN_Pricing_Method__c
+            SELECT Id, Contract__c, Contract__r.FIN_Region__c, FIN_Conditional_Logic__c, FIN_Starting_Ticket_Count__c,
+                    Advanced_Custom_Logic__c, FIN_Actual_Revenue__c, FIN_Starting_Revenue__c, FIN_Actual_Count__c,
+                    RecordTypeId, RecordType.DeveloperName, FIN_CalculatedBalance__c, FIN_TotalRevenue__c,
+                        (SELECT Id, FIN_Consumption_Schedule__c, Object__c, FIN_Object_Attribute__c, Operator__c, FIN_Value__c, FIN_Number__c
+                        FROM Accumulator_Conditions__r),
+                        (SELECT Id, ConsumptionScheduleId, LowerBound, UpperBound, Active__c, FIN_Unit_Price__c, FIN_Rate__c, FIN_Pricing_Method__c
                         FROM ConsumptionRates
-                        WHERE Active__c = true
-                )
-                FROM ConsumptionSchedule
-                WHERE Contract__c IN :contractIds
-                AND IsActive = true
-                AND FIN_ActiveTodayBasedonDates__c = true
+                        WHERE Active__c = true )
+            FROM ConsumptionSchedule
+            WHERE Contract__c IN :mastercontractList AND IsActive = true
+            AND FIN_ActiveTodayBasedonDates__c = true
         ];
+
+        List<FIN_InvoiceItem__c> invoiceItems = [
+            SELECT Id, FIN_QuantityforInvoiceQty__c,
+                    FIN_TotalNetAmountforInvoice__c,
+                    FIN_BaseRateUnitCost__c,
+
+                    FIN_AppliedRateforInvoice__c,
+                    FIN_AppliedUnitPriceforInvoice__c, 
+                    FIN_AdjustmentforInvoice__c,
+                    FIN_TotalAmountbyQty__c,
+                    FIN_AmountbyQty__c,
+
+                    FIN_EntryType__c,
+
+                    FIN_ParentInvoiceSchedule__r.FIN_Mode__c,
+                    FIN_ParentInvoiceSchedule__r.FIN_ApplyAccumulators__c,
+                    FIN_ParentInvoiceSchedule__c
+            FROM FIN_InvoiceItem__c
+            WHERE FIN_ParentInvoiceSchedule__c IN :isIdSet
+            ORDER BY FIN_AppliedRateforInvoice__c
+        ];
+
+        List<FIN_InvoiceItem__c> invoiceItemsToUpdate = new List<FIN_InvoiceItem__c>();
+        List<FIN_InvoiceItem__c> iiToUpdate = new List<FIN_InvoiceItem__c>();
+
+        /////////////////////////////// UPDATE Consumption Schedules ///////////////////////////////
 
         // ConsumptionSchedules by RT:
         List<ConsumptionSchedule> csRevenueAmount = new List<ConsumptionSchedule>();
         List<ConsumptionSchedule> csTicketQty = new List<ConsumptionSchedule>();
-
+        List<ConsumptionSchedule> csAccumToTarget = new List<ConsumptionSchedule>();
+        List<ConsumptionSchedule> csAdvanceRecoupment = new List<ConsumptionSchedule>();
+        // ConsumptionSchedules to update
+        List<ConsumptionSchedule> csToUpdate = new List<ConsumptionSchedule>();
+        
+        
         for (ConsumptionSchedule cs : consumptionSchedule) {
+            System.debug('cs.RecordType.DeveloperName: ' + cs.RecordType.DeveloperName);
             if (cs.RecordType.DeveloperName == 'Revenue_Amount') {
                 csRevenueAmount.add(cs);
             }
             if (cs.RecordType.DeveloperName == 'Ticket_Quantity') {
                 csTicketQty.add(cs);
             }
+            if (cs.RecordType.DeveloperName == 'Accumulation_to_Target') {
+                csAccumToTarget.add(cs);
+            }
+            if (cs.RecordType.DeveloperName == 'Advance_Recoupment') {
+                csAdvanceRecoupment.add(cs);
+            }
         }
         System.debug('csRevenueAmount.size(): ' + csRevenueAmount.size());
         System.debug('csTicketQty.size(): ' + csTicketQty.size());
-
+        System.debug('csAccumToTarget.size(): ' + csAccumToTarget.size());
+        System.debug('csAdvanceRecoupment.size(): ' + csAdvanceRecoupment.size());
+        
+        // add new
+        List<FIN_Applied_Accumulators__c> appliedAccumulatorsToAdd = new List<FIN_Applied_Accumulators__c>();
+        
         Boolean applied;
 
+        // separate by 4 types
         if (!csRevenueAmount.isEmpty()) {
             for (ConsumptionSchedule cs : csRevenueAmount) {
                 Double r = 0;
-                for (FIN_InvoiceItem__c ii : currentInvoiceItems) {
-                    if (ii.FIN_EntryType__c == 'StandardEntry' && isRevenueList.contains(ii.FIN_ParentInvoiceSchedule__c)) {
+                for (FIN_InvoiceItem__c ii : invoiceItems) {
+                    if (ii.FIN_EntryType__c == 'StandardEntry' && ii.FIN_ParentInvoiceSchedule__r.FIN_ApplyAccumulators__c == true && ii.FIN_ParentInvoiceSchedule__r.FIN_Mode__c == 'ByAmount') {
+
                         r += ii.FIN_TotalNetAmountforInvoice__c;
                         applied = checkConditions(cs, ii.Id);
 
-                        System.debug('applied ' + applied);
-                        if (applied == true) {
-                            if (cs.FIN_Starting_Revenue__c != null && cs.FIN_Actual_Revenue__c != null) {
+                        if (applied == false) {
+                            ii.FIN_Applicable__c = true;
+                            ///////////////////////////////////////// AMOUNT /////////////////////////////////////////
+                            if (ii.FIN_ParentInvoiceSchedule__r.FIN_Mode__c == 'ByAmount' && cs.FIN_Starting_Revenue__c != null && cs.FIN_Actual_Revenue__c != null) {
 
-                                FIN_Applied_Accumulators__c appliedAccumulator = new FIN_Applied_Accumulators__c();
+                                FIN_Applied_Accumulators__c appliedAccumulator = new FIN_Applied_Accumulators__c(
+                                    FIN_Invoice_Schedule__c = ii.FIN_ParentInvoiceSchedule__c,
+                                    FIN_Invoice_Item__c = ii.Id,
+                                    FIN_Applied__c = applied,
+                                    FIN_Consumption_Schedule__c = cs.Id,
+
+                                    // value from raw data
+                                    FIN_Calculated_Revenue__c = ii.FIN_TotalNetAmountforInvoice__c,
+                                    // new field to calculate sum for previous_only invoice items of this invoice schedule
+                                    FIN_CalculatedActualRevenue__c = r - ii.FIN_TotalNetAmountforInvoice__c,
+                                    // for each = FIN_Actual_Revenue__c from CS
+                                    FIN_Actual_Revenue__c = cs.FIN_Actual_Revenue__c,
+                                    // starting + actual + calculated + calculatedactual from previous
+                                    FIN_Total_Revenue__c = cs.FIN_Starting_Revenue__c + cs.FIN_Actual_Revenue__c + r
+                                );
+
                                 appliedAccumulator.FIN_Applied_Tier__c = setTier(cs, cs.Id, Integer.valueOf(cs.FIN_Starting_Revenue__c + cs.FIN_Actual_Revenue__c + r));
 
                                 System.debug('appliedAccumulator.FIN_Applied_Tier__c: ' + appliedAccumulator.FIN_Applied_Tier__c);
 
+                                // here is to update csAdvanceRecoupment and csAccumToTarget lookups on applied accum
+                                if (!csAdvanceRecoupment.isEmpty()) {
+                                    for (ConsumptionSchedule csAR : csAdvanceRecoupment) {
+                                        appliedAccumulator.FIN_AdvancedRecoupmentCS__c = csAR.Id;
+                                    }
+                                }
+                                if (!csAccumToTarget.isEmpty()) {
+                                    for (ConsumptionSchedule csAT : csAccumToTarget) {
+                                        appliedAccumulator.FIN_AccumulationtoTargetCS__c = csAT.Id;
+                                    }
+                                }
+                                
                                 if (appliedAccumulator.FIN_Applied_Tier__c != null) {
-                                    ii.FIN_Applicable__c = true;
+                                    appliedAccumulatorsToAdd.add(appliedAccumulator);
+                                    
+                                    // Consumption Rate Pricing_Method by unit price or by rate
+                                    for(ConsumptionRate rate : cs.ConsumptionRates) {
+                                        if(rate.ConsumptionScheduleId == cs.Id && appliedAccumulator.FIN_Applied_Tier__c == rate.Id && appliedAccumulator.FIN_Invoice_Item__c == ii.Id) {
+                                            if (rate.FIN_Pricing_Method__c == 'Flat Rate (%)' && rate.FIN_Rate__c != null) {
+                                                ii.FIN_AppliedRateforInvoice__c = rate.FIN_Rate__c;
+                                            } else if (rate.FIN_Pricing_Method__c == 'Unit Price' && rate.FIN_Unit_Price__c != null) {
+                                                ii.FIN_AppliedUnitPriceforInvoice__c = rate.FIN_Unit_Price__c;
+                                            }
+                                        }
+                                    }
+
+                                    // calculate adjustment for invoice
+                                    if (ii.FIN_AppliedRateforInvoice__c != null) {
+                                        ii.FIN_AdjustmentforInvoice__c = ii.FIN_AppliedRateforInvoice__c * ii.FIN_TotalNetAmountforInvoice__c / 100;
+                                    } else if (ii.FIN_AppliedUnitPriceforInvoice__c != null) {
+                                        ii.FIN_AdjustmentforInvoice__c = ii.FIN_AppliedUnitPriceforInvoice__c;
+                                    }
+                            
                                     invoiceItemsToUpdate.add(ii);
                                 }
                             }
@@ -896,41 +991,96 @@ public with sharing class FIN_InvoiceItemHelper {
         }
 
         if (!csTicketQty.isEmpty()) {
+            //System.debug('csTicketQty IS NOT EMPTY: ' + csTicketQty);
+
             for (ConsumptionSchedule cs : csTicketQty) {
                 Integer k = 0;
                 Double r = 0;
-                for (FIN_InvoiceItem__c ii : currentInvoiceItems) {
-                    if (ii.FIN_EntryType__c == 'StandardEntry' && isQtyList.contains(ii.FIN_ParentInvoiceSchedule__c)) {
+                for (FIN_InvoiceItem__c ii : invoiceItems) {
+                    if (ii.FIN_EntryType__c == 'StandardEntry' && ii.FIN_ParentInvoiceSchedule__r.FIN_ApplyAccumulators__c == true && ii.FIN_ParentInvoiceSchedule__r.FIN_Mode__c == 'ByTicketQuantity') {
 
                         k += Integer.valueOf(ii.FIN_QuantityforInvoiceQty__c);
                         r += ii.FIN_TotalNetAmountforInvoice__c;
                         applied = checkConditions(cs, ii.Id);
 
-                        System.debug('applied ' + applied);
-                        if (applied == true) {
+                        if (applied == false) {
+                            ii.FIN_Applicable__c = true;
+                            ///////////////////////////////////////// QUANTITY /////////////////////////////////////////
+                            if (ii.FIN_ParentInvoiceSchedule__r.FIN_Mode__c == 'ByTicketQuantity' && cs.FIN_Starting_Ticket_Count__c != null && cs.FIN_Actual_Count__c != null) {
+                               
+                                FIN_Applied_Accumulators__c appliedAccumulator = new FIN_Applied_Accumulators__c(
+                                    FIN_Invoice_Schedule__c = ii.FIN_ParentInvoiceSchedule__c,
+                                    FIN_Invoice_Item__c = ii.Id,
+                                    FIN_Applied__c = applied,
+                                    FIN_Consumption_Schedule__c = cs.Id,
 
-                            if (cs.FIN_Starting_Ticket_Count__c != null && cs.FIN_Actual_Count__c != null) {
+                                    // value from raw data
+                                    FIN_Calculated_Ticket_Count__c = ii.FIN_QuantityforInvoiceQty__c,
+                                    // new field to calculate sum for previous_only invoice items of this invoice schedule
+                                    FIN_CalculatedActualTicketCount__c = k - ii.FIN_QuantityforInvoiceQty__c,
+                                    // for each = FIN_Actual_Count__c from CS
+                                    FIN_Actual_Ticket_Count__c = cs.FIN_Actual_Count__c,
+                                    // starting + actual + calculated + calculatedactual from previous
+                                    FIN_Total_Ticket_Count__c = cs.FIN_Starting_Ticket_Count__c + cs.FIN_Actual_Count__c + k
+                                );
 
-                                FIN_Applied_Accumulators__c appliedAccumulator = new FIN_Applied_Accumulators__c();
                                 appliedAccumulator.FIN_Applied_Tier__c = setTier(cs, cs.Id, Integer.valueOf(cs.FIN_Starting_Ticket_Count__c + cs.FIN_Actual_Count__c + k));
 
-                                if (appliedAccumulator.FIN_Applied_Tier__c != null) {
-                                    ii.FIN_Applicable__c = true;
-                                    invoiceItemsToUpdate.add(ii);
+                                // here is to update csAdvanceRecoupment and csAccumToTarget lookups on applied accum
+                                if (!csAdvanceRecoupment.isEmpty()) {
+                                    for (ConsumptionSchedule csAR : csAdvanceRecoupment) {
+                                        appliedAccumulator.FIN_AdvancedRecoupmentCS__c = csAR.Id;
+                                    }
                                 }
+                                if (!csAccumToTarget.isEmpty()) {
+                                    for (ConsumptionSchedule csAT : csAccumToTarget) {
+                                        appliedAccumulator.FIN_AccumulationtoTargetCS__c = csAT.Id;
+                                    }
+                                }
+
+                                ii.FIN_AmountbyQty__c = ii.FIN_QuantityforInvoiceQty__c * ii.FIN_BaseRateUnitCost__c;
+
+                                if (appliedAccumulator.FIN_Applied_Tier__c != null) {
+                                    appliedAccumulatorsToAdd.add(appliedAccumulator);
+                                    
+                                    // Consumption Rate Pricing_Method by unit price or by rate
+                                    for(ConsumptionRate rate : cs.ConsumptionRates) {
+                                        if(rate.ConsumptionScheduleId == cs.Id && appliedAccumulator.FIN_Applied_Tier__c == rate.Id && appliedAccumulator.FIN_Invoice_Item__c == ii.Id) {
+                                            if (rate.FIN_Pricing_Method__c == 'Flat Rate (%)' && rate.FIN_Rate__c != null) {
+                                                ii.FIN_AppliedRateforInvoice__c = rate.FIN_Rate__c;
+                                            } else if (rate.FIN_Pricing_Method__c == 'Unit Price' && rate.FIN_Unit_Price__c != null) {
+                                                ii.FIN_AppliedUnitPriceforInvoice__c = rate.FIN_Unit_Price__c;
+                                            }
+                                        }
+                                    }
+
+                                    // calculate adjustment for invoice
+                                    if (ii.FIN_AppliedRateforInvoice__c != null) {
+                                        ii.FIN_AdjustmentforInvoice__c = ii.FIN_AppliedRateforInvoice__c * ii.FIN_BaseRateUnitCost__c / 100;
+                                    } else if (ii.FIN_AppliedUnitPriceforInvoice__c != null) {
+                                        ii.FIN_AdjustmentforInvoice__c = ii.FIN_AppliedUnitPriceforInvoice__c;
+                                    } else {
+                                        ii.FIN_AdjustmentforInvoice__c = 0;
+                                    }
+                                    ii.FIN_TotalAmountbyQty__c = ii.FIN_QuantityforInvoiceQty__c * ii.FIN_AdjustmentforInvoice__c;
+
+                                    invoiceItemsToUpdate.add(ii);
+                                }   
                             }
                         }
                     }
                 }
             }
         }
-        System.debug('invoiceItemsToUpdate.size(): ' + invoiceItemsToUpdate.size());
-        if (!invoiceItemsToUpdate.isEmpty()) {
-            update invoiceItemsToUpdate;
-        }
+
+        System.debug('appliedAccumulatorsToAdd.size() -> ' + appliedAccumulatorsToAdd.size());
+        
+        
+        update invoiceItemsToUpdate;
+        insert appliedAccumulatorsToAdd;
     }
 
-    public static Boolean checkConditions(ConsumptionSchedule cs, Id ii) {
+    private static Boolean checkConditions(ConsumptionSchedule cs, Id ii) {
         String query = 'SELECT Id, :objName FROM FIN_InvoiceItem__c WHERE :conditions AND Id =: ii';
         List<SObject> objects = new List<SObject>();
         String conditions = '';
@@ -939,51 +1089,48 @@ public with sharing class FIN_InvoiceItemHelper {
         String operator = cs.FIN_Conditional_Logic__c;
         String customExpression = cs.Advanced_Custom_Logic__c;
         List<Boolean> isApplied = new List<Boolean>();
+
         if (operator == 'AND' || operator == 'OR') {
+            System.debug('operator : ' + operator);
             conditionsMap = new Map<String, List<String>>();
+
             for (Accumulator_Condition__c ac : cs.Accumulator_Conditions__r) {
-                //System.debug('ac : ' + ac);
+                System.debug('ac : ' + ac);
+
                 if (ac.FIN_Object_Attribute__c != null && ac.FIN_Value__c != null && ac.Object__c != null) {
                     String condition = prepareCondition(ac);
 
                     String field = ac.Object__c.replace('__c', '__r') + '.' + ac.FIN_Object_Attribute__c;
 
-                    // System.debug('field : ' + field);
+                    System.debug('field : ' + field);
                     if (conditionsMap.containsKey(field)) {
                         conditionsMap.get(field).add(condition);
                     } else {
                         conditionsMap.put(field, new List<String>{
-                                condition
+                            condition
                         });
                     }
-                    //System.debug('conditionsMap'+conditionsMap);
+                    System.debug('conditionsMap -> ' + conditionsMap);
                 }
                 for (String objName : conditionsMap.keySet()) {
                     conditions = String.join(conditionsMap.get(objName), ' ' + operator + ' ');
-                    System.debug('conditions ' + conditions);
-                    //System.debug('objName'+objName);
+                    System.debug('conditions -> ' + conditions);
+                    System.debug('objName -> ' + objName);
                     objects = Database.query(query.replace(':objName', objName).replace(':conditions', conditions));
 
-                    System.debug('objects' + objects);
-
-                    System.debug(query.replace(':objName', objName).replace(':conditions', conditions));
+                    System.debug('objects -> ' + objects);
+                    System.debug(Database.query(query.replace(':objName', objName).replace(':conditions', conditions)));
                     isApplied.add(!objects.isEmpty());
-                    System.debug('isApplied' + isApplied);
+                    System.debug('list isApplied -> ' + isApplied);
                 }
             }
-            System.debug('isApplied: ' + isApplied);
             if (operator == 'OR') {
-                //System.debug('isApplied.contains(false);'+isApplied.contains(true));
-//                return isApplied.contains(true);
                 boolean suitable = true;
-
                 if (isApplied.contains(true)) {
                     suitable = false;
                 }
-
-                return suitable;
+                return suitable; 
             } else if (operator == 'AND') {
-                //System.debug('isApplied.contains(false);'+!isApplied.contains(false));
                 return isApplied.contains(false);
             } else {
                 return null;
@@ -994,9 +1141,9 @@ public with sharing class FIN_InvoiceItemHelper {
                     if (customExpression.contains(String.valueOf(Math.round(ac.FIN_Number__c)))) {
                         conditions = prepareCondition(ac);
                         customLogicConditionsMap.put(Math.round(ac.FIN_Number__c), !Database.query(query
-                                .replace(':objName', ac.Object__c)
-                                .replace(':conditions', conditions))
-                                .isEmpty());
+                            .replace(':objName', ac.Object__c)
+                            .replace(':conditions', conditions))
+                            .isEmpty());
                     }
                 }
             }
@@ -1037,17 +1184,28 @@ public with sharing class FIN_InvoiceItemHelper {
     }
 
     private static Id setTier(ConsumptionSchedule cs, Id csId, Integer actualCount) {
-        for (ConsumptionRate rate : cs.ConsumptionRates) {
-            if (rate.ConsumptionScheduleId == csId) {
+        for(ConsumptionRate rate : cs.ConsumptionRates) {
+            if(rate.ConsumptionScheduleId == csId) {
                 System.debug('actualCount: ' + actualCount);
-                if (actualCount >= rate.LowerBound && actualCount <= rate.UpperBound) {
+                if(actualCount >= rate.LowerBound && actualCount <= rate.UpperBound) { 
                     return rate.Id;
                 }
             }
         }
 
         return null;
-    }
+    }    
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    // NEED TO REWRITE IMPLEMENTATION UPSTAIRS
+    //////////////////////////////////////////////////////////////////////////////////////////////
 
     private static void updateRelatedRecordsStatuses(String statusField, String objectToUpdate, Set<Id> relatedRecordsIds, String statusValue) {
         List<SObject> records = new List<SObject>();

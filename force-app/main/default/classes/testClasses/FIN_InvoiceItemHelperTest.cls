@@ -5,29 +5,29 @@ private class FIN_InvoiceItemHelperTest {
         try {
 
             Account acc = TestDataFactory.createAccount();
-            Contact cont = TestDataFactory.createContactForAccount(acc.Id, 'test@g.com');
+            Contract cntr = TestDataFactory.createParentContract(acc.Id);
             Product2 pro = TestDataFactory.createProduct2();
             PricebookEntry standardPriceEntry = TestDataFactory.createPricebookEntry(pro.Id);
             Order ord = TestDataFactory.createTestOrder(acc.Id);
-            FIN_Payment__c payment = TestDataFactory.createPayment(ord.Id, cont.Id);
-            FIN_PaymentDistribution__c paymentdist = TestDataFactory.createPaymentDistribution(payment.Id, null, cont.Id);
+            FIN_Payment__c payment = TestDataFactory.createPayment(ord.Id, cntr.Id);
+            FIN_PaymentDistribution__c paymentdist = TestDataFactory.createPaymentDistribution(payment.Id, null, cntr.Id);
             FIN_InvoiceSchedule__c invoiceSchedule = new FIN_InvoiceSchedule__c();
             insert invoiceSchedule;
             FIN_InvoiceItem__c invoiceItem = new FIN_InvoiceItem__c(
                 FIN_PaymentDistribution__c = paymentdist.Id,
                 FIN_ParentInvoiceSchedule__c = invoiceSchedule.id);
 
-            Test.startTest();
+//            Test.startTest();
             insert invoiceItem;
-            Test.stopTest();
+//            Test.stopTest();
             List<FIN_PaymentDistribution__c> PDList = [
                 SELECT Id, RecordTypeId, Invoices_Status__c, FIN_Payment__r.FIN_Order__r.Invoices_Status__c
                 FROM FIN_PaymentDistribution__c
             ];
 
 
-            // System.assertEquals(PDList[0].Invoices_Status__c, 'InvoiceScheduled');
-            // System.assertEquals(PDList[0].FIN_Payment__r.FIN_Order__r.Invoices_Status__c, 'InvoiceScheduled');
+             System.assertEquals(PDList[0].Invoices_Status__c, 'InvoiceScheduled');
+             System.assertEquals(PDList[0].FIN_Payment__r.FIN_Order__r.Invoices_Status__c, 'InvoiceScheduled');
 
         } catch(Exception e) {
             System.debug(e.getMessage());
@@ -37,12 +37,12 @@ private class FIN_InvoiceItemHelperTest {
     static void updateStatusesBeforeDelete() {
         try {
             Account acc = TestDataFactory.createAccount();
-            Contact cont = TestDataFactory.createContactForAccount(acc.Id, 'test@g.com');
+            Contract cntr = TestDataFactory.createParentContract(acc.Id);
             Product2 pro = TestDataFactory.createProduct2();
             PricebookEntry standardPriceEntry = TestDataFactory.createPricebookEntry(pro.Id);
             Order ord = TestDataFactory.createTestOrder(acc.Id);
-            FIN_Payment__c payment = TestDataFactory.createPayment(ord.Id, cont.Id);
-            FIN_PaymentDistribution__c paymentdist = TestDataFactory.createPaymentDistribution(payment.Id, null, cont.Id);
+            FIN_Payment__c payment = TestDataFactory.createPayment(ord.Id, cntr.Id);
+            FIN_PaymentDistribution__c paymentdist = TestDataFactory.createPaymentDistribution(payment.Id, null, cntr.Id);
             FIN_InvoiceSchedule__c invoiceSchedule = new FIN_InvoiceSchedule__c();
             insert invoiceSchedule;
             FIN_InvoiceItem__c invoiceItem = new FIN_InvoiceItem__c(

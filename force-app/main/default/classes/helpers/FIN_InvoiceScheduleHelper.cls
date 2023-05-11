@@ -55,7 +55,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                 mapPDsId.get(COMPLETED_CONST).add(item.FIN_PaymentDistribution__c);
                 mapPaymentsId.get(COMPLETED_CONST).add(item.FIN_Payment__c);
                 mapPaymentsId.get(COMPLETED_CONST).add(item.FIN_PaymentDistribution__r.FIN_Payment__c);
-                mapSalesId.get(COMPLETED_CONST).add(item.FIN_Sales__c);
+                //mapSalesId.get(COMPLETED_CONST).add(item.FIN_Sales__c);
                 mapSalesId.get(COMPLETED_CONST).add(item.FIN_Payment__r.FIN_Order__c);
                 mapSalesId.get(COMPLETED_CONST).add(item.FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__c);
                 mapSalesId.get(COMPLETED_CONST).add(item.FIN_SalesTransactions__r.OrderId);
@@ -66,7 +66,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
                 mapPDsId.get(VOIDED_CONST).add(item.FIN_PaymentDistribution__c);
                 mapPaymentsId.get(VOIDED_CONST).add(item.FIN_Payment__c);
                 mapPaymentsId.get(VOIDED_CONST).add(item.FIN_PaymentDistribution__r.FIN_Payment__c);
-                mapSalesId.get(VOIDED_CONST).add(item.FIN_Sales__c);
+                //mapSalesId.get(VOIDED_CONST).add(item.FIN_Sales__c);
                 mapSalesId.get(VOIDED_CONST).add(item.FIN_Payment__r.FIN_Order__c);
                 mapSalesId.get(VOIDED_CONST).add(item.FIN_PaymentDistribution__r.FIN_Payment__r.FIN_Order__c);
                 mapSalesId.get(VOIDED_CONST).add(item.FIN_SalesTransactions__r.OrderId);
@@ -89,19 +89,19 @@ public with sharing class FIN_InvoiceScheduleHelper {
             }
         }
 
-        List<Order> salesList = [
-            SELECT Id, Invoices_Status__c
-            FROM Order
-            WHERE Id IN :getSet(mapSalesId)
-        ];
+        // List<Order> salesList = [
+        //     SELECT Id, Invoices_Status__c
+        //     FROM Order
+        //     WHERE Id IN :getSet(mapSalesId)
+        // ];
 
-        for(Order sales: salesList) {
-            if(mapSalesId.get(COMPLETED_CONST).contains(sales.Id)) {
-                sales.Invoices_Status__c = 'Invoiced';
-            } else if (mapSalesId.get(VOIDED_CONST).contains(sales.Id)) {
-                sales.Invoices_Status__c = VOIDED_CONST;
-            }
-        }
+        // for(Order sales: salesList) {
+        //     if(mapSalesId.get(COMPLETED_CONST).contains(sales.Id)) {
+        //         sales.Invoices_Status__c = 'Invoiced';
+        //     } else if (mapSalesId.get(VOIDED_CONST).contains(sales.Id)) {
+        //         sales.Invoices_Status__c = VOIDED_CONST;
+        //     }
+        // }
 
         List<OrderItem> salesTrList = [
             SELECT Id, FIN_Invoices_Status__c
@@ -131,7 +131,7 @@ public with sharing class FIN_InvoiceScheduleHelper {
             }
         }
 
-        update salesList;
+//        update salesList;
         update salesTrList;
         update pdList;
         update paymentsList;
@@ -437,14 +437,14 @@ public with sharing class FIN_InvoiceScheduleHelper {
         }
     }
 
-    public static void runAccumulationRulesOnInsert(List<FIN_InvoiceSchedule__c> invoices, Map<Id, FIN_InvoiceSchedule__c> oldMap) {
-        for (FIN_InvoiceSchedule__c is : invoices) {
-            if (is.FIN_ApplyAccumulators__c == true) {
-                ConsumptionScheduleBatch objbatch = new ConsumptionScheduleBatch(is.Id, is.FIN_Contract__c);
-                Database.executeBatch(objbatch);
-            } 
-        }
-    }
+    // public static void runAccumulationRulesOnInsert(List<FIN_InvoiceSchedule__c> invoices, Map<Id, FIN_InvoiceSchedule__c> oldMap) {
+    //     for (FIN_InvoiceSchedule__c is : invoices) {
+    //         if (is.FIN_ApplyAccumulators__c == true) {
+    //             ConsumptionScheduleBatch objbatch = new ConsumptionScheduleBatch(is.Id, is.FIN_Contract__c);
+    //             Database.executeBatch(objbatch);
+    //         }
+    //     }
+    // }
 
     public static void runAccumulationRules(List<FIN_InvoiceSchedule__c> invoices, Map<Id, FIN_InvoiceSchedule__c> oldMap) {
         for (FIN_InvoiceSchedule__c is : invoices) {

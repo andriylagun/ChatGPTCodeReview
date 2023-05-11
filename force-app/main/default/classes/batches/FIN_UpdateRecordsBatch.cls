@@ -25,6 +25,7 @@ public with sharing class FIN_UpdateRecordsBatch implements Database.Batchable<S
                 String valueToCheck = String.valueOf(record.get(action.FIN_DestinationField__c));
                 if (valueToCheck == null || valueToCheck == 'New' || valueToCheck == 'NotApplicable') {
                     record.put(action.FIN_DestinationField__c, parseValueWithType(action.FIN_DestinationField__c, action.FIN_Object__c, action.FIN_DestinationFieldValue__c));
+//                    record.put('FIN_RulesInfo__c', record.get('FIN_RulesInfo__c') + ', ' + action.FIN_SortingRule__r.Name);
                 }
             }
         }

@@ -1,6 +1,6 @@
 public with sharing class FIN_InvoiceScheduleTriggerHandler  extends TriggerHandler {
     protected override void afterInsert() {
-        FIN_InvoiceScheduleHelper.runAccumulationRulesOnInsert((List<FIN_InvoiceSchedule__c>) this.triggerNew, (Map<Id, FIN_InvoiceSchedule__c>) this.triggerOldMap);
+        //FIN_InvoiceScheduleHelper.runAccumulationRulesOnInsert((List<FIN_InvoiceSchedule__c>) this.triggerNew, (Map<Id, FIN_InvoiceSchedule__c>) this.triggerOldMap);
     }
 
     protected override void afterUpdate() {

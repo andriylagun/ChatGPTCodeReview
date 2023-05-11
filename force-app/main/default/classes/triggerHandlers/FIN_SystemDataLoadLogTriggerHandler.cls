@@ -29,9 +29,6 @@ public class FIN_SystemDataLoadLogTriggerHandler extends TriggerHandler {
                     if (dataLoadLog.FIN_BusinessRuleProcessCompleteStatus__c == 'Success Heroku') {
                         FIN_SystemDataLoadLogService.scheduleApexJob(dataLoadLog);
                     }
-                    if (dataLoadLog.FIN_SalesforceRulesStatus__c == 'In-Progress') {
-                        FIN_AXSRuleEngineService.processSettlementRuleEngineFromSystemDataLoadLog(dataLoadLog);
-                    }
                 }
             } else {
                 if (dataLoadLog.FIN_BusinessRuleEndTime__c == null) {

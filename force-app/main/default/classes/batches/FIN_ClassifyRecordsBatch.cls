@@ -26,7 +26,7 @@ global class FIN_ClassifyRecordsBatch implements Database.Batchable<SObject> {
         this.batchJobsToExecuteInOrderOriginal = batchJobsToExecuteInOrderOriginal;
 
         if (batchJobsToExecuteInOrder.isEmpty()) {
-            this.batchJobsToExecuteInOrder = batchJobsToExecuteInOrderOriginal;
+            this.batchJobsToExecuteInOrder = this.batchJobsToExecuteInOrderOriginal.clone();
         } else {
             this.batchJobsToExecuteInOrder = batchJobsToExecuteInOrder.clone();
         }
@@ -219,23 +219,27 @@ global class FIN_ClassifyRecordsBatch implements Database.Batchable<SObject> {
         if (this.systemDataLoadLog != null && !this.batchJobsToExecuteInOrder.isEmpty()) {
             if (!this.batchJobsToExecuteInOrder.isEmpty()) { // this keeps looping for the same context until all batches are executed for that context.
                 this.batchJobsToExecuteInOrder.remove(0);
-                if (this.batchJobsToExecuteInOrder.size() >= 1) {
+                if (this.batchJobsToExecuteInOrder.size() > 0) {
                     system.debug('@@ checkpoint#1');
                     Database.executeBatch(new FIN_ClassifyRecordsBatch(this.contexts, this.batchJobsToExecuteInOrder, this.contextsOriginal, this.batchJobsToExecuteInOrderOriginal));
                 }
             }
+            System.debug('jobId: ' + param1.getJobId());
+            System.debug(this.sObjectTypeName);
             system.debug('@@ checkpoint#2');
             if (!this.contexts.isEmpty() && (this.batchJobsToExecuteInOrder.isEmpty() || this.batchJobsToExecuteInOrder.size() == 0)) {
                 this.contexts.remove(0); // here one one context is removed and batches repeated for all 3 processes again.
                 system.debug('@@ checkpoint#3');
-                if (this.contexts.size() >= 1) {
+                if (this.contexts.size() > 0) {
                     Database.executeBatch(new FIN_ClassifyRecordsBatch(this.contexts, this.batchJobsToExecuteInOrder, this.contextsOriginal, this.batchJobsToExecuteInOrderOriginal));
                 }
             }
-        } else if (this.systemDataLoadLog != null && this.batchJobsToExecuteInOrder.isEmpty() && this.contexts.isEmpty()) {
-            FIN_AXSRuleEngineService.processSettlementRuleEngineFromSystemDataLoadLog(this.systemDataLoadLog);
-        } else if (this.systemDataLoadLog == null && this.batchJobsToExecuteInOrder == null) {
+        } else if (this.systemDataLoadLog == null && this.batchJobsToExecuteInOrder == null && !this.contexts.isEmpty()) {
             Database.executeBatch(new FIN_ClassifyRecordsBatch(this.fieldToSet, this.sObjectTypeName, this.fieldsToGet, this.contexts));
+        }
+
+        if (this.systemDataLoadLog != null && this.batchJobsToExecuteInOrder.isEmpty() && this.contexts.isEmpty()) {
+            FIN_AXSRuleEngineService.processSettlementRuleEngineFromSystemDataLoadLog(this.systemDataLoadLog);
         }
     }
 
